@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/core/app/router/app_routes.gr.dart';
+import 'package:wheel_crm/gen/assets.gen.dart';
 
 @RoutePage()
 class BottomMenuScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class BottomMenuScreen extends StatefulWidget {
 class _BottomMenuScreenState extends State<BottomMenuScreen> {
   final List<PageRouteInfo<void>> _buildRoutes = const [
     StorageRoute(),
-    ProfileRoute(),
+    StorageRoute(),
   ];
 
   List<Widget> _navBarsItems({
@@ -24,18 +25,12 @@ class _BottomMenuScreenState extends State<BottomMenuScreen> {
   }) {
     return [
       _buildNavItem(
-        item: BottomMenuItem(
-          label: 'Места',
-          index: 0,
-        ),
+        item: BottomMenuItem(index: 0, assetName: Assets.icons.icHome.path),
         isActive: activeIndex == 0,
         onSelectedItem: onSelectedItem,
       ),
       _buildNavItem(
-        item: BottomMenuItem(
-          label: 'Профиль',
-          index: 1,
-        ),
+        item: BottomMenuItem(index: 1, assetName: Assets.icons.icProfile.path),
         isActive: activeIndex == 1,
         onSelectedItem: onSelectedItem,
       ),
@@ -48,40 +43,31 @@ class _BottomMenuScreenState extends State<BottomMenuScreen> {
     required Function(int index) onSelectedItem,
   }) {
     return GestureDetector(
-      onTap: () {
-        onSelectedItem(item.index);
-      },
+      onTap: () => onSelectedItem(item.index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (item.assetName != null)
-            Container(
-              decoration: isActive
-                  ? BoxDecoration(
-                      color: AppColors.kPrimary.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(AppProps.kDefaultBorderRadius),
-                    )
-                  : null,
-              padding: const EdgeInsets.symmetric(horizontal: AppProps.kPageMargin),
-              child: SizedBox(
-                width: 32,
-                height: 32,
-                child: SvgPicture.asset(
-                  item.assetName!,
-                  colorFilter: ColorFilter.mode(
-                    isActive ? AppColors.kPrimary : AppColors.kAccent,
-                    BlendMode.srcIn,
-                  ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: AppProps.kPageMargin),
+            child: SizedBox(
+              width: 32,
+              height: 32,
+              child: SvgPicture.asset(
+                item.assetName,
+                colorFilter: const ColorFilter.mode(
+                  AppColors.kBlack,
+                  BlendMode.srcIn,
                 ),
               ),
             ),
-          if (item.assetName != null) const SizedBox(height: 4),
-          Text(
-            item.label,
-            style: AppTextStyle.mediumStyle.copyWith(
-              color: isActive ? AppColors.kPrimary : AppColors.kAccent,
-            ),
           ),
+          const SizedBox(height: 4),
+          if (isActive)
+            Container(
+              height: 5,
+              width: 5,
+              decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.kPrimary),
+            )
         ],
       ),
     ).withOpaqueBehavior();
@@ -92,13 +78,26 @@ class _BottomMenuScreenState extends State<BottomMenuScreen> {
     return AutoTabsScaffold(
       routes: _buildRoutes,
       bottomNavigationBuilder: (_, tabsRouter) {
-        return SizedBox(
-          height: 80,
-          child: Row(
-            children: _navBarsItems(
-              activeIndex: tabsRouter.activeIndex,
-              onSelectedItem: tabsRouter.setActiveIndex,
-            ).map((e) => Expanded(child: e)).toList(),
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 4,
+                spreadRadius: 3,
+                color: Colors.black.withOpacity(0.05),
+                offset: const Offset(0, -3),
+              ),
+            ],
+          ),
+          child: SizedBox(
+            height: 70,
+            child: Row(
+              children: _navBarsItems(
+                activeIndex: tabsRouter.activeIndex,
+                onSelectedItem: tabsRouter.setActiveIndex,
+              ).map((e) => Expanded(child: e)).toList(),
+            ),
           ),
         );
       },
@@ -107,13 +106,11 @@ class _BottomMenuScreenState extends State<BottomMenuScreen> {
 }
 
 class BottomMenuItem {
-  String? assetName;
-  String label;
+  String assetName;
   int index;
 
   BottomMenuItem({
-    this.assetName,
-    required this.label,
+    required this.assetName,
     required this.index,
   });
 }
