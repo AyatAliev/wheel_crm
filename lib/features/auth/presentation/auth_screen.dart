@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/core/app/router/app_routes.gr.dart';
+import 'package:wheel_crm/core/service/system_chrome_theme.dart';
 import 'package:wheel_crm/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:wheel_crm/features/auth/presentation/widgets/app_bar_auth.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
@@ -26,6 +28,12 @@ class _AuthScreenState extends State<AuthScreen> {
   late final FocusNode _passwordFocus = FocusNode();
 
   late final _authFormKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    SystemChromeTheme.themeDark();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,7 @@ class AppProps {
   static const double kBorderRadius32 = 32.0;
   static const double kBorderRadius28 = 28.0;
   static const double kBigBorderRadius = 24.0;
+  static const double kTwentyRadius = 20.0;
   static const double kDefaultBorderRadius = 16.0;
   static const double kMediumBorderRadius = 12.0;
   static const double kSmallX2BorderRadius = 4.0;

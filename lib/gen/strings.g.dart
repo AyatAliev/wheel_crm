@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 7
+/// Strings: 10
 ///
-/// Built on 2024-01-23 at 14:52 UTC
+/// Built on 2024-01-25 at 14:32 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -154,6 +154,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get youMustSpecifyYourData => 'Необходимо указать \nваши данные';
 	String get mail => 'Почта';
 	String get password => 'Пароль';
+	String get seller => 'Продажи';
+	String get acceptance => 'Приемка';
+	String get leftovers => 'Остатки';
 }
 
 /// Flat map(s) containing all translations.
@@ -169,6 +172,9 @@ extension on Translations {
 			case 'youMustSpecifyYourData': return 'Необходимо указать \nваши данные';
 			case 'mail': return 'Почта';
 			case 'password': return 'Пароль';
+			case 'seller': return 'Продажи';
+			case 'acceptance': return 'Приемка';
+			case 'leftovers': return 'Остатки';
 			default: return null;
 		}
 	}

@@ -26,7 +26,7 @@ class AppRouter extends $AppRouter {
             AuthGuard(authService: authService),
           ],
           children: [
-            AutoRoute(page: StorageRoute.page),
+            AutoRoute(page: HomeRoute.page),
           ],
         ),
       ];

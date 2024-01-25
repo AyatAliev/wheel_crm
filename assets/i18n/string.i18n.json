@@ -5,5 +5,8 @@
   "enterYourAccountDetails": "Введите данные учетной записи",
   "youMustSpecifyYourData": "Необходимо указать \nваши данные",
   "mail": "Почта",
-  "password": "Пароль"
+  "password": "Пароль",
+  "seller": "Продажи",
+  "acceptance": "Приемка",
+  "leftovers": "Остатки"
 }

@@ -2,23 +2,17 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:wheel_crm/core/app/app.dart';
 import 'package:wheel_crm/core/network/entity/failure.dart';
 import 'package:wheel_crm/core/ovverides/http_overrides.dart';
 import 'package:wheel_crm/core/service/auth_service.dart';
 import 'package:wheel_crm/core/service/local_storage_service.dart';
+import 'package:wheel_crm/core/service/system_chrome_theme.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 import 'package:wheel_crm/injection/injection.dart';
 
 FutureOr<void> main() async {
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarColor: Colors.white,
-      statusBarColor: Colors.white,
-    ),
-  );
+  SystemChromeTheme.themeDark();
 
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();

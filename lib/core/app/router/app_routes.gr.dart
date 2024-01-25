@@ -11,7 +11,7 @@
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:wheel_crm/features/auth/presentation/auth_screen.dart' as _i1;
 import 'package:wheel_crm/features/bottom_menu/bottom_menu_screen.dart' as _i2;
-import 'package:wheel_crm/features/storage/storage_screen.dart' as _i3;
+import 'package:wheel_crm/features/home/home_screen.dart' as _i3;
 import 'package:wheel_crm/features/weclome/welcome_screen.dart' as _i4;
 
 abstract class $AppRouter extends _i5.RootStackRouter {
@@ -31,10 +31,10 @@ abstract class $AppRouter extends _i5.RootStackRouter {
         child: const _i2.BottomMenuScreen(),
       );
     },
-    StorageRoute.name: (routeData) {
+    HomeRoute.name: (routeData) {
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.StorageScreen(),
+        child: const _i3.HomeScreen(),
       );
     },
     WelcomeRoute.name: (routeData) {
@@ -75,15 +75,15 @@ class BottomMenuRoute extends _i5.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.StorageScreen]
-class StorageRoute extends _i5.PageRouteInfo<void> {
-  const StorageRoute({List<_i5.PageRouteInfo>? children})
+/// [_i3.HomeScreen]
+class HomeRoute extends _i5.PageRouteInfo<void> {
+  const HomeRoute({List<_i5.PageRouteInfo>? children})
       : super(
-          StorageRoute.name,
+          HomeRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'StorageRoute';
+  static const String name = 'HomeRoute';
 
   static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }
