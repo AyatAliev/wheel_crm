@@ -65,6 +65,7 @@ dependencies:
   intl: ^0.18.0
   copy_with_extension: ^5.0.4
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -84,10 +85,33 @@ flutter_gen:
     flutter_svg: true
 
 flutter:
-
-  uses-material-design: true
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Raleway-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Raleway-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Raleway-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Raleway-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Raleway-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Raleway-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Raleway-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Raleway-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Raleway-Black.ttf
+          weight: 900
 
   assets:
     - assets/
     - assets/icons/
+    - assets/fonts/
+
+  uses-material-design: true
+
 

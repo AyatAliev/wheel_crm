@@ -8,7 +8,7 @@ class AppInput extends StatefulWidget with InputValidationMixin {
   final String? suffixText;
   final TextInputType inputType;
   final TextStyle textStyle;
-  final TextStyle hintStyle;
+  final TextStyle? hintStyle;
   final Color backgroundColor;
   final TextEditingController controller;
   final double? height;
@@ -35,11 +35,7 @@ class AppInput extends StatefulWidget with InputValidationMixin {
     Key? key,
     this.prefix = const SizedBox(),
     this.inputType = TextInputType.text,
-    this.textStyle = const TextStyle(
-      color: AppColors.kBlack,
-      fontSize: 16,
-      fontWeight: FontWeight.w600,
-    ),
+    this.textStyle = AppTextStyle.bodyLargeStyle,
     this.backgroundColor = AppColors.kLightGrey,
     required this.controller,
     required this.title,
@@ -55,7 +51,7 @@ class AppInput extends StatefulWidget with InputValidationMixin {
     this.validators = const [],
     this.focusNode,
     this.onChanged,
-    this.hintStyle = const TextStyle(color: AppColors.kGreySecondary, fontWeight: FontWeight.normal),
+    this.hintStyle,
     this.hintText,
     this.maxLines,
     this.minLines,
@@ -89,14 +85,16 @@ class _AppInputState extends State<AppInput> {
   }
 
   Widget _suffix() {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: _errorString == null ? widget.suffixWidget : _errorIcon(),
+    return Positioned(
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: SizedBox(
+          width: 16,
+          height: 16,
+          child: widget.suffixWidget,
+        ),
+      ),
     );
-  }
-
-  Widget _errorIcon() {
-    return const Icon(Icons.error);
   }
 
   Widget _prefix() {
@@ -124,9 +122,9 @@ class _AppInputState extends State<AppInput> {
         style: widget.textStyle,
         onFieldSubmitted: widget.onFieldSubmitted,
         decoration: InputDecoration(
-          suffixIcon: Text(widget.suffixText ?? '', style: widget.hintStyle),
+          suffixIcon: Text(widget.suffixText ?? '', style: widget.hintStyle ?? AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kGreySecondary)),
           suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
-          hintStyle: widget.hintStyle,
+          hintStyle: widget.hintStyle ?? AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kGreySecondary),
           hintText: widget.hintText,
           errorStyle: const TextStyle(height: 0, fontSize: 0),
           isDense: true,
@@ -168,21 +166,26 @@ class _AppInputState extends State<AppInput> {
         padding: widget.padding,
         height: widget.height,
         decoration: _boxDecoration(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Text(
-              widget.title,
-              style: AppTextStyle.mediumStyle.copyWith(color: AppColors.kGrey),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _prefix(),
-                _input(),
-                _suffix(),
+                Text(
+                  widget.title,
+                  style: AppTextStyle.mediumStyle.copyWith(color: AppColors.kGrey),
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _prefix(),
+                    _input(),
+                  ],
+                ),
               ],
             ),
+            _suffix(),
           ],
         ),
       ),
@@ -214,7 +217,7 @@ class _AppInputState extends State<AppInput> {
           width: size.width,
           child: _body(),
         ),
-        if (_errorString != null)
+        if (_errorString != null && _errorString?.isNotEmpty == true)
           Container(
             margin: const EdgeInsets.only(left: AppProps.kPageMargin, top: 4),
             child: _errorWidget(),

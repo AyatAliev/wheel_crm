@@ -30,6 +30,9 @@ mixin InputValidationMixin {
         case AppInputValidatorEnum.LENGTH:
           errorString = value.length != vds.length ? vds.errorString : null;
           break;
+        case AppInputValidatorEnum.ERROR:
+          errorString = value.length != vds.length ? vds.errorString : null;
+          break;
       }
 
       if (errorString != null && errorString.isNotEmpty) break;

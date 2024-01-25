@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 1
+/// Strings: 7
 ///
-/// Built on 2024-01-22 at 19:28 UTC
+/// Built on 2024-01-23 at 14:52 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -148,6 +148,12 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 
 	// Translations
 	String get hello => 'Hello';
+	String get appName => 'Wheel';
+	String get signIn => 'Войти';
+	String get enterYourAccountDetails => 'Введите данные учетной записи';
+	String get youMustSpecifyYourData => 'Необходимо указать \nваши данные';
+	String get mail => 'Почта';
+	String get password => 'Пароль';
 }
 
 /// Flat map(s) containing all translations.
@@ -157,6 +163,12 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'hello': return 'Hello';
+			case 'appName': return 'Wheel';
+			case 'signIn': return 'Войти';
+			case 'enterYourAccountDetails': return 'Введите данные учетной записи';
+			case 'youMustSpecifyYourData': return 'Необходимо указать \nваши данные';
+			case 'mail': return 'Почта';
+			case 'password': return 'Пароль';
 			default: return null;
 		}
 	}

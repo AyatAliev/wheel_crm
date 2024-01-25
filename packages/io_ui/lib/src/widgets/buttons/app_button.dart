@@ -17,12 +17,6 @@ class AppButton extends StatelessWidget {
   final Alignment textAlignment;
   final int textFlex;
 
-  static const TextStyle kDefaultTextStyle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-    color: Colors.white,
-  );
-
   const AppButton({
     Key? key,
     this.isLoading = false,
@@ -30,7 +24,7 @@ class AppButton extends StatelessWidget {
     required this.text,
     this.color = AppColors.kPrimary,
     this.borderColor = AppColors.kPrimary,
-    this.textStyle = kDefaultTextStyle,
+    this.textStyle,
     this.width,
     this.height = kDefaultButtonHeight,
     this.prefixWidget = const SizedBox(),
@@ -47,7 +41,7 @@ class AppButton extends StatelessWidget {
       child: Text(
         text,
         overflow: TextOverflow.ellipsis,
-        style: textStyle,
+        style: textStyle ?? AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kWhite),
       ),
     );
   }

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:io_ui/io_ui.dart';
+part of io_ui;
 
 class AppSnackBar {
   static show({

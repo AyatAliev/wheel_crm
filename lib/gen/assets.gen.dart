@@ -11,12 +11,59 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsFontsGen {
+  const $AssetsFontsGen();
+
+  /// File path: assets/fonts/Raleway-Black.ttf
+  String get ralewayBlack => 'assets/fonts/Raleway-Black.ttf';
+
+  /// File path: assets/fonts/Raleway-Bold.ttf
+  String get ralewayBold => 'assets/fonts/Raleway-Bold.ttf';
+
+  /// File path: assets/fonts/Raleway-ExtraBold.ttf
+  String get ralewayExtraBold => 'assets/fonts/Raleway-ExtraBold.ttf';
+
+  /// File path: assets/fonts/Raleway-ExtraLight.ttf
+  String get ralewayExtraLight => 'assets/fonts/Raleway-ExtraLight.ttf';
+
+  /// File path: assets/fonts/Raleway-Light.ttf
+  String get ralewayLight => 'assets/fonts/Raleway-Light.ttf';
+
+  /// File path: assets/fonts/Raleway-Medium.ttf
+  String get ralewayMedium => 'assets/fonts/Raleway-Medium.ttf';
+
+  /// File path: assets/fonts/Raleway-Regular.ttf
+  String get ralewayRegular => 'assets/fonts/Raleway-Regular.ttf';
+
+  /// File path: assets/fonts/Raleway-SemiBold.ttf
+  String get ralewaySemiBold => 'assets/fonts/Raleway-SemiBold.ttf';
+
+  /// File path: assets/fonts/Raleway-Thin.ttf
+  String get ralewayThin => 'assets/fonts/Raleway-Thin.ttf';
+
+  /// List of all assets
+  List<String> get values => [
+        ralewayBlack,
+        ralewayBold,
+        ralewayExtraBold,
+        ralewayExtraLight,
+        ralewayLight,
+        ralewayMedium,
+        ralewayRegular,
+        ralewaySemiBold,
+        ralewayThin
+      ];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
   /// File path: assets/icons/clock_solid.svg
   SvgGenImage get clockSolid =>
       const SvgGenImage('assets/icons/clock_solid.svg');
+
+  /// File path: assets/icons/ic_left.svg
+  SvgGenImage get icLeft => const SvgGenImage('assets/icons/ic_left.svg');
 
   /// File path: assets/icons/room_comment_icon.svg
   SvgGenImage get roomCommentIcon =>
@@ -26,12 +73,14 @@ class $AssetsIconsGen {
   SvgGenImage get roomSolid => const SvgGenImage('assets/icons/room_solid.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [clockSolid, roomCommentIcon, roomSolid];
+  List<SvgGenImage> get values =>
+      [clockSolid, icLeft, roomCommentIcon, roomSolid];
 }
 
 class Assets {
   Assets._();
 
+  static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
 }
 

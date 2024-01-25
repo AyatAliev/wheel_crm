@@ -1,3 +1,9 @@
 {
-  "hello": "Hello"
+  "hello": "Hello",
+  "appName": "Wheel",
+  "signIn": "Войти",
+  "enterYourAccountDetails": "Введите данные учетной записи",
+  "youMustSpecifyYourData": "Необходимо указать \nваши данные",
+  "mail": "Почта",
+  "password": "Пароль"
 }

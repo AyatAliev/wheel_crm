@@ -20,9 +20,11 @@ AuthData _$AuthDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuthData {
-  String? get token => throw _privateConstructorUsedError;
-  @JsonKey(name: 'authUser')
-  AuthInfo get authInfo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'access')
+  String? get tokenAccess => throw _privateConstructorUsedError;
+  @JsonKey(name: 'refresh')
+  String? get tokenRefresh => throw _privateConstructorUsedError;
+  AuthInfo? get authInfo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +37,12 @@ abstract class $AuthDataCopyWith<$Res> {
   factory $AuthDataCopyWith(AuthData value, $Res Function(AuthData) then) =
       _$AuthDataCopyWithImpl<$Res, AuthData>;
   @useResult
-  $Res call({String? token, @JsonKey(name: 'authUser') AuthInfo authInfo});
+  $Res call(
+      {@JsonKey(name: 'access') String? tokenAccess,
+      @JsonKey(name: 'refresh') String? tokenRefresh,
+      AuthInfo? authInfo});
 
-  $AuthInfoCopyWith<$Res> get authInfo;
+  $AuthInfoCopyWith<$Res>? get authInfo;
 }
 
 /// @nodoc
@@ -53,25 +58,34 @@ class _$AuthDataCopyWithImpl<$Res, $Val extends AuthData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = freezed,
-    Object? authInfo = null,
+    Object? tokenAccess = freezed,
+    Object? tokenRefresh = freezed,
+    Object? authInfo = freezed,
   }) {
     return _then(_value.copyWith(
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      tokenAccess: freezed == tokenAccess
+          ? _value.tokenAccess
+          : tokenAccess // ignore: cast_nullable_to_non_nullable
               as String?,
-      authInfo: null == authInfo
+      tokenRefresh: freezed == tokenRefresh
+          ? _value.tokenRefresh
+          : tokenRefresh // ignore: cast_nullable_to_non_nullable
+              as String?,
+      authInfo: freezed == authInfo
           ? _value.authInfo
           : authInfo // ignore: cast_nullable_to_non_nullable
-              as AuthInfo,
+              as AuthInfo?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AuthInfoCopyWith<$Res> get authInfo {
-    return $AuthInfoCopyWith<$Res>(_value.authInfo, (value) {
+  $AuthInfoCopyWith<$Res>? get authInfo {
+    if (_value.authInfo == null) {
+      return null;
+    }
+
+    return $AuthInfoCopyWith<$Res>(_value.authInfo!, (value) {
       return _then(_value.copyWith(authInfo: value) as $Val);
     });
   }
@@ -85,10 +99,13 @@ abstract class _$$AuthDataImplCopyWith<$Res>
       __$$AuthDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? token, @JsonKey(name: 'authUser') AuthInfo authInfo});
+  $Res call(
+      {@JsonKey(name: 'access') String? tokenAccess,
+      @JsonKey(name: 'refresh') String? tokenRefresh,
+      AuthInfo? authInfo});
 
   @override
-  $AuthInfoCopyWith<$Res> get authInfo;
+  $AuthInfoCopyWith<$Res>? get authInfo;
 }
 
 /// @nodoc
@@ -102,18 +119,23 @@ class __$$AuthDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = freezed,
-    Object? authInfo = null,
+    Object? tokenAccess = freezed,
+    Object? tokenRefresh = freezed,
+    Object? authInfo = freezed,
   }) {
     return _then(_$AuthDataImpl(
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      tokenAccess: freezed == tokenAccess
+          ? _value.tokenAccess
+          : tokenAccess // ignore: cast_nullable_to_non_nullable
               as String?,
-      authInfo: null == authInfo
+      tokenRefresh: freezed == tokenRefresh
+          ? _value.tokenRefresh
+          : tokenRefresh // ignore: cast_nullable_to_non_nullable
+              as String?,
+      authInfo: freezed == authInfo
           ? _value.authInfo
           : authInfo // ignore: cast_nullable_to_non_nullable
-              as AuthInfo,
+              as AuthInfo?,
     ));
   }
 }
@@ -122,20 +144,25 @@ class __$$AuthDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthDataImpl implements _AuthData {
   _$AuthDataImpl(
-      {required this.token, @JsonKey(name: 'authUser') required this.authInfo});
+      {@JsonKey(name: 'access') required this.tokenAccess,
+      @JsonKey(name: 'refresh') required this.tokenRefresh,
+      required this.authInfo});
 
   factory _$AuthDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthDataImplFromJson(json);
 
   @override
-  final String? token;
+  @JsonKey(name: 'access')
+  final String? tokenAccess;
   @override
-  @JsonKey(name: 'authUser')
-  final AuthInfo authInfo;
+  @JsonKey(name: 'refresh')
+  final String? tokenRefresh;
+  @override
+  final AuthInfo? authInfo;
 
   @override
   String toString() {
-    return 'AuthData(token: $token, authInfo: $authInfo)';
+    return 'AuthData(tokenAccess: $tokenAccess, tokenRefresh: $tokenRefresh, authInfo: $authInfo)';
   }
 
   @override
@@ -143,14 +170,18 @@ class _$AuthDataImpl implements _AuthData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthDataImpl &&
-            (identical(other.token, token) || other.token == token) &&
+            (identical(other.tokenAccess, tokenAccess) ||
+                other.tokenAccess == tokenAccess) &&
+            (identical(other.tokenRefresh, tokenRefresh) ||
+                other.tokenRefresh == tokenRefresh) &&
             (identical(other.authInfo, authInfo) ||
                 other.authInfo == authInfo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, token, authInfo);
+  int get hashCode =>
+      Object.hash(runtimeType, tokenAccess, tokenRefresh, authInfo);
 
   @JsonKey(ignore: true)
   @override
@@ -168,18 +199,21 @@ class _$AuthDataImpl implements _AuthData {
 
 abstract class _AuthData implements AuthData {
   factory _AuthData(
-          {required final String? token,
-          @JsonKey(name: 'authUser') required final AuthInfo authInfo}) =
-      _$AuthDataImpl;
+      {@JsonKey(name: 'access') required final String? tokenAccess,
+      @JsonKey(name: 'refresh') required final String? tokenRefresh,
+      required final AuthInfo? authInfo}) = _$AuthDataImpl;
 
   factory _AuthData.fromJson(Map<String, dynamic> json) =
       _$AuthDataImpl.fromJson;
 
   @override
-  String? get token;
+  @JsonKey(name: 'access')
+  String? get tokenAccess;
   @override
-  @JsonKey(name: 'authUser')
-  AuthInfo get authInfo;
+  @JsonKey(name: 'refresh')
+  String? get tokenRefresh;
+  @override
+  AuthInfo? get authInfo;
   @override
   @JsonKey(ignore: true)
   _$$AuthDataImplCopyWith<_$AuthDataImpl> get copyWith =>
@@ -194,7 +228,6 @@ AuthInfo _$AuthInfoFromJson(Map<String, dynamic> json) {
 mixin _$AuthInfo {
   int? get phone => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status_id')
   int? get statusId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -208,8 +241,7 @@ abstract class $AuthInfoCopyWith<$Res> {
   factory $AuthInfoCopyWith(AuthInfo value, $Res Function(AuthInfo) then) =
       _$AuthInfoCopyWithImpl<$Res, AuthInfo>;
   @useResult
-  $Res call(
-      {int? phone, String? name, @JsonKey(name: 'status_id') int? statusId});
+  $Res call({int? phone, String? name, int? statusId});
 }
 
 /// @nodoc
@@ -254,8 +286,7 @@ abstract class _$$AuthInfoImplCopyWith<$Res>
       __$$AuthInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? phone, String? name, @JsonKey(name: 'status_id') int? statusId});
+  $Res call({int? phone, String? name, int? statusId});
 }
 
 /// @nodoc
@@ -294,9 +325,7 @@ class __$$AuthInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthInfoImpl implements _AuthInfo {
   _$AuthInfoImpl(
-      {required this.phone,
-      required this.name,
-      @JsonKey(name: 'status_id') required this.statusId});
+      {required this.phone, required this.name, required this.statusId});
 
   factory _$AuthInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthInfoImplFromJson(json);
@@ -306,7 +335,6 @@ class _$AuthInfoImpl implements _AuthInfo {
   @override
   final String? name;
   @override
-  @JsonKey(name: 'status_id')
   final int? statusId;
 
   @override
@@ -345,10 +373,9 @@ class _$AuthInfoImpl implements _AuthInfo {
 
 abstract class _AuthInfo implements AuthInfo {
   factory _AuthInfo(
-          {required final int? phone,
-          required final String? name,
-          @JsonKey(name: 'status_id') required final int? statusId}) =
-      _$AuthInfoImpl;
+      {required final int? phone,
+      required final String? name,
+      required final int? statusId}) = _$AuthInfoImpl;
 
   factory _AuthInfo.fromJson(Map<String, dynamic> json) =
       _$AuthInfoImpl.fromJson;
@@ -358,7 +385,6 @@ abstract class _AuthInfo implements AuthInfo {
   @override
   String? get name;
   @override
-  @JsonKey(name: 'status_id')
   int? get statusId;
   @override
   @JsonKey(ignore: true)

@@ -1,10 +1,7 @@
 class HttpPaths {
-  static const baseUrl = 'https://lk-dev.kudanamore.ru/rest_api/v1';
-
-  /// Calendar
-  static const getRooms = '$baseUrl/calendar/?accomodation_ids=15219';
-  static const getReservation = '$baseUrl/reservations/?accomodation_ids=15219';
+  static const baseUrl = 'http://34.94.101.144/api/v1';
 
   /// Auth
-  static const authorization = '$baseUrl/auth/login/';
+  static const authorization = '$baseUrl/accounts/login/';
+  static refreshToken(String token) => '$baseUrl/accounts/refresh/$token';
 }

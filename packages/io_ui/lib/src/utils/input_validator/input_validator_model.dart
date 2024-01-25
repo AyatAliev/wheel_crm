@@ -6,6 +6,7 @@ enum AppInputValidatorEnum {
   MIN_LENGTH,
   MAX_LENGTH,
   LENGTH,
+  ERROR,
 }
 
 class AppInputValidatorModel {
