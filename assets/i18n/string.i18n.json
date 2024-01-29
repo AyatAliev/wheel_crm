@@ -6,7 +6,10 @@
   "youMustSpecifyYourData": "Необходимо указать \nваши данные",
   "mail": "Почта",
   "password": "Пароль",
-  "seller": "Продажи",
+  "seller": "Продажа",
   "acceptance": "Приемка",
-  "leftovers": "Остатки"
+  "leftovers": "Остатки",
+  "youHaveNotAcceptance": "У вас пока нет доступных приемок",
+  "addedAcceptance": "Чтобы создать приемку, нажмите на синий плюсик",
+  "filter": "Фильтры"
 }

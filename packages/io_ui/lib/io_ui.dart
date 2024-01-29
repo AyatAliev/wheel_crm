@@ -1,5 +1,6 @@
 library io_ui;
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -23,6 +24,7 @@ part 'src/widgets/check_box/app_check_box.dart';
 part 'src/widgets/inputs/app_input.dart';
 part 'src/widgets/snackbars/app_snackbar.dart';
 part 'src/widgets/layout/infinite_list_pagination.dart';
+part 'src/widgets/dropdown/app_dropdown_button.dart';
 
 /// Shared
 part 'src/shared/app_colors.dart';

@@ -62,6 +62,13 @@ class $AssetsIconsGen {
   SvgGenImage get clockSolid =>
       const SvgGenImage('assets/icons/clock_solid.svg');
 
+  /// File path: assets/icons/ic_calendar.svg
+  SvgGenImage get icCalendar =>
+      const SvgGenImage('assets/icons/ic_calendar.svg');
+
+  /// File path: assets/icons/ic_filter.svg
+  SvgGenImage get icFilter => const SvgGenImage('assets/icons/ic_filter.svg');
+
   /// File path: assets/icons/ic_home.svg
   SvgGenImage get icHome => const SvgGenImage('assets/icons/ic_home.svg');
 
@@ -79,8 +86,16 @@ class $AssetsIconsGen {
   SvgGenImage get roomSolid => const SvgGenImage('assets/icons/room_solid.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [clockSolid, icHome, icLeft, icProfile, roomCommentIcon, roomSolid];
+  List<SvgGenImage> get values => [
+        clockSolid,
+        icCalendar,
+        icFilter,
+        icHome,
+        icLeft,
+        icProfile,
+        roomCommentIcon,
+        roomSolid
+      ];
 }
 
 class Assets {

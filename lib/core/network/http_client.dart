@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:wheel_crm/core/network/entity/auth_info.dart';
+import 'package:wheel_crm/core/network/entity/failure.dart';
 import 'package:wheel_crm/core/network/http_error_codes.dart';
 import 'package:wheel_crm/core/network/http_paths.dart';
 import 'package:wheel_crm/core/service/auth_service.dart';
@@ -72,7 +73,7 @@ class HttpClient {
 
   Future<void> _refreshToken() async {
     if (_authService.cachedUser == null || _authService.cachedUser!.tokenRefresh == null) {
-      throw Exception('Cached user is null or refresh token is null');
+      throw Authorization(message: 'Cached user is null or refresh token is null');
     }
 
     final response = await _dio.get(HttpPaths.refreshToken(_authService.cachedUser!.tokenRefresh!));

@@ -8,6 +8,10 @@ class AppColors {
   static const Color kBrown = Color(0xFF62190B);
   static const Color kBrownLight = Color(0xFFF7F5F5);
   static const Color kAccent = Color(0xFF4F20B2);
+  static const Color kGreyDark = Color(0xFF5D5D5D);
+  static const Color kDarkGrey = Color(0xFF4C4C4C);
+  static const Color kDivider = Color(0xFFCFD0D1);
+  static const Color kBorder = Color(0xFFC8C8C8);
 
   static const Color kGreyFirst = Color(0xFFEDF0F2);
   static const Color kGreySecondary = Color(0xFF6C6E6F);

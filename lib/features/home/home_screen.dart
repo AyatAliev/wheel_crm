@@ -2,7 +2,8 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/core/service/system_chrome_theme.dart';
-import 'package:wheel_crm/features/home/widget/tab/acceptance_widget.dart';
+import 'package:wheel_crm/features/acceptance/presentation/acceptance_widget.dart';
+import 'package:wheel_crm/features/weclome/welcome_screen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
 @RoutePage()
@@ -85,11 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return const AcceptanceWidget();
       case 1:
-        return const AcceptanceWidget();
+        return const WelcomeScreen();
       case 2:
-        return const AcceptanceWidget();
+        return const WelcomeScreen();
       default:
-        return const AcceptanceWidget();
+        return const WelcomeScreen();
     }
   }
 }

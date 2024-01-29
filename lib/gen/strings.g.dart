@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 10
+/// Strings: 13
 ///
-/// Built on 2024-01-25 at 14:32 UTC
+/// Built on 2024-01-26 at 13:54 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -154,9 +154,12 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get youMustSpecifyYourData => 'Необходимо указать \nваши данные';
 	String get mail => 'Почта';
 	String get password => 'Пароль';
-	String get seller => 'Продажи';
+	String get seller => 'Продажа';
 	String get acceptance => 'Приемка';
 	String get leftovers => 'Остатки';
+	String get youHaveNotAcceptance => 'У вас пока нет доступных приемок';
+	String get addedAcceptance => 'Чтобы создать приемку, нажмите на синий плюсик';
+	String get filter => 'Фильтры';
 }
 
 /// Flat map(s) containing all translations.
@@ -172,9 +175,12 @@ extension on Translations {
 			case 'youMustSpecifyYourData': return 'Необходимо указать \nваши данные';
 			case 'mail': return 'Почта';
 			case 'password': return 'Пароль';
-			case 'seller': return 'Продажи';
+			case 'seller': return 'Продажа';
 			case 'acceptance': return 'Приемка';
 			case 'leftovers': return 'Остатки';
+			case 'youHaveNotAcceptance': return 'У вас пока нет доступных приемок';
+			case 'addedAcceptance': return 'Чтобы создать приемку, нажмите на синий плюсик';
+			case 'filter': return 'Фильтры';
 			default: return null;
 		}
 	}

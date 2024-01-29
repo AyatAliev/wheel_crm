@@ -22,13 +22,14 @@ class AppInput extends StatefulWidget with InputValidationMixin {
   final List<AppInputValidatorModel> validators;
   final FocusNode? focusNode;
   final bool? disable;
-  final String title;
+  final String? title;
   final TextInputAction? inputAction;
   final int? maxLines;
   final int? minLines;
   final EdgeInsets scrollPadding;
   final TextAlign textAlign;
   final bool obscureText;
+  final Decoration? boxDecoration;
   final void Function(String val)? onFieldSubmitted;
 
   const AppInput({
@@ -38,7 +39,7 @@ class AppInput extends StatefulWidget with InputValidationMixin {
     this.textStyle = AppTextStyle.bodyLargeStyle,
     this.backgroundColor = AppColors.kLightGrey,
     required this.controller,
-    required this.title,
+    this.title,
     this.height = kDefaultHeight,
     this.disable = false,
     this.autoFocus = false,
@@ -61,6 +62,7 @@ class AppInput extends StatefulWidget with InputValidationMixin {
     this.inputAction,
     this.obscureText = false,
     this.onFieldSubmitted,
+    this.boxDecoration,
   }) : super(key: key);
 
   @override
@@ -121,15 +123,23 @@ class _AppInputState extends State<AppInput> {
         cursorColor: AppColors.kPrimary,
         style: widget.textStyle,
         onFieldSubmitted: widget.onFieldSubmitted,
+        textAlignVertical: TextAlignVertical.center,
+        expands: widget.maxLines != null ? true : false,
         decoration: InputDecoration(
-          suffixIcon: Text(widget.suffixText ?? '', style: widget.hintStyle ?? AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kGreySecondary)),
+          filled: true,
+          fillColor: widget.backgroundColor,
+          constraints: const BoxConstraints.expand(height: 20),
+          suffixIcon: Text(
+            widget.suffixText ?? '',
+            style: widget.hintStyle ?? AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kGreySecondary),
+          ),
           suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
           hintStyle: widget.hintStyle ?? AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kGreySecondary),
           hintText: widget.hintText,
           errorStyle: const TextStyle(height: 0, fontSize: 0),
           isDense: true,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.only(bottom: 0),
+          contentPadding: const EdgeInsets.only(bottom: 0, top: 2),
         ),
         validator: (val) {
           String? errStr = widget.validateField(val?.trim(), widget.validators);
@@ -162,31 +172,35 @@ class _AppInputState extends State<AppInput> {
           widget.onFocus!(focus);
         }
       },
-      child: Container(
-        padding: widget.padding,
-        height: widget.height,
-        decoration: _boxDecoration(),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.title,
-                  style: AppTextStyle.mediumStyle.copyWith(color: AppColors.kGrey),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _prefix(),
-                    _input(),
-                  ],
-                ),
-              ],
-            ),
-            _suffix(),
-          ],
+      child: GestureDetector(
+        onTap: () => _focusNode.requestFocus(),
+        child: Container(
+          padding: widget.padding,
+          height: widget.height,
+          decoration: widget.boxDecoration ?? _boxDecoration(),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (widget.title != null)
+                    Text(
+                      widget.title!,
+                      style: AppTextStyle.mediumStyle.copyWith(color: AppColors.kGrey),
+                    ),
+                  if (widget.title != null) const SizedBox(height: 4),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _prefix(),
+                      _input(),
+                    ],
+                  ),
+                ],
+              ),
+              if (widget.suffixWidget != null) _suffix(),
+            ],
+          ),
         ),
       ),
     );
