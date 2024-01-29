@@ -84,9 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildSelectedWidget() {
     switch (_titleSelectedIndex) {
       case 0:
-        return const AcceptanceWidget();
-      case 1:
         return const WelcomeScreen();
+      case 1:
+        return const AcceptanceWidget();
       case 2:
         return const WelcomeScreen();
       default:

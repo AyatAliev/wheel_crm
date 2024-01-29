@@ -6,11 +6,13 @@ import 'package:wheel_crm/gen/strings.g.dart';
 class OverlayFilter extends StatefulWidget {
   final Widget child;
   final Widget overlayChild;
+  final double height;
 
   const OverlayFilter({
     super.key,
     required this.child,
     required this.overlayChild,
+    this.height = 253,
   });
 
   @override
@@ -61,14 +63,14 @@ class _OverlayFilterState extends State<OverlayFilter> with SingleTickerProvider
           Positioned(
             top: overlayTop,
             width: MediaQuery.of(context).size.width - 60,
-            height: 251,
+            height: widget.height,
             child: Material(
               color: Colors.transparent,
               child: Container(
                 padding: const EdgeInsets.all(AppProps.kPageMargin),
                 decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(AppProps.kDefaultBorderRadius)),
+                  borderRadius: BorderRadius.all(Radius.circular(AppProps.kTwentyRadius)),
                 ),
                 child: Column(
                   children: [

@@ -6,17 +6,22 @@ import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/over
 import 'package:wheel_crm/gen/assets.gen.dart';
 
 class AcceptanceFilterOverlay extends StatefulWidget {
-  const AcceptanceFilterOverlay({super.key});
+  final bool actionType;
+
+  const AcceptanceFilterOverlay({
+    super.key,
+    this.actionType = false,
+  });
 
   @override
   State<AcceptanceFilterOverlay> createState() => _AcceptanceFilterOverlayState();
 }
 
 class _AcceptanceFilterOverlayState extends State<AcceptanceFilterOverlay> {
-  final MaskTextInputFormatter _maskFormatter = MaskTextInputFormatter(mask: '##-##-####');
+  late final MaskTextInputFormatter _maskFormatter = MaskTextInputFormatter(mask: '##-##-####');
   late final TextEditingController _startDateController = TextEditingController();
   late final TextEditingController _endDateController = TextEditingController();
-  String? selectedItem;
+  late final ValueNotifier<String?> _selectedItemNotifier = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {
@@ -25,24 +30,62 @@ class _AcceptanceFilterOverlayState extends State<AcceptanceFilterOverlay> {
       children: [
         _buildDates(),
         const SizedBox(height: AppProps.kPageMargin),
-        OverlayDropdown(
-          items: const ['Выбрать', 'Контейнер', 'Склад'],
-          selectedItem: selectedItem,
-          onSelectItem: (selectedItem) {
-            setState(() {
-              this.selectedItem = selectedItem;
-            });
-          },
-          child: Container(
-            margin: const EdgeInsets.only(right: 60),
-            child: DropDownSelectedWidget(
-              title: 'Складское помещение',
-              desc: 'Выбрать',
-              selectedValue: selectedItem,
-            ),
+        if (widget.actionType)
+          ValueListenableBuilder(
+            valueListenable: _selectedItemNotifier,
+            builder: (BuildContext context, String? value, Widget? child) {
+              return OverlayDropdown(
+                items: const ['Выбрать', 'Контейнер', 'Склад'],
+                selectedItem: value,
+                onSelectItem: (selectedItem) {
+                  _selectedItemNotifier.value = selectedItem;
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(right: 60),
+                  child: DropDownSelectedWidget(
+                    title: 'Складское помещение',
+                    desc: 'Выбрать',
+                    selectedValue: value,
+                  ),
+                ),
+              );
+            },
           ),
-        )
+        if (widget.actionType) const SizedBox(height: AppProps.kPageMargin),
+        ValueListenableBuilder(
+          valueListenable: _selectedItemNotifier,
+          builder: (context, value, child) {
+            return OverlayDropdown(
+              items: const ['Выбрать', 'Контейнер', 'Склад'],
+              selectedItem: value,
+              onSelectItem: (selectedItem) {
+                _selectedItemNotifier.value = selectedItem;
+              },
+              child: Container(
+                margin: const EdgeInsets.only(right: 60),
+                child: DropDownSelectedWidget(
+                  title: 'Складское помещение',
+                  desc: 'Выбрать',
+                  selectedValue: value,
+                ),
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: AppProps.kPageMargin),
+        _button(),
       ],
+    );
+  }
+
+  Widget _button() {
+    return SizedBox(
+      width: 113,
+      child: AppButton(
+        borderRadius: AppProps.kSmallBorderRadius,
+        onTap: () {},
+        text: 'Найти',
+      ),
     );
   }
 

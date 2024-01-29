@@ -66,6 +66,10 @@ class $AssetsIconsGen {
   SvgGenImage get icCalendar =>
       const SvgGenImage('assets/icons/ic_calendar.svg');
 
+  /// File path: assets/icons/ic_fab_plus.svg
+  SvgGenImage get icFabPlus =>
+      const SvgGenImage('assets/icons/ic_fab_plus.svg');
+
   /// File path: assets/icons/ic_filter.svg
   SvgGenImage get icFilter => const SvgGenImage('assets/icons/ic_filter.svg');
 
@@ -89,6 +93,7 @@ class $AssetsIconsGen {
   List<SvgGenImage> get values => [
         clockSolid,
         icCalendar,
+        icFabPlus,
         icFilter,
         icHome,
         icLeft,
