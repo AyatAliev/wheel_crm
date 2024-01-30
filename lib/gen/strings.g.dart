@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 13
+/// Strings: 17
 ///
-/// Built on 2024-01-26 at 13:54 UTC
+/// Built on 2024-01-30 at 09:22 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -160,6 +160,10 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get youHaveNotAcceptance => 'У вас пока нет доступных приемок';
 	String get addedAcceptance => 'Чтобы создать приемку, нажмите на синий плюсик';
 	String get filter => 'Фильтры';
+	String get warehouseSpace => 'Складское помещение';
+	String get choose => 'Выбрать';
+	String get data => 'Дата';
+	String get search => 'Найти';
 }
 
 /// Flat map(s) containing all translations.
@@ -181,6 +185,10 @@ extension on Translations {
 			case 'youHaveNotAcceptance': return 'У вас пока нет доступных приемок';
 			case 'addedAcceptance': return 'Чтобы создать приемку, нажмите на синий плюсик';
 			case 'filter': return 'Фильтры';
+			case 'warehouseSpace': return 'Складское помещение';
+			case 'choose': return 'Выбрать';
+			case 'data': return 'Дата';
+			case 'search': return 'Найти';
 			default: return null;
 		}
 	}

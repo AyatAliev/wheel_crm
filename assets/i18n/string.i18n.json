@@ -11,5 +11,9 @@
   "leftovers": "Остатки",
   "youHaveNotAcceptance": "У вас пока нет доступных приемок",
   "addedAcceptance": "Чтобы создать приемку, нажмите на синий плюсик",
-  "filter": "Фильтры"
+  "filter": "Фильтры",
+  "warehouseSpace": "Складское помещение",
+  "choose": "Выбрать",
+  "data": "Дата",
+  "search": "Найти"
 }
