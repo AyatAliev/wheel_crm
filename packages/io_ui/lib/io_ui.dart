@@ -26,6 +26,8 @@ part 'src/widgets/snackbars/app_snackbar.dart';
 part 'src/widgets/layout/infinite_list_pagination.dart';
 part 'src/widgets/dropdown/app_dropdown_button.dart';
 part 'src/widgets/bottom_sheets/app_bottom_sheet.dart';
+part 'src/widgets/dialogs/app_dialog.dart';
+part 'src/widgets/dialogs/app_date_picker.dart';
 
 /// Shared
 part 'src/shared/app_colors.dart';

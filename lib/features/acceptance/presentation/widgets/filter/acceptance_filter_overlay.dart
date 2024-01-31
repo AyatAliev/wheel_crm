@@ -80,20 +80,12 @@ class _AcceptanceFilterOverlayState extends State<AcceptanceFilterOverlay> {
         Row(
           children: [
             SizedBox(
-              width: 100,
-              child: AppInput(
-                height: 30,
+              width: 120,
+              child: AppInput.border(
                 inputType: TextInputType.number,
                 formatters: [_maskFormatter],
                 hintText: '__-__-____',
-                hintStyle: AppTextStyle.secondaryStyle,
-                textStyle: AppTextStyle.secondaryStyle,
                 controller: _startDateController,
-                padding: const EdgeInsets.symmetric(
-                  vertical: AppProps.kSmallMarginX2,
-                  horizontal: AppProps.kMediumMargin,
-                ),
-                backgroundColor: AppColors.kWhite,
                 boxDecoration: BoxDecoration(
                   color: AppColors.kWhite,
                   borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),
@@ -103,20 +95,13 @@ class _AcceptanceFilterOverlayState extends State<AcceptanceFilterOverlay> {
             ),
             const SizedBox(width: AppProps.kMediumMargin),
             SizedBox(
-              width: 100,
-              child: AppInput(
-                height: 30,
+              width: 120,
+              child: AppInput.border(
                 inputType: TextInputType.number,
+                inputAction: TextInputAction.done,
                 formatters: [_maskFormatter],
                 hintText: '__-__-____',
-                hintStyle: AppTextStyle.secondaryStyle,
-                textStyle: AppTextStyle.secondaryStyle,
                 controller: _endDateController,
-                padding: const EdgeInsets.symmetric(
-                  vertical: AppProps.kSmallMarginX2,
-                  horizontal: AppProps.kMediumMargin,
-                ),
-                backgroundColor: AppColors.kWhite,
                 boxDecoration: BoxDecoration(
                   color: AppColors.kWhite,
                   borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),

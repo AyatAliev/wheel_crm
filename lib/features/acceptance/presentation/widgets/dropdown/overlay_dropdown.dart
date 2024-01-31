@@ -133,7 +133,7 @@ class _OverlayDropdownState extends State<OverlayDropdown> {
 
   @override
   void dispose() {
-    _hideOverlay();
+    _overlayEntry.dispose();
     super.dispose();
   }
 }

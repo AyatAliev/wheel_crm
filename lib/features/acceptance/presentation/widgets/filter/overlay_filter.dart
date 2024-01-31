@@ -19,7 +19,7 @@ class OverlayFilter extends StatefulWidget {
   State<OverlayFilter> createState() => _OverlayFilterState();
 }
 
-class _OverlayFilterState extends State<OverlayFilter> with SingleTickerProviderStateMixin {
+class _OverlayFilterState extends State<OverlayFilter> {
   late OverlayEntry _overlayEntry;
   bool _isOverlayVisible = false;
 

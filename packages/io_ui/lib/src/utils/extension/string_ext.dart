@@ -22,12 +22,28 @@ extension AppStringExtension on String {
     return '${date.day} ${months[date.month - 1]}';
   }
 
-  DateTime parseYYYYMMddTHHmmss() {
-    return DateFormat(DateFormatEnum.YYYYMMddTHHmmss.name).parse(this);
+  DateTime? parseYYYYMMddTHHmmss() {
+    if (isNotEmpty) {
+      return DateFormat(DateFormatEnum.YYYYMMddTHHmmss.name).parse(this);
+    }
+
+    return null;
   }
 
-  DateTime parseddMM() {
-    return DateFormat(DateFormatEnum.ddMM.name).parse(this);
+  DateTime? parseddMM() {
+    if (isNotEmpty) {
+      return DateFormat(DateFormatEnum.ddMM.name).parse(this);
+    }
+
+    return null;
+  }
+
+  DateTime? parceddMMyyyy() {
+    if (isNotEmpty) {
+      return DateFormat(DateFormatEnum.ddMMyyyy.name).parse(this);
+    }
+
+    return null;
   }
 
   int get asInt {

@@ -2,6 +2,8 @@ part of io_ui;
 
 class AppInput extends StatefulWidget with InputValidationMixin {
   static const double kDefaultHeight = 60;
+  static const double kDefaultBorderHeight = 30;
+
   final Widget? prefix;
   final Widget? suffixWidget;
   final String? hintText;
@@ -31,6 +33,7 @@ class AppInput extends StatefulWidget with InputValidationMixin {
   final bool obscureText;
   final Decoration? boxDecoration;
   final void Function(String val)? onFieldSubmitted;
+  final void Function()? onTap;
 
   const AppInput({
     Key? key,
@@ -63,6 +66,41 @@ class AppInput extends StatefulWidget with InputValidationMixin {
     this.obscureText = false,
     this.onFieldSubmitted,
     this.boxDecoration,
+    this.onTap,
+  }) : super(key: key);
+
+  AppInput.border({
+    Key? key,
+    this.prefix = const SizedBox(),
+    this.inputType = TextInputType.text,
+    this.textStyle = AppTextStyle.secondaryStyle,
+    this.backgroundColor = AppColors.kWhite,
+    required this.controller,
+    this.title,
+    this.height = kDefaultBorderHeight,
+    this.disable = false,
+    this.autoFocus = false,
+    this.padding = const EdgeInsets.symmetric(vertical: AppProps.kSmallMarginX2, horizontal: AppProps.kMediumMargin),
+    this.readOnly = false,
+    this.onFocus,
+    this.suffixWidget = const SizedBox(),
+    this.formatters = const [],
+    this.errorString,
+    this.validators = const [],
+    this.focusNode,
+    this.onChanged,
+    this.hintStyle = AppTextStyle.secondaryStyle,
+    this.hintText,
+    this.maxLines,
+    this.minLines,
+    this.scrollPadding = const EdgeInsets.all(20.0),
+    this.textAlign = TextAlign.start,
+    this.suffixText,
+    this.inputAction,
+    this.obscureText = false,
+    this.onFieldSubmitted,
+    this.boxDecoration,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -108,6 +146,7 @@ class _AppInputState extends State<AppInput> {
       child: TextFormField(
         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         textAlign: widget.textAlign,
+        onTap: widget.onTap,
         obscureText: widget.obscureText,
         scrollPadding: widget.scrollPadding,
         maxLines: widget.obscureText ? 1 : widget.maxLines,

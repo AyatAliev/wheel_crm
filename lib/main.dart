@@ -27,6 +27,7 @@ FutureOr<void> main() async {
 
     runApp(TranslationProvider(child: const App()));
   }, (error, stackTrace) {
+    print(error);
     if (error is Authorization) {
       // TODO open Authorization Screen
     }
