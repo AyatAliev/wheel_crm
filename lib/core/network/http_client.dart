@@ -48,7 +48,7 @@ class HttpClient {
           return handler.next(options);
         },
         onResponse: (response, handler) {
-          log('onResponseInterceptor ${response.requestOptions.method} ${response.realUri.path} - ${response.statusCode} ${response.data["message"] ?? ''}');
+          log('onResponseInterceptor ${response.requestOptions.method} ${response.realUri.path} - ${response.statusCode}');
           if (response.statusCode! >= badRequest) {
             return handler.reject(DioException(response: response, requestOptions: response.requestOptions));
           }
@@ -81,11 +81,8 @@ class HttpClient {
     if (response.statusCode == 200) {
       _authService.cachedUser = AuthData.fromJson(response.data);
     } else {
-      throw DioException.badResponse(
-        statusCode: response.statusCode!,
-        requestOptions: response.requestOptions,
-        response: response,
-      );
+      _authService.cachedUser = null;
+      throw Authorization(message: 'Cached user is null or refresh token is null');
     }
   }
 

@@ -12,7 +12,7 @@ class OverlayFilter extends StatefulWidget {
     super.key,
     required this.child,
     required this.overlayChild,
-    this.height = 253,
+    this.height = 260,
   });
 
   @override

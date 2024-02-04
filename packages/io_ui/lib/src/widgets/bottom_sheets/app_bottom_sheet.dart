@@ -20,7 +20,7 @@ class AppBottomSheet {
           builder: (_, controller) {
             return Container(
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: AppColors.kWhite,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(AppProps.kTwentyRadius),
                   topRight: Radius.circular(AppProps.kTwentyRadius),

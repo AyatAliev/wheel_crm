@@ -1,14 +1,17 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/core/service/system_chrome_theme.dart';
+import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
 import 'package:wheel_crm/features/acceptance/presentation/acceptance_widget.dart';
 import 'package:wheel_crm/features/weclome/welcome_screen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
+import 'package:wheel_crm/injection/injection.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -16,12 +19,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late final List<String> _titles = [t.seller, t.acceptance, t.leftovers];
-  int _titleSelectedIndex = 0;
+  late final ValueNotifier<int> _titleSelectedIndexNotifier;
 
   @override
   void initState() {
-    SystemChromeTheme.themeLight();
     super.initState();
+    SystemChromeTheme.themeLight();
+    _titleSelectedIndexNotifier = ValueNotifier(0);
   }
 
   @override
@@ -45,7 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   topRight: Radius.circular(AppProps.kTwentyRadius),
                 ),
               ),
-              child: _buildSelectedWidget(),
+              child: ValueListenableBuilder<int>(
+                valueListenable: _titleSelectedIndexNotifier,
+                builder: (context, index, child) {
+                  return _buildSelectedWidget(index);
+                },
+              ),
             ),
           ),
         ],
@@ -57,13 +66,11 @@ class _HomeScreenState extends State<HomeScreen> {
     final List<Widget> list = [];
 
     for (int i = 0; i < _titles.length; i++) {
-      final isSelected = i == _titleSelectedIndex;
+      final isSelected = i == _titleSelectedIndexNotifier.value;
       list.add(
         GestureDetector(
           onTap: () {
-            setState(() {
-              _titleSelectedIndex = i;
-            });
+            _titleSelectedIndexNotifier.value = i;
           },
           child: Text(
             _titles[i],
@@ -81,16 +88,25 @@ class _HomeScreenState extends State<HomeScreen> {
     return list;
   }
 
-  Widget _buildSelectedWidget() {
-    switch (_titleSelectedIndex) {
+  Widget _buildSelectedWidget(int index) {
+    switch (index) {
       case 0:
         return const WelcomeScreen();
       case 1:
-        return const AcceptanceWidget();
+        return BlocProvider(
+          create: (_) => getIt<AcceptanceBloc>()..add(const AcceptanceEvent.getAcceptance()),
+          child: const AcceptanceWidget(),
+        );
       case 2:
         return const WelcomeScreen();
       default:
         return const WelcomeScreen();
     }
+  }
+
+  @override
+  void dispose() {
+    _titleSelectedIndexNotifier.dispose();
+    super.dispose();
   }
 }

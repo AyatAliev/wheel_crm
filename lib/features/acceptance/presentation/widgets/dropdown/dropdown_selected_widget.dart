@@ -20,7 +20,7 @@ class DropDownSelectedWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kDarkGrey),
+          style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
         ),
         const SizedBox(height: AppProps.kSmallMargin),
         Container(
@@ -37,11 +37,11 @@ class DropDownSelectedWidget extends StatelessWidget {
           child: selectedValue != null && selectedValue != desc
               ? Text(
             selectedValue!,
-            style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kPrimary),
+            style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kPrimary),
           )
               : Text(
             desc,
-            style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kDarkGrey.withOpacity(0.7)),
+            style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey.withOpacity(0.7)),
           ),
         ),
       ],

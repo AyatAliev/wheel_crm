@@ -30,6 +30,10 @@ extension AppStringExtension on String {
     return null;
   }
 
+  DateTime parceyyyyHyphenMMdd() {
+    return DateFormat(DateFormatEnum.yyyyHyphenMMdd.name).parse(this);
+  }
+
   DateTime? parseddMM() {
     if (isNotEmpty) {
       return DateFormat(DateFormatEnum.ddMM.name).parse(this);

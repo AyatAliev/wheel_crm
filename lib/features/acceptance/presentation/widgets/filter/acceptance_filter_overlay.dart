@@ -74,7 +74,7 @@ class _AcceptanceFilterOverlayState extends State<AcceptanceFilterOverlay> {
       children: [
         Text(
           t.data,
-          style: AppTextStyle.secondaryStyle,
+          style: AppTextStyle.bodyLargeStyle,
         ),
         const SizedBox(height: AppProps.kMediumMargin),
         Row(

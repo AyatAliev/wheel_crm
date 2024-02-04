@@ -25,19 +25,19 @@ class AppCheckBox extends StatefulWidget {
 }
 
 class _AppCheckBoxState extends State<AppCheckBox> {
-  bool selected = false;
+  late ValueNotifier<bool> selectedNotifier;
 
   @override
   void initState() {
-    selected = widget.selected ?? false;
+    selectedNotifier = ValueNotifier<bool>(widget.selected ?? false);
     super.initState();
   }
 
- @override
+  @override
   void didUpdateWidget(covariant AppCheckBox oldWidget) {
-    setState(() {
-      selected = widget.selected ?? false;
-    });
+    if (widget.selected != oldWidget.selected) {
+      selectedNotifier.value = widget.selected ?? false;
+    }
     super.didUpdateWidget(oldWidget);
   }
 
@@ -46,44 +46,47 @@ class _AppCheckBoxState extends State<AppCheckBox> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        if (widget.disable && selected) return;
+        if (widget.disable && selectedNotifier.value) return;
 
-        setState(() {
-          selected = !selected;
-        });
+        selectedNotifier.value = !selectedNotifier.value;
 
         if (widget.onTap != null) {
-          widget.onTap!(selected);
+          widget.onTap!(selectedNotifier.value);
         }
       },
       child: Row(
         children: [
-          _box(),
+          _buildBox(),
           const SizedBox(width: 12),
-          _title(),
+          _buildTitle(),
         ],
       ),
     );
   }
 
-  Widget _box() {
-    return Container(
-      height: 18,
-      width: 18,
-      margin: const EdgeInsets.all(3.0),
-      decoration: _boxDecoration(),
-      child: selected ? widget.selectedSvgPicture : widget.unSelectedSvgPicture,
+  Widget _buildBox() {
+    return ValueListenableBuilder<bool>(
+      valueListenable: selectedNotifier,
+      builder: (context, selected, child) {
+        return Container(
+          height: 18,
+          width: 18,
+          margin: const EdgeInsets.all(3.0),
+          decoration: _boxDecoration(selected),
+          child: selected ? widget.selectedSvgPicture : widget.unSelectedSvgPicture,
+        );
+      },
     );
   }
 
-  BoxDecoration _boxDecoration() {
+  BoxDecoration _boxDecoration(bool selected) {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),
-      border: selected == false ? Border.all(color: AppColors.kGreySecondary) : null,
+      border: !selected ? Border.all(color: AppColors.kGreySecondary) : null,
     );
   }
 
-  Widget _title() {
+  Widget _buildTitle() {
     return Expanded(
       child: Text(
         widget.title ?? '',

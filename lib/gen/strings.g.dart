@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 17
+/// Strings: 23
 ///
-/// Built on 2024-01-30 at 09:22 UTC
+/// Built on 2024-02-04 at 10:38 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -164,6 +164,12 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get choose => 'Выбрать';
 	String get data => 'Дата';
 	String get search => 'Найти';
+	String get chooseProduct => 'Выберете товар';
+	String get selectFromList => 'Выбрать из списка';
+	String get addNewProduct => 'Добавить новый товар';
+	String get save => 'Сохранить';
+	String get total => 'Итого:';
+	String get acceptanceDate => 'Дата поступления товара';
 }
 
 /// Flat map(s) containing all translations.
@@ -189,6 +195,12 @@ extension on Translations {
 			case 'choose': return 'Выбрать';
 			case 'data': return 'Дата';
 			case 'search': return 'Найти';
+			case 'chooseProduct': return 'Выберете товар';
+			case 'selectFromList': return 'Выбрать из списка';
+			case 'addNewProduct': return 'Добавить новый товар';
+			case 'save': return 'Сохранить';
+			case 'total': return 'Итого:';
+			case 'acceptanceDate': return 'Дата поступления товара';
 			default: return null;
 		}
 	}

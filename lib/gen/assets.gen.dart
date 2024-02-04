@@ -82,6 +82,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_profile.svg
   SvgGenImage get icProfile => const SvgGenImage('assets/icons/ic_profile.svg');
 
+  /// File path: assets/icons/ic_search.svg
+  SvgGenImage get icSearch => const SvgGenImage('assets/icons/ic_search.svg');
+
   /// File path: assets/icons/room_comment_icon.svg
   SvgGenImage get roomCommentIcon =>
       const SvgGenImage('assets/icons/room_comment_icon.svg');
@@ -98,6 +101,7 @@ class $AssetsIconsGen {
         icHome,
         icLeft,
         icProfile,
+        icSearch,
         roomCommentIcon,
         roomSolid
       ];

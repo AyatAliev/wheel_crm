@@ -15,5 +15,11 @@
   "warehouseSpace": "Складское помещение",
   "choose": "Выбрать",
   "data": "Дата",
-  "search": "Найти"
+  "search": "Найти",
+  "chooseProduct": "Выберете товар",
+  "selectFromList": "Выбрать из списка",
+  "addNewProduct": "Добавить новый товар",
+  "save": "Сохранить",
+  "total": "Итого:",
+  "acceptanceDate": "Дата поступления товара"
 }

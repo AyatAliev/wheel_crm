@@ -7,13 +7,17 @@ part of 'acceptance_entity.dart';
 // **************************************************************************
 
 abstract class _$AcceptanceEntityCWProxy {
-  AcceptanceEntity count(int count);
+  AcceptanceEntity id(int? id);
 
-  AcceptanceEntity createDate(DateTime createDate);
+  AcceptanceEntity whoAdded(String? whoAdded);
 
-  AcceptanceEntity whoAdded(String whoAdded);
+  AcceptanceEntity wheels(List<WheelEntity> wheels);
 
-  AcceptanceEntity storage(String storage);
+  AcceptanceEntity createAt(DateTime createAt);
+
+  AcceptanceEntity storage(StorageEntity storage);
+
+  AcceptanceEntity amount(int amount);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AcceptanceEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -22,10 +26,12 @@ abstract class _$AcceptanceEntityCWProxy {
   /// AcceptanceEntity(...).copyWith(id: 12, name: "My name")
   /// ````
   AcceptanceEntity call({
-    int? count,
-    DateTime? createDate,
+    int? id,
     String? whoAdded,
-    String? storage,
+    List<WheelEntity>? wheels,
+    DateTime? createAt,
+    StorageEntity? storage,
+    int? amount,
   });
 }
 
@@ -36,17 +42,22 @@ class _$AcceptanceEntityCWProxyImpl implements _$AcceptanceEntityCWProxy {
   final AcceptanceEntity _value;
 
   @override
-  AcceptanceEntity count(int count) => this(count: count);
+  AcceptanceEntity id(int? id) => this(id: id);
 
   @override
-  AcceptanceEntity createDate(DateTime createDate) =>
-      this(createDate: createDate);
+  AcceptanceEntity whoAdded(String? whoAdded) => this(whoAdded: whoAdded);
 
   @override
-  AcceptanceEntity whoAdded(String whoAdded) => this(whoAdded: whoAdded);
+  AcceptanceEntity wheels(List<WheelEntity> wheels) => this(wheels: wheels);
 
   @override
-  AcceptanceEntity storage(String storage) => this(storage: storage);
+  AcceptanceEntity createAt(DateTime createAt) => this(createAt: createAt);
+
+  @override
+  AcceptanceEntity storage(StorageEntity storage) => this(storage: storage);
+
+  @override
+  AcceptanceEntity amount(int amount) => this(amount: amount);
 
   @override
 
@@ -57,29 +68,38 @@ class _$AcceptanceEntityCWProxyImpl implements _$AcceptanceEntityCWProxy {
   /// AcceptanceEntity(...).copyWith(id: 12, name: "My name")
   /// ````
   AcceptanceEntity call({
-    Object? count = const $CopyWithPlaceholder(),
-    Object? createDate = const $CopyWithPlaceholder(),
+    Object? id = const $CopyWithPlaceholder(),
     Object? whoAdded = const $CopyWithPlaceholder(),
+    Object? wheels = const $CopyWithPlaceholder(),
+    Object? createAt = const $CopyWithPlaceholder(),
     Object? storage = const $CopyWithPlaceholder(),
+    Object? amount = const $CopyWithPlaceholder(),
   }) {
     return AcceptanceEntity(
-      count: count == const $CopyWithPlaceholder() || count == null
-          ? _value.count
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
           // ignore: cast_nullable_to_non_nullable
-          : count as int,
-      createDate:
-          createDate == const $CopyWithPlaceholder() || createDate == null
-              ? _value.createDate
-              // ignore: cast_nullable_to_non_nullable
-              : createDate as DateTime,
-      whoAdded: whoAdded == const $CopyWithPlaceholder() || whoAdded == null
+          : id as int?,
+      whoAdded: whoAdded == const $CopyWithPlaceholder()
           ? _value.whoAdded
           // ignore: cast_nullable_to_non_nullable
-          : whoAdded as String,
+          : whoAdded as String?,
+      wheels: wheels == const $CopyWithPlaceholder() || wheels == null
+          ? _value.wheels
+          // ignore: cast_nullable_to_non_nullable
+          : wheels as List<WheelEntity>,
+      createAt: createAt == const $CopyWithPlaceholder() || createAt == null
+          ? _value.createAt
+          // ignore: cast_nullable_to_non_nullable
+          : createAt as DateTime,
       storage: storage == const $CopyWithPlaceholder() || storage == null
           ? _value.storage
           // ignore: cast_nullable_to_non_nullable
-          : storage as String,
+          : storage as StorageEntity,
+      amount: amount == const $CopyWithPlaceholder() || amount == null
+          ? _value.amount
+          // ignore: cast_nullable_to_non_nullable
+          : amount as int,
     );
   }
 }

@@ -4,8 +4,8 @@ class AppDatePicker {
   static Future<DateTime?> show(
     BuildContext context, {
     required DateTime initialDate,
-    required DateTime? firstDate,
-    required DateTime? lastDate,
+    DateTime? firstDate,
+    DateTime? lastDate,
   }) async {
     return await showDatePicker(
       context: context,

@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:wheel_crm/core/app/app.dart';
+import 'package:wheel_crm/core/app/router/app_routes.dart';
+import 'package:wheel_crm/core/app/router/app_routes.gr.dart';
 import 'package:wheel_crm/core/network/entity/failure.dart';
 import 'package:wheel_crm/core/ovverides/http_overrides.dart';
 import 'package:wheel_crm/core/service/auth_service.dart';
@@ -27,9 +29,13 @@ FutureOr<void> main() async {
 
     runApp(TranslationProvider(child: const App()));
   }, (error, stackTrace) {
-    print(error);
     if (error is Authorization) {
-      // TODO open Authorization Screen
+      if (getIt<AppRouter>().current.name != AuthRoute.name) {
+        getIt<AppRouter>().pushAndPopUntil(
+          const AuthRoute(),
+          predicate: (_) => false,
+        );
+      }
     }
   });
 }

@@ -1,25 +1,29 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart';
+import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 
 part 'acceptance_entity.g.dart';
 
 @CopyWith()
 class AcceptanceEntity {
-  int count;
-  DateTime createDate;
-  String whoAdded;
-  String storage;
+  final int? id;
+  final DateTime createAt;
+  final String? whoAdded;
+  final int amount;
+  final StorageEntity storage;
+  final List<WheelEntity> wheels;
 
   AcceptanceEntity({
-    required this.count,
-    required this.createDate,
-    required this.whoAdded,
+    this.id,
+    this.whoAdded,
+    required this.wheels,
+    required this.createAt,
     required this.storage,
+    required this.amount,
   });
 
   Map<String, dynamic> toJson() => {
-        "count": count,
-        "create_date": createDate,
-        "who_added": whoAdded,
-        "storage": storage,
+        "create_at": createAt,
+        "user": whoAdded,
       };
 }

@@ -32,6 +32,7 @@ class AppInput extends StatefulWidget with InputValidationMixin {
   final TextAlign textAlign;
   final bool obscureText;
   final Decoration? boxDecoration;
+  final EdgeInsets? contentPadding;
   final void Function(String val)? onFieldSubmitted;
   final void Function()? onTap;
 
@@ -66,7 +67,7 @@ class AppInput extends StatefulWidget with InputValidationMixin {
     this.obscureText = false,
     this.onFieldSubmitted,
     this.boxDecoration,
-    this.onTap,
+    this.onTap, this.contentPadding,
   }) : super(key: key);
 
   AppInput.border({
@@ -101,6 +102,7 @@ class AppInput extends StatefulWidget with InputValidationMixin {
     this.onFieldSubmitted,
     this.boxDecoration,
     this.onTap,
+    this.contentPadding,
   }) : super(key: key);
 
   @override
@@ -127,7 +129,7 @@ class _AppInputState extends State<AppInput> {
   Widget _suffix() {
     return Positioned(
       child: Align(
-        alignment: Alignment.centerRight,
+        alignment: Alignment.topRight,
         child: SizedBox(
           width: 16,
           height: 16,
@@ -178,7 +180,7 @@ class _AppInputState extends State<AppInput> {
           errorStyle: const TextStyle(height: 0, fontSize: 0),
           isDense: true,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.only(bottom: 0, top: 2),
+          contentPadding: widget.contentPadding ?? const EdgeInsets.only(bottom: 0, top: 2),
         ),
         validator: (val) {
           String? errStr = widget.validateField(val?.trim(), widget.validators);
