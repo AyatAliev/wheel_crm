@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 23
+/// Strings: 27
 ///
-/// Built on 2024-02-04 at 10:38 UTC
+/// Built on 2024-02-04 at 13:51 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -170,6 +170,10 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get save => 'Сохранить';
 	String get total => 'Итого:';
 	String get acceptanceDate => 'Дата поступления товара';
+	String get name => 'Наименование';
+	String get quantity => 'Кол-во';
+	String get collapseList => 'Свернуть список';
+	String get youNeedChooseRoom => 'Нужно выбрать помещение!';
 }
 
 /// Flat map(s) containing all translations.
@@ -201,6 +205,10 @@ extension on Translations {
 			case 'save': return 'Сохранить';
 			case 'total': return 'Итого:';
 			case 'acceptanceDate': return 'Дата поступления товара';
+			case 'name': return 'Наименование';
+			case 'quantity': return 'Кол-во';
+			case 'collapseList': return 'Свернуть список';
+			case 'youNeedChooseRoom': return 'Нужно выбрать помещение!';
 			default: return null;
 		}
 	}

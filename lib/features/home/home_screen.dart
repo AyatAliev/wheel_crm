@@ -5,13 +5,14 @@ import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/core/service/system_chrome_theme.dart';
 import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
 import 'package:wheel_crm/features/acceptance/presentation/acceptance_widget.dart';
+import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/weclome/welcome_screen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 import 'package:wheel_crm/injection/injection.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -34,12 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.kPrimary,
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppProps.kPageMargin, vertical: AppProps.kTwentyMargin),
-            child: Row(
-              children: _itemLabels(),
-            ),
-          ),
+          ValueListenableBuilder<int>(
+              valueListenable: _titleSelectedIndexNotifier,
+              builder: (context, index, child) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppProps.kPageMargin,
+                    vertical: AppProps.kTwentyMargin,
+                  ),
+                  child: Row(children: _itemLabels()),
+                );
+              }),
           Expanded(
             child: Container(
               decoration: const BoxDecoration(
@@ -93,8 +99,11 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return const WelcomeScreen();
       case 1:
-        return BlocProvider(
-          create: (_) => getIt<AcceptanceBloc>()..add(const AcceptanceEvent.getAcceptance()),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<AcceptanceBloc>()..add(const AcceptanceEvent.getAcceptance())),
+            BlocProvider(create: (_) => getIt<StorageBloc>()..add(const StorageEvent.getStorages())),
+          ],
           child: const AcceptanceWidget(),
         );
       case 2:

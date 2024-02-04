@@ -4,6 +4,7 @@ import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/create_acceptance_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/other/acceptance_list.dart';
+import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
@@ -34,7 +35,10 @@ class _AcceptanceWidgetState extends State<AcceptanceWidget> {
               onTap: () {
                 AppBottomSheet.show(
                   context: context,
-                  child: const CreateAcceptanceWidget(),
+                  child: BlocProvider.value(
+                    value: BlocProvider.of<StorageBloc>(context),
+                    child: const CreateAcceptanceWidget(),
+                  ),
                 );
               },
             ),

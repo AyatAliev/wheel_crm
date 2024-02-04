@@ -1,11 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_create_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_detail_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/dropdown_selected_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/overlay_dropdown.dart';
+import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
+import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
@@ -38,35 +41,37 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: Padding(
-        padding: const EdgeInsets.all(AppProps.kPageMargin),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _buildDateSelection(),
-              const SizedBox(height: AppProps.kPageMargin),
-              const Divider(height: 1, color: AppColors.kDivider),
-              const SizedBox(height: AppProps.kPageMargin),
-              _buildRowSelectedDate(),
-              const SizedBox(height: AppProps.kPageMargin),
-              _buildWarehouseSelection(),
-              const SizedBox(height: AppProps.kPageMargin),
-              const Divider(height: 1, color: AppColors.kDivider),
-              const SizedBox(height: AppProps.kPageMargin),
-              _buildProductSelection(),
-              const SizedBox(height: AppProps.kMediumMargin),
-              _buildAddNewProduct(),
-              const SizedBox(height: AppProps.kPageMargin),
-              const Divider(height: 1, color: AppColors.kDivider),
-              const SizedBox(height: AppProps.kPageMargin),
-              _buildTotal(),
-              const SizedBox(height: AppProps.kBigMargin),
-              _buildSaveButton(),
-            ],
+      body: BlocBuilder<StorageBloc, StorageState>(builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.all(AppProps.kPageMargin),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _buildDateSelection(),
+                const SizedBox(height: AppProps.kPageMargin),
+                const Divider(height: 1, color: AppColors.kDivider),
+                const SizedBox(height: AppProps.kPageMargin),
+                _buildRowSelectedDate(),
+                const SizedBox(height: AppProps.kPageMargin),
+                _buildWarehouseSelection(state.storageEntity),
+                const SizedBox(height: AppProps.kPageMargin),
+                const Divider(height: 1, color: AppColors.kDivider),
+                const SizedBox(height: AppProps.kPageMargin),
+                _buildProductSelection(),
+                const SizedBox(height: AppProps.kMediumMargin),
+                _buildAddNewProduct(),
+                const SizedBox(height: AppProps.kPageMargin),
+                const Divider(height: 1, color: AppColors.kDivider),
+                const SizedBox(height: AppProps.kPageMargin),
+                _buildTotal(),
+                const SizedBox(height: AppProps.kBigMargin),
+                _buildSaveButton(),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
@@ -114,12 +119,12 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     );
   }
 
-  Widget _buildWarehouseSelection() {
+  Widget _buildWarehouseSelection(List<StorageEntity> storages) {
     return ValueListenableBuilder(
       valueListenable: _selectedItemNotifier,
       builder: (context, value, child) {
         return OverlayDropdown(
-          items: [t.choose, 'Контейнер', 'Склад'],
+          items: [t.choose, ...storages.map((e) => e.title ?? '')],
           selectedItem: value,
           onSelectItem: (selectedItem) {
             _selectedItemNotifier.value = selectedItem;
@@ -156,7 +161,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
                 valueListenable: _visibleAllListNotifier,
                 builder: (context, value, child) {
                   return Text(
-                    value ? 'Свернуть список' : '',
+                    value ? t.collapseList : '',
                     style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kRed),
                   );
                 },
@@ -259,7 +264,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     } else {
       AppSnackBar.show(
         context: context,
-        titleText: 'Нужно выбрать помещение!',
+        titleText: t.youNeedChooseRoom,
         error: true,
       );
     }

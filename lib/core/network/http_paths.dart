@@ -7,4 +7,5 @@ class HttpPaths {
 
   /// Products
   static const getAcceptance = '$baseUrl/products/acceptance';
+  static const getStorages = '$baseUrl/products/storages';
 }

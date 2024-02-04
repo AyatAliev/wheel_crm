@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:wheel_crm/gen/strings.g.dart';
 
 class WheelCreateWidget extends StatefulWidget {
   final List<String> wheels;
@@ -50,14 +51,14 @@ class _WheelCreateWidgetState extends State<WheelCreateWidget> {
       children: [
         Expanded(
           child: Text(
-            'Наименование',
+            t.name,
             style: AppTextStyle.mediumStyle.copyWith(color: AppColors.kDarkGrey),
           ),
         ),
         const SizedBox(width: AppProps.kMediumMargin),
         Expanded(
           child: Text(
-            'Кол-во',
+            t.quantity,
             style: AppTextStyle.mediumStyle.copyWith(color: AppColors.kDarkGrey),
           ),
         ),

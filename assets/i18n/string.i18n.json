@@ -21,5 +21,10 @@
   "addNewProduct": "Добавить новый товар",
   "save": "Сохранить",
   "total": "Итого:",
-  "acceptanceDate": "Дата поступления товара"
+  "acceptanceDate": "Дата поступления товара",
+  "name": "Наименование",
+  "quantity": "Кол-во",
+  "collapseList": "Свернуть список",
+  "youNeedChooseRoom": "Нужно выбрать помещение!"
+
 }

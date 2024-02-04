@@ -16,6 +16,7 @@ class AppBottomSheet {
       barrierColor: color ?? Colors.transparent,
       builder: (ctx) {
         return DraggableScrollableSheet(
+          expand: false,
           initialChildSize: initialChildSize ?? 0.918,
           builder: (_, controller) {
             return Container(

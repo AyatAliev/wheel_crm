@@ -15,48 +15,58 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i15;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i18;
-import 'package:wheel_crm/core/app/router/app_routes.dart' as _i23;
+import 'package:wheel_crm/core/app/router/app_routes.dart' as _i27;
 import 'package:wheel_crm/core/network/http_client.dart' as _i16;
 import 'package:wheel_crm/core/service/auth_service.dart' as _i3;
-import 'package:wheel_crm/core/service/local_storage_service.dart' as _i28;
+import 'package:wheel_crm/core/service/local_storage_service.dart' as _i32;
 import 'package:wheel_crm/core/service/secure_storage_service.dart' as _i17;
 import 'package:wheel_crm/features/acceptance/data/data_sources/acceptance_data_source.dart'
-    as _i19;
+    as _i23;
 import 'package:wheel_crm/features/acceptance/data/data_sources/impl/acceptance_data_source_impl.dart'
-    as _i20;
+    as _i24;
 import 'package:wheel_crm/features/acceptance/data/model/acceptance_model.dart'
     as _i11;
 import 'package:wheel_crm/features/acceptance/data/model/convert/acceptance_model_to_entity.dart'
     as _i13;
-import 'package:wheel_crm/features/acceptance/data/repositories/acceptance_repository_impl.dart'
-    as _i22;
+import 'package:wheel_crm/features/acceptance/data/repository/acceptance_repository_impl.dart'
+    as _i26;
 import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart'
-    as _i29;
+    as _i34;
 import 'package:wheel_crm/features/acceptance/domain/entity/acceptance_entity.dart'
     as _i12;
 import 'package:wheel_crm/features/acceptance/domain/repository/acceptance_repository.dart'
-    as _i21;
-import 'package:wheel_crm/features/auth/data/data_sources/auth_data_source.dart'
-    as _i24;
-import 'package:wheel_crm/features/auth/data/data_sources/impl/auth_data_source_impl.dart'
     as _i25;
+import 'package:wheel_crm/features/auth/data/data_sources/auth_data_source.dart'
+    as _i28;
+import 'package:wheel_crm/features/auth/data/data_sources/impl/auth_data_source_impl.dart'
+    as _i29;
 import 'package:wheel_crm/features/auth/data/repository/auth_repository_impl.dart'
-    as _i27;
-import 'package:wheel_crm/features/auth/domain/bloc/auth_bloc.dart' as _i30;
+    as _i31;
+import 'package:wheel_crm/features/auth/domain/bloc/auth_bloc.dart' as _i35;
 import 'package:wheel_crm/features/auth/domain/repository/auth_repository.dart'
-    as _i26;
+    as _i30;
+import 'package:wheel_crm/features/storage/data/data_sources/impl/storage_data_source_impl.dart'
+    as _i20;
+import 'package:wheel_crm/features/storage/data/data_sources/storage_data_source.dart'
+    as _i19;
 import 'package:wheel_crm/features/storage/data/model/convert/storage_model_to_entity.dart'
     as _i10;
 import 'package:wheel_crm/features/storage/data/model/storage_model.dart'
     as _i8;
+import 'package:wheel_crm/features/storage/data/repository/storage_repository_impl.dart'
+    as _i22;
+import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart'
+    as _i33;
 import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart'
     as _i9;
+import 'package:wheel_crm/features/storage/domain/repository/storage_repository.dart'
+    as _i21;
 import 'package:wheel_crm/features/wheel/data/model/convert/wheel_model_to_entity.dart'
     as _i7;
 import 'package:wheel_crm/features/wheel/data/model/wheel_model.dart' as _i5;
 import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart'
     as _i6;
-import 'package:wheel_crm/injection/injection_module.dart' as _i31;
+import 'package:wheel_crm/injection/injection_module.dart' as _i36;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -86,28 +96,36 @@ extension GetItInjectableX on _i1.GetIt {
       () => registerModule.prefs,
       preResolve: true,
     );
-    gh.factory<_i19.AcceptanceDataSource>(
-        () => _i20.AcceptanceDataSourceImpl(gh<_i16.HttpClient>()));
-    gh.factory<_i21.AcceptanceRepository>(() => _i22.AcceptanceRepositoryImpl(
-          gh<_i19.AcceptanceDataSource>(),
+    gh.factory<_i19.StorageDataSource>(
+        () => _i20.StorageDataSourceImpl(gh<_i16.HttpClient>()));
+    gh.factory<_i21.StorageRepository>(() => _i22.StorageRepositoryImpl(
+          gh<_i19.StorageDataSource>(),
+          gh<_i4.Converter<_i8.StorageModel, _i9.StorageEntity>>(),
+        ));
+    gh.factory<_i23.AcceptanceDataSource>(
+        () => _i24.AcceptanceDataSourceImpl(gh<_i16.HttpClient>()));
+    gh.factory<_i25.AcceptanceRepository>(() => _i26.AcceptanceRepositoryImpl(
+          gh<_i23.AcceptanceDataSource>(),
           gh<_i4.Converter<_i11.AcceptanceModel, _i12.AcceptanceEntity>>(),
         ));
-    gh.singleton<_i23.AppRouter>(_i23.AppRouter(gh<_i3.AuthService>()));
-    gh.factory<_i24.AuthDataSource>(
-        () => _i25.AuthDataSourceImpl(gh<_i16.HttpClient>()));
-    gh.factory<_i26.AuthRepository>(() => _i27.AuthRepositoryImpl(
-          gh<_i24.AuthDataSource>(),
+    gh.singleton<_i27.AppRouter>(_i27.AppRouter(gh<_i3.AuthService>()));
+    gh.factory<_i28.AuthDataSource>(
+        () => _i29.AuthDataSourceImpl(gh<_i16.HttpClient>()));
+    gh.factory<_i30.AuthRepository>(() => _i31.AuthRepositoryImpl(
+          gh<_i28.AuthDataSource>(),
           gh<_i3.AuthService>(),
         ));
-    gh.singleton<_i28.LocalStorageService>(_i28.LocalStorageService(
+    gh.singleton<_i32.LocalStorageService>(_i32.LocalStorageService(
       gh<_i18.SharedPreferences>(),
       gh<_i3.AuthService>(),
     ));
-    gh.factory<_i29.AcceptanceBloc>(
-        () => _i29.AcceptanceBloc(gh<_i21.AcceptanceRepository>()));
-    gh.factory<_i30.AuthBloc>(() => _i30.AuthBloc(gh<_i26.AuthRepository>()));
+    gh.factory<_i33.StorageBloc>(
+        () => _i33.StorageBloc(gh<_i21.StorageRepository>()));
+    gh.factory<_i34.AcceptanceBloc>(
+        () => _i34.AcceptanceBloc(gh<_i25.AcceptanceRepository>()));
+    gh.factory<_i35.AuthBloc>(() => _i35.AuthBloc(gh<_i30.AuthRepository>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i31.RegisterModule {}
+class _$RegisterModule extends _i36.RegisterModule {}
