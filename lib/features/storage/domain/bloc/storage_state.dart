@@ -5,5 +5,6 @@ class StorageState with _$StorageState {
   const factory StorageState({
     required final StateStatus stateStatus,
     required List<StorageEntity> storageEntity,
+    required List<WheelEntity> wheels,
   }) = _StorageState;
 }

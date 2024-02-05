@@ -19,32 +19,38 @@ mixin _$StorageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getStorages,
+    required TResult Function(int storageId) getStoragesById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStorages,
+    TResult? Function(int storageId)? getStoragesById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStorages,
+    TResult Function(int storageId)? getStoragesById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetStorages value) getStorages,
+    required TResult Function(_GetStoragesById value) getStoragesById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetStorages value)? getStorages,
+    TResult? Function(_GetStoragesById value)? getStoragesById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetStorages value)? getStorages,
+    TResult Function(_GetStoragesById value)? getStoragesById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getStorages,
+    required TResult Function(int storageId) getStoragesById,
   }) {
     return getStorages();
   }
@@ -115,6 +122,7 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStorages,
+    TResult? Function(int storageId)? getStoragesById,
   }) {
     return getStorages?.call();
   }
@@ -123,6 +131,7 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStorages,
+    TResult Function(int storageId)? getStoragesById,
     required TResult orElse(),
   }) {
     if (getStorages != null) {
@@ -135,6 +144,7 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetStorages value) getStorages,
+    required TResult Function(_GetStoragesById value) getStoragesById,
   }) {
     return getStorages(this);
   }
@@ -143,6 +153,7 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetStorages value)? getStorages,
+    TResult? Function(_GetStoragesById value)? getStoragesById,
   }) {
     return getStorages?.call(this);
   }
@@ -151,6 +162,7 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetStorages value)? getStorages,
+    TResult Function(_GetStoragesById value)? getStoragesById,
     required TResult orElse(),
   }) {
     if (getStorages != null) {
@@ -165,9 +177,146 @@ abstract class _GetStorages implements StorageEvent {
 }
 
 /// @nodoc
+abstract class _$$GetStoragesByIdImplCopyWith<$Res> {
+  factory _$$GetStoragesByIdImplCopyWith(_$GetStoragesByIdImpl value,
+          $Res Function(_$GetStoragesByIdImpl) then) =
+      __$$GetStoragesByIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int storageId});
+}
+
+/// @nodoc
+class __$$GetStoragesByIdImplCopyWithImpl<$Res>
+    extends _$StorageEventCopyWithImpl<$Res, _$GetStoragesByIdImpl>
+    implements _$$GetStoragesByIdImplCopyWith<$Res> {
+  __$$GetStoragesByIdImplCopyWithImpl(
+      _$GetStoragesByIdImpl _value, $Res Function(_$GetStoragesByIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? storageId = null,
+  }) {
+    return _then(_$GetStoragesByIdImpl(
+      storageId: null == storageId
+          ? _value.storageId
+          : storageId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetStoragesByIdImpl implements _GetStoragesById {
+  const _$GetStoragesByIdImpl({required this.storageId});
+
+  @override
+  final int storageId;
+
+  @override
+  String toString() {
+    return 'StorageEvent.getStoragesById(storageId: $storageId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetStoragesByIdImpl &&
+            (identical(other.storageId, storageId) ||
+                other.storageId == storageId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, storageId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetStoragesByIdImplCopyWith<_$GetStoragesByIdImpl> get copyWith =>
+      __$$GetStoragesByIdImplCopyWithImpl<_$GetStoragesByIdImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getStorages,
+    required TResult Function(int storageId) getStoragesById,
+  }) {
+    return getStoragesById(storageId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getStorages,
+    TResult? Function(int storageId)? getStoragesById,
+  }) {
+    return getStoragesById?.call(storageId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getStorages,
+    TResult Function(int storageId)? getStoragesById,
+    required TResult orElse(),
+  }) {
+    if (getStoragesById != null) {
+      return getStoragesById(storageId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetStorages value) getStorages,
+    required TResult Function(_GetStoragesById value) getStoragesById,
+  }) {
+    return getStoragesById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetStorages value)? getStorages,
+    TResult? Function(_GetStoragesById value)? getStoragesById,
+  }) {
+    return getStoragesById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetStorages value)? getStorages,
+    TResult Function(_GetStoragesById value)? getStoragesById,
+    required TResult orElse(),
+  }) {
+    if (getStoragesById != null) {
+      return getStoragesById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetStoragesById implements StorageEvent {
+  const factory _GetStoragesById({required final int storageId}) =
+      _$GetStoragesByIdImpl;
+
+  int get storageId;
+  @JsonKey(ignore: true)
+  _$$GetStoragesByIdImplCopyWith<_$GetStoragesByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$StorageState {
   StateStatus get stateStatus => throw _privateConstructorUsedError;
   List<StorageEntity> get storageEntity => throw _privateConstructorUsedError;
+  List<WheelEntity> get wheels => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StorageStateCopyWith<StorageState> get copyWith =>
@@ -180,7 +329,10 @@ abstract class $StorageStateCopyWith<$Res> {
           StorageState value, $Res Function(StorageState) then) =
       _$StorageStateCopyWithImpl<$Res, StorageState>;
   @useResult
-  $Res call({StateStatus stateStatus, List<StorageEntity> storageEntity});
+  $Res call(
+      {StateStatus stateStatus,
+      List<StorageEntity> storageEntity,
+      List<WheelEntity> wheels});
 
   $StateStatusCopyWith<$Res> get stateStatus;
 }
@@ -200,6 +352,7 @@ class _$StorageStateCopyWithImpl<$Res, $Val extends StorageState>
   $Res call({
     Object? stateStatus = null,
     Object? storageEntity = null,
+    Object? wheels = null,
   }) {
     return _then(_value.copyWith(
       stateStatus: null == stateStatus
@@ -210,6 +363,10 @@ class _$StorageStateCopyWithImpl<$Res, $Val extends StorageState>
           ? _value.storageEntity
           : storageEntity // ignore: cast_nullable_to_non_nullable
               as List<StorageEntity>,
+      wheels: null == wheels
+          ? _value.wheels
+          : wheels // ignore: cast_nullable_to_non_nullable
+              as List<WheelEntity>,
     ) as $Val);
   }
 
@@ -230,7 +387,10 @@ abstract class _$$StorageStateImplCopyWith<$Res>
       __$$StorageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({StateStatus stateStatus, List<StorageEntity> storageEntity});
+  $Res call(
+      {StateStatus stateStatus,
+      List<StorageEntity> storageEntity,
+      List<WheelEntity> wheels});
 
   @override
   $StateStatusCopyWith<$Res> get stateStatus;
@@ -249,6 +409,7 @@ class __$$StorageStateImplCopyWithImpl<$Res>
   $Res call({
     Object? stateStatus = null,
     Object? storageEntity = null,
+    Object? wheels = null,
   }) {
     return _then(_$StorageStateImpl(
       stateStatus: null == stateStatus
@@ -259,6 +420,10 @@ class __$$StorageStateImplCopyWithImpl<$Res>
           ? _value._storageEntity
           : storageEntity // ignore: cast_nullable_to_non_nullable
               as List<StorageEntity>,
+      wheels: null == wheels
+          ? _value._wheels
+          : wheels // ignore: cast_nullable_to_non_nullable
+              as List<WheelEntity>,
     ));
   }
 }
@@ -268,8 +433,10 @@ class __$$StorageStateImplCopyWithImpl<$Res>
 class _$StorageStateImpl implements _StorageState {
   const _$StorageStateImpl(
       {required this.stateStatus,
-      required final List<StorageEntity> storageEntity})
-      : _storageEntity = storageEntity;
+      required final List<StorageEntity> storageEntity,
+      required final List<WheelEntity> wheels})
+      : _storageEntity = storageEntity,
+        _wheels = wheels;
 
   @override
   final StateStatus stateStatus;
@@ -281,9 +448,17 @@ class _$StorageStateImpl implements _StorageState {
     return EqualUnmodifiableListView(_storageEntity);
   }
 
+  final List<WheelEntity> _wheels;
+  @override
+  List<WheelEntity> get wheels {
+    if (_wheels is EqualUnmodifiableListView) return _wheels;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_wheels);
+  }
+
   @override
   String toString() {
-    return 'StorageState(stateStatus: $stateStatus, storageEntity: $storageEntity)';
+    return 'StorageState(stateStatus: $stateStatus, storageEntity: $storageEntity, wheels: $wheels)';
   }
 
   @override
@@ -294,12 +469,16 @@ class _$StorageStateImpl implements _StorageState {
             (identical(other.stateStatus, stateStatus) ||
                 other.stateStatus == stateStatus) &&
             const DeepCollectionEquality()
-                .equals(other._storageEntity, _storageEntity));
+                .equals(other._storageEntity, _storageEntity) &&
+            const DeepCollectionEquality().equals(other._wheels, _wheels));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stateStatus,
-      const DeepCollectionEquality().hash(_storageEntity));
+  int get hashCode => Object.hash(
+      runtimeType,
+      stateStatus,
+      const DeepCollectionEquality().hash(_storageEntity),
+      const DeepCollectionEquality().hash(_wheels));
 
   @JsonKey(ignore: true)
   @override
@@ -311,12 +490,15 @@ class _$StorageStateImpl implements _StorageState {
 abstract class _StorageState implements StorageState {
   const factory _StorageState(
       {required final StateStatus stateStatus,
-      required final List<StorageEntity> storageEntity}) = _$StorageStateImpl;
+      required final List<StorageEntity> storageEntity,
+      required final List<WheelEntity> wheels}) = _$StorageStateImpl;
 
   @override
   StateStatus get stateStatus;
   @override
   List<StorageEntity> get storageEntity;
+  @override
+  List<WheelEntity> get wheels;
   @override
   @JsonKey(ignore: true)
   _$$StorageStateImplCopyWith<_$StorageStateImpl> get copyWith =>

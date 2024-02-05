@@ -9,6 +9,7 @@ import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/drop
 import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/overlay_dropdown.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart';
+import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
@@ -27,6 +28,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
 
   final List<String> _wheels = [];
   int _countWheel = 0;
+  StorageEntity? storageSelected;
 
   @override
   void initState() {
@@ -58,7 +60,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
                 const SizedBox(height: AppProps.kPageMargin),
                 const Divider(height: 1, color: AppColors.kDivider),
                 const SizedBox(height: AppProps.kPageMargin),
-                _buildProductSelection(),
+                _buildProductSelection(state.wheels),
                 const SizedBox(height: AppProps.kMediumMargin),
                 _buildAddNewProduct(),
                 const SizedBox(height: AppProps.kPageMargin),
@@ -126,9 +128,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
         return OverlayDropdown(
           items: [t.choose, ...storages.map((e) => e.title ?? '')],
           selectedItem: value,
-          onSelectItem: (selectedItem) {
-            _selectedItemNotifier.value = selectedItem;
-          },
+          onSelectItem: (val) => _onSelectedItemDropDown(storages, val),
           child: Container(
             margin: const EdgeInsets.only(right: 60),
             child: DropDownSelectedWidget(
@@ -142,7 +142,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     );
   }
 
-  Widget _buildProductSelection() {
+  Widget _buildProductSelection(List<WheelEntity> wheels) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -174,8 +174,8 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
           builder: (context, value, child) {
             return Visibility(
               visible: value,
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxHeight: 300),
+              child: SizedBox(
+                height: _getHeightList(wheels),
                 child: const WheelDetailWidget(),
               ),
             );
@@ -270,8 +270,35 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     }
   }
 
+  void _onSelectedItemDropDown(List<StorageEntity> storages, String? selectedItem) {
+    _selectedItemNotifier.value = selectedItem;
+    storageSelected = storages.firstWhere((e) => e.title == selectedItem);
+
+    if (storageSelected != null && storageSelected?.id != null) {
+      context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: storageSelected!.id!));
+    }
+  }
+
+  double _getHeightList(List<WheelEntity> wheels) {
+    switch (wheels.length) {
+      case 0:
+        return 0;
+      case 1:
+        return 100;
+      case 2:
+        return 190;
+      case 3:
+        return 250;
+      case 4:
+        return 300;
+      default:
+        return 300;
+    }
+  }
+
   @override
   void dispose() {
+    _maskFormatter.clear();
     _dateController.dispose();
     _selectedItemNotifier.dispose();
     _visibleAllListNotifier.dispose();

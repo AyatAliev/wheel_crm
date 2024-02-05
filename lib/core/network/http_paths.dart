@@ -8,4 +8,6 @@ class HttpPaths {
   /// Products
   static const getAcceptance = '$baseUrl/products/acceptance';
   static const getStorages = '$baseUrl/products/storages';
+  static getWheelById(int wheelId) => '$baseUrl/products/wheels/$wheelId';
+  static getStoryById(int storageId) => '$baseUrl/products/storages/$storageId';
 }
