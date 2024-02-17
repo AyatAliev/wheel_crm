@@ -29,6 +29,7 @@ class AcceptanceList extends StatelessWidget {
                 whoAdded: acceptances[index].whoAdded ?? '',
                 storage: acceptances[index].storage.title ?? '',
                 count: acceptances[index].amount,
+                isLastItem: (acceptances.length - 1) == index,
               );
             },
             itemCount: acceptances.length,

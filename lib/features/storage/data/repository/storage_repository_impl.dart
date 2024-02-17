@@ -32,9 +32,12 @@ class StorageRepositoryImpl extends StorageRepository {
   }
 
   @override
-  Future<Either<Failure, List<WheelEntity>>> getStoragesById({required int storageId}) async {
+  Future<Either<Failure, List<WheelEntity>>> getStoragesById({
+    required int storageId,
+    required String search,
+  }) async {
     try {
-      final result = await _dataSource.getStoragesById(storageId: storageId);
+      final result = await _dataSource.getStoragesById(storageId: storageId, search: search);
 
       final wheels = result.map((e) => _wheelConverter.convert(e)).toList();
       return Right(wheels);

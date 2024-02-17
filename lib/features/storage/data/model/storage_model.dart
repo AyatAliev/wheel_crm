@@ -8,12 +8,14 @@ class StorageModel {
   final String title;
   final String owner;
   final dynamic parent;
+  final int amount;
 
   StorageModel({
     required this.id,
     required this.title,
     required this.owner,
     required this.parent,
+    required this.amount,
   });
 
   factory StorageModel.fromJson(Map<String, dynamic> json) {
@@ -22,6 +24,7 @@ class StorageModel {
       title: json['title'],
       owner: json['owner'],
       parent: json['parent'],
+      amount: json['amount'],
     );
   }
 }

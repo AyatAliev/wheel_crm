@@ -6,6 +6,7 @@ class AcceptanceItem extends StatelessWidget {
   final String whoAdded;
   final String storage;
   final int count;
+  final bool isLastItem;
 
   const AcceptanceItem({
     super.key,
@@ -13,16 +14,18 @@ class AcceptanceItem extends StatelessWidget {
     required this.whoAdded,
     required this.storage,
     required this.count,
+    required this.isLastItem,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(
+      margin: EdgeInsets.only(
         left: AppProps.kPageMargin,
         right: AppProps.kPageMargin,
         top: AppProps.kPageMargin,
+        bottom: isLastItem ? AppProps.kPageMargin : 0
       ),
       padding: const EdgeInsets.symmetric(
         vertical: AppProps.kSmallMargin,

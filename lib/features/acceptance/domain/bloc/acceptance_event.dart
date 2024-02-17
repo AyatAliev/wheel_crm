@@ -7,4 +7,7 @@ class AcceptanceEvent with _$AcceptanceEvent {
     DateTime? endDate,
     int? storageId,
   }) = _GetAcceptance;
+
+  const factory AcceptanceEvent.addAcceptance({required CreateAcceptanceEntity createAcceptanceEntity}) =
+      _AddAcceptance;
 }

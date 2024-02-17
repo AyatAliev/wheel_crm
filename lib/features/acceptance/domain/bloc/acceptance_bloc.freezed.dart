@@ -16,48 +16,50 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AcceptanceEvent {
-  DateTime? get startDate => throw _privateConstructorUsedError;
-  DateTime? get endDate => throw _privateConstructorUsedError;
-  int? get storageId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
             DateTime? startDate, DateTime? endDate, int? storageId)
         getAcceptance,
+    required TResult Function(CreateAcceptanceEntity createAcceptanceEntity)
+        addAcceptance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime? startDate, DateTime? endDate, int? storageId)?
         getAcceptance,
+    TResult? Function(CreateAcceptanceEntity createAcceptanceEntity)?
+        addAcceptance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime? startDate, DateTime? endDate, int? storageId)?
         getAcceptance,
+    TResult Function(CreateAcceptanceEntity createAcceptanceEntity)?
+        addAcceptance,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAcceptance value) getAcceptance,
+    required TResult Function(_AddAcceptance value) addAcceptance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAcceptance value)? getAcceptance,
+    TResult? Function(_AddAcceptance value)? addAcceptance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAcceptance value)? getAcceptance,
+    TResult Function(_AddAcceptance value)? addAcceptance,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AcceptanceEventCopyWith<AcceptanceEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -66,8 +68,6 @@ abstract class $AcceptanceEventCopyWith<$Res> {
   factory $AcceptanceEventCopyWith(
           AcceptanceEvent value, $Res Function(AcceptanceEvent) then) =
       _$AcceptanceEventCopyWithImpl<$Res, AcceptanceEvent>;
-  @useResult
-  $Res call({DateTime? startDate, DateTime? endDate, int? storageId});
 }
 
 /// @nodoc
@@ -79,38 +79,13 @@ class _$AcceptanceEventCopyWithImpl<$Res, $Val extends AcceptanceEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? storageId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      startDate: freezed == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      storageId: freezed == storageId
-          ? _value.storageId
-          : storageId // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetAcceptanceImplCopyWith<$Res>
-    implements $AcceptanceEventCopyWith<$Res> {
+abstract class _$$GetAcceptanceImplCopyWith<$Res> {
   factory _$$GetAcceptanceImplCopyWith(
           _$GetAcceptanceImpl value, $Res Function(_$GetAcceptanceImpl) then) =
       __$$GetAcceptanceImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({DateTime? startDate, DateTime? endDate, int? storageId});
 }
@@ -191,6 +166,8 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
     required TResult Function(
             DateTime? startDate, DateTime? endDate, int? storageId)
         getAcceptance,
+    required TResult Function(CreateAcceptanceEntity createAcceptanceEntity)
+        addAcceptance,
   }) {
     return getAcceptance(startDate, endDate, storageId);
   }
@@ -200,6 +177,8 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime? startDate, DateTime? endDate, int? storageId)?
         getAcceptance,
+    TResult? Function(CreateAcceptanceEntity createAcceptanceEntity)?
+        addAcceptance,
   }) {
     return getAcceptance?.call(startDate, endDate, storageId);
   }
@@ -209,6 +188,8 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime? startDate, DateTime? endDate, int? storageId)?
         getAcceptance,
+    TResult Function(CreateAcceptanceEntity createAcceptanceEntity)?
+        addAcceptance,
     required TResult orElse(),
   }) {
     if (getAcceptance != null) {
@@ -221,6 +202,7 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAcceptance value) getAcceptance,
+    required TResult Function(_AddAcceptance value) addAcceptance,
   }) {
     return getAcceptance(this);
   }
@@ -229,6 +211,7 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAcceptance value)? getAcceptance,
+    TResult? Function(_AddAcceptance value)? addAcceptance,
   }) {
     return getAcceptance?.call(this);
   }
@@ -237,6 +220,7 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAcceptance value)? getAcceptance,
+    TResult Function(_AddAcceptance value)? addAcceptance,
     required TResult orElse(),
   }) {
     if (getAcceptance != null) {
@@ -252,15 +236,154 @@ abstract class _GetAcceptance implements AcceptanceEvent {
       final DateTime? endDate,
       final int? storageId}) = _$GetAcceptanceImpl;
 
-  @override
   DateTime? get startDate;
-  @override
   DateTime? get endDate;
-  @override
   int? get storageId;
-  @override
   @JsonKey(ignore: true)
   _$$GetAcceptanceImplCopyWith<_$GetAcceptanceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddAcceptanceImplCopyWith<$Res> {
+  factory _$$AddAcceptanceImplCopyWith(
+          _$AddAcceptanceImpl value, $Res Function(_$AddAcceptanceImpl) then) =
+      __$$AddAcceptanceImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CreateAcceptanceEntity createAcceptanceEntity});
+}
+
+/// @nodoc
+class __$$AddAcceptanceImplCopyWithImpl<$Res>
+    extends _$AcceptanceEventCopyWithImpl<$Res, _$AddAcceptanceImpl>
+    implements _$$AddAcceptanceImplCopyWith<$Res> {
+  __$$AddAcceptanceImplCopyWithImpl(
+      _$AddAcceptanceImpl _value, $Res Function(_$AddAcceptanceImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? createAcceptanceEntity = null,
+  }) {
+    return _then(_$AddAcceptanceImpl(
+      createAcceptanceEntity: null == createAcceptanceEntity
+          ? _value.createAcceptanceEntity
+          : createAcceptanceEntity // ignore: cast_nullable_to_non_nullable
+              as CreateAcceptanceEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddAcceptanceImpl implements _AddAcceptance {
+  const _$AddAcceptanceImpl({required this.createAcceptanceEntity});
+
+  @override
+  final CreateAcceptanceEntity createAcceptanceEntity;
+
+  @override
+  String toString() {
+    return 'AcceptanceEvent.addAcceptance(createAcceptanceEntity: $createAcceptanceEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddAcceptanceImpl &&
+            (identical(other.createAcceptanceEntity, createAcceptanceEntity) ||
+                other.createAcceptanceEntity == createAcceptanceEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, createAcceptanceEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddAcceptanceImplCopyWith<_$AddAcceptanceImpl> get copyWith =>
+      __$$AddAcceptanceImplCopyWithImpl<_$AddAcceptanceImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            DateTime? startDate, DateTime? endDate, int? storageId)
+        getAcceptance,
+    required TResult Function(CreateAcceptanceEntity createAcceptanceEntity)
+        addAcceptance,
+  }) {
+    return addAcceptance(createAcceptanceEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? startDate, DateTime? endDate, int? storageId)?
+        getAcceptance,
+    TResult? Function(CreateAcceptanceEntity createAcceptanceEntity)?
+        addAcceptance,
+  }) {
+    return addAcceptance?.call(createAcceptanceEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? startDate, DateTime? endDate, int? storageId)?
+        getAcceptance,
+    TResult Function(CreateAcceptanceEntity createAcceptanceEntity)?
+        addAcceptance,
+    required TResult orElse(),
+  }) {
+    if (addAcceptance != null) {
+      return addAcceptance(createAcceptanceEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAcceptance value) getAcceptance,
+    required TResult Function(_AddAcceptance value) addAcceptance,
+  }) {
+    return addAcceptance(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAcceptance value)? getAcceptance,
+    TResult? Function(_AddAcceptance value)? addAcceptance,
+  }) {
+    return addAcceptance?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAcceptance value)? getAcceptance,
+    TResult Function(_AddAcceptance value)? addAcceptance,
+    required TResult orElse(),
+  }) {
+    if (addAcceptance != null) {
+      return addAcceptance(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddAcceptance implements AcceptanceEvent {
+  const factory _AddAcceptance(
+          {required final CreateAcceptanceEntity createAcceptanceEntity}) =
+      _$AddAcceptanceImpl;
+
+  CreateAcceptanceEntity get createAcceptanceEntity;
+  @JsonKey(ignore: true)
+  _$$AddAcceptanceImplCopyWith<_$AddAcceptanceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

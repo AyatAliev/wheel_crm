@@ -10,6 +10,8 @@ import 'package:wheel_crm/features/weclome/welcome_screen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 import 'package:wheel_crm/injection/injection.dart';
 
+import '../storage/presentation/storage_widget.dart';
+
 @RoutePage()
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -107,7 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: const AcceptanceWidget(),
         );
       case 2:
-        return const WelcomeScreen();
+        return BlocProvider(
+          create: (_) => getIt<StorageBloc>()..add(const StorageEvent.getStorages()),
+          child: const StorageWidget(),
+        );
       default:
         return const WelcomeScreen();
     }

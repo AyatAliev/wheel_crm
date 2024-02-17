@@ -6,11 +6,17 @@ part 'storage_entity.g.dart';
 class StorageEntity {
   final int? id;
   final String? title;
+  final int? amount;
 
-  StorageEntity({this.id, this.title});
+  StorageEntity({
+    this.id,
+    this.title,
+    this.amount,
+  });
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
+        "amount": amount,
       };
 }

@@ -32,14 +32,21 @@ class _AcceptanceWidgetState extends State<AcceptanceWidget> {
                   : AcceptanceList(acceptances: state.acceptanceEntity),
             ),
             FabButtonWidget(
-              onTap: () {
-                AppBottomSheet.show(
+              onTap: () async {
+                final result = await AppBottomSheet.show<bool>(
                   context: context,
-                  child: BlocProvider.value(
-                    value: BlocProvider.of<StorageBloc>(context),
+                  child: MultiBlocProvider(
+                    providers: [
+                      BlocProvider.value(value: BlocProvider.of<StorageBloc>(context)),
+                      BlocProvider.value(value: BlocProvider.of<AcceptanceBloc>(context)),
+                    ],
                     child: const CreateAcceptanceWidget(),
                   ),
                 );
+
+                if ((result ?? false) && mounted) {
+                  context.read<AcceptanceBloc>().add(const AcceptanceEvent.getAcceptance());
+                }
               },
             ),
             ValueListenableBuilder(
@@ -67,6 +74,12 @@ class _AcceptanceWidgetState extends State<AcceptanceWidget> {
         AppSnackBar.show(context: context, titleText: msg, error: true);
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _isLoading.dispose();
+    super.dispose();
   }
 }
 

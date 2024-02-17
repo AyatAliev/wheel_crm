@@ -11,6 +11,7 @@ class StorageModelToEntity extends Converter<StorageModel, StorageEntity> {
     return StorageEntity(
       id: input.id,
       title: input.title,
+      amount: input.amount,
     );
   }
 }

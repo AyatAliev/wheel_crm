@@ -5,5 +5,9 @@ import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 
 abstract class StorageRepository {
   Future<Either<Failure, List<StorageEntity>>> getStorages();
-  Future<Either<Failure, List<WheelEntity>>> getStoragesById({required int storageId});
+
+  Future<Either<Failure, List<WheelEntity>>> getStoragesById({
+    required int storageId,
+    required String search,
+  });
 }

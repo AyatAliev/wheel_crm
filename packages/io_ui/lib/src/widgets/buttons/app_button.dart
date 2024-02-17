@@ -61,7 +61,12 @@ class AppButton extends StatelessWidget {
     return Align(
       alignment: Alignment.center,
       child: isLoading
-          ? const Padding(padding: EdgeInsets.all(4), child: CircularProgressIndicator())
+          ? const Padding(
+              padding: EdgeInsets.all(4),
+              child: CircularProgressIndicator(
+                color: AppColors.kGreen,
+              ),
+            )
           : Row(
               mainAxisSize: MainAxisSize.min,
               children: [

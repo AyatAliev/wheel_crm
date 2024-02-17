@@ -20,7 +20,7 @@ class OverlayFilter extends StatefulWidget {
 }
 
 class _OverlayFilterState extends State<OverlayFilter> {
-  late OverlayEntry _overlayEntry;
+  OverlayEntry? _overlayEntry;
   bool _isOverlayVisible = false;
 
   @override
@@ -37,9 +37,9 @@ class _OverlayFilterState extends State<OverlayFilter> {
 
       if (_isOverlayVisible) {
         _overlayEntry = _createOverlayEntry();
-        Overlay.of(context).insert(_overlayEntry);
+        Overlay.of(context).insert(_overlayEntry!);
       } else {
-        _overlayEntry.remove();
+        _overlayEntry?.remove();
       }
     });
   }
@@ -108,7 +108,7 @@ class _OverlayFilterState extends State<OverlayFilter> {
 
   @override
   void dispose() {
-    _overlayEntry.dispose();
+    _overlayEntry?.dispose();
     super.dispose();
   }
 }

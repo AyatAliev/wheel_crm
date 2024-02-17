@@ -6,7 +6,6 @@ class AppBottomSheet {
     required Widget child,
     double? initialChildSize,
     Color? color,
-    Function()? onClose,
   }) async {
     return showModalBottomSheet(
       backgroundColor: Colors.transparent,

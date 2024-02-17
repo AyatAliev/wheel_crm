@@ -4,7 +4,7 @@ part of 'storage_bloc.dart';
 class StorageState with _$StorageState {
   const factory StorageState({
     required final StateStatus stateStatus,
-    required List<StorageEntity> storageEntity,
+    required List<StorageEntity> storages,
     required List<WheelEntity> wheels,
   }) = _StorageState;
 }

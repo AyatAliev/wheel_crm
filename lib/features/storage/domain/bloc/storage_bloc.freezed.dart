@@ -19,19 +19,19 @@ mixin _$StorageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getStorages,
-    required TResult Function(int storageId) getStoragesById,
+    required TResult Function(int storageId, String? search) getStoragesById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStorages,
-    TResult? Function(int storageId)? getStoragesById,
+    TResult? Function(int storageId, String? search)? getStoragesById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStorages,
-    TResult Function(int storageId)? getStoragesById,
+    TResult Function(int storageId, String? search)? getStoragesById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getStorages,
-    required TResult Function(int storageId) getStoragesById,
+    required TResult Function(int storageId, String? search) getStoragesById,
   }) {
     return getStorages();
   }
@@ -122,7 +122,7 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStorages,
-    TResult? Function(int storageId)? getStoragesById,
+    TResult? Function(int storageId, String? search)? getStoragesById,
   }) {
     return getStorages?.call();
   }
@@ -131,7 +131,7 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStorages,
-    TResult Function(int storageId)? getStoragesById,
+    TResult Function(int storageId, String? search)? getStoragesById,
     required TResult orElse(),
   }) {
     if (getStorages != null) {
@@ -182,7 +182,7 @@ abstract class _$$GetStoragesByIdImplCopyWith<$Res> {
           $Res Function(_$GetStoragesByIdImpl) then) =
       __$$GetStoragesByIdImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int storageId});
+  $Res call({int storageId, String? search});
 }
 
 /// @nodoc
@@ -197,12 +197,17 @@ class __$$GetStoragesByIdImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? storageId = null,
+    Object? search = freezed,
   }) {
     return _then(_$GetStoragesByIdImpl(
       storageId: null == storageId
           ? _value.storageId
           : storageId // ignore: cast_nullable_to_non_nullable
               as int,
+      search: freezed == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -210,14 +215,16 @@ class __$$GetStoragesByIdImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetStoragesByIdImpl implements _GetStoragesById {
-  const _$GetStoragesByIdImpl({required this.storageId});
+  const _$GetStoragesByIdImpl({required this.storageId, this.search});
 
   @override
   final int storageId;
+  @override
+  final String? search;
 
   @override
   String toString() {
-    return 'StorageEvent.getStoragesById(storageId: $storageId)';
+    return 'StorageEvent.getStoragesById(storageId: $storageId, search: $search)';
   }
 
   @override
@@ -226,11 +233,12 @@ class _$GetStoragesByIdImpl implements _GetStoragesById {
         (other.runtimeType == runtimeType &&
             other is _$GetStoragesByIdImpl &&
             (identical(other.storageId, storageId) ||
-                other.storageId == storageId));
+                other.storageId == storageId) &&
+            (identical(other.search, search) || other.search == search));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, storageId);
+  int get hashCode => Object.hash(runtimeType, storageId, search);
 
   @JsonKey(ignore: true)
   @override
@@ -243,29 +251,29 @@ class _$GetStoragesByIdImpl implements _GetStoragesById {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getStorages,
-    required TResult Function(int storageId) getStoragesById,
+    required TResult Function(int storageId, String? search) getStoragesById,
   }) {
-    return getStoragesById(storageId);
+    return getStoragesById(storageId, search);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStorages,
-    TResult? Function(int storageId)? getStoragesById,
+    TResult? Function(int storageId, String? search)? getStoragesById,
   }) {
-    return getStoragesById?.call(storageId);
+    return getStoragesById?.call(storageId, search);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStorages,
-    TResult Function(int storageId)? getStoragesById,
+    TResult Function(int storageId, String? search)? getStoragesById,
     required TResult orElse(),
   }) {
     if (getStoragesById != null) {
-      return getStoragesById(storageId);
+      return getStoragesById(storageId, search);
     }
     return orElse();
   }
@@ -303,10 +311,12 @@ class _$GetStoragesByIdImpl implements _GetStoragesById {
 }
 
 abstract class _GetStoragesById implements StorageEvent {
-  const factory _GetStoragesById({required final int storageId}) =
-      _$GetStoragesByIdImpl;
+  const factory _GetStoragesById(
+      {required final int storageId,
+      final String? search}) = _$GetStoragesByIdImpl;
 
   int get storageId;
+  String? get search;
   @JsonKey(ignore: true)
   _$$GetStoragesByIdImplCopyWith<_$GetStoragesByIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -315,7 +325,7 @@ abstract class _GetStoragesById implements StorageEvent {
 /// @nodoc
 mixin _$StorageState {
   StateStatus get stateStatus => throw _privateConstructorUsedError;
-  List<StorageEntity> get storageEntity => throw _privateConstructorUsedError;
+  List<StorageEntity> get storages => throw _privateConstructorUsedError;
   List<WheelEntity> get wheels => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -331,7 +341,7 @@ abstract class $StorageStateCopyWith<$Res> {
   @useResult
   $Res call(
       {StateStatus stateStatus,
-      List<StorageEntity> storageEntity,
+      List<StorageEntity> storages,
       List<WheelEntity> wheels});
 
   $StateStatusCopyWith<$Res> get stateStatus;
@@ -351,7 +361,7 @@ class _$StorageStateCopyWithImpl<$Res, $Val extends StorageState>
   @override
   $Res call({
     Object? stateStatus = null,
-    Object? storageEntity = null,
+    Object? storages = null,
     Object? wheels = null,
   }) {
     return _then(_value.copyWith(
@@ -359,9 +369,9 @@ class _$StorageStateCopyWithImpl<$Res, $Val extends StorageState>
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus,
-      storageEntity: null == storageEntity
-          ? _value.storageEntity
-          : storageEntity // ignore: cast_nullable_to_non_nullable
+      storages: null == storages
+          ? _value.storages
+          : storages // ignore: cast_nullable_to_non_nullable
               as List<StorageEntity>,
       wheels: null == wheels
           ? _value.wheels
@@ -389,7 +399,7 @@ abstract class _$$StorageStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {StateStatus stateStatus,
-      List<StorageEntity> storageEntity,
+      List<StorageEntity> storages,
       List<WheelEntity> wheels});
 
   @override
@@ -408,7 +418,7 @@ class __$$StorageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? stateStatus = null,
-    Object? storageEntity = null,
+    Object? storages = null,
     Object? wheels = null,
   }) {
     return _then(_$StorageStateImpl(
@@ -416,9 +426,9 @@ class __$$StorageStateImplCopyWithImpl<$Res>
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus,
-      storageEntity: null == storageEntity
-          ? _value._storageEntity
-          : storageEntity // ignore: cast_nullable_to_non_nullable
+      storages: null == storages
+          ? _value._storages
+          : storages // ignore: cast_nullable_to_non_nullable
               as List<StorageEntity>,
       wheels: null == wheels
           ? _value._wheels
@@ -433,19 +443,19 @@ class __$$StorageStateImplCopyWithImpl<$Res>
 class _$StorageStateImpl implements _StorageState {
   const _$StorageStateImpl(
       {required this.stateStatus,
-      required final List<StorageEntity> storageEntity,
+      required final List<StorageEntity> storages,
       required final List<WheelEntity> wheels})
-      : _storageEntity = storageEntity,
+      : _storages = storages,
         _wheels = wheels;
 
   @override
   final StateStatus stateStatus;
-  final List<StorageEntity> _storageEntity;
+  final List<StorageEntity> _storages;
   @override
-  List<StorageEntity> get storageEntity {
-    if (_storageEntity is EqualUnmodifiableListView) return _storageEntity;
+  List<StorageEntity> get storages {
+    if (_storages is EqualUnmodifiableListView) return _storages;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_storageEntity);
+    return EqualUnmodifiableListView(_storages);
   }
 
   final List<WheelEntity> _wheels;
@@ -458,7 +468,7 @@ class _$StorageStateImpl implements _StorageState {
 
   @override
   String toString() {
-    return 'StorageState(stateStatus: $stateStatus, storageEntity: $storageEntity, wheels: $wheels)';
+    return 'StorageState(stateStatus: $stateStatus, storages: $storages, wheels: $wheels)';
   }
 
   @override
@@ -468,8 +478,7 @@ class _$StorageStateImpl implements _StorageState {
             other is _$StorageStateImpl &&
             (identical(other.stateStatus, stateStatus) ||
                 other.stateStatus == stateStatus) &&
-            const DeepCollectionEquality()
-                .equals(other._storageEntity, _storageEntity) &&
+            const DeepCollectionEquality().equals(other._storages, _storages) &&
             const DeepCollectionEquality().equals(other._wheels, _wheels));
   }
 
@@ -477,7 +486,7 @@ class _$StorageStateImpl implements _StorageState {
   int get hashCode => Object.hash(
       runtimeType,
       stateStatus,
-      const DeepCollectionEquality().hash(_storageEntity),
+      const DeepCollectionEquality().hash(_storages),
       const DeepCollectionEquality().hash(_wheels));
 
   @JsonKey(ignore: true)
@@ -490,13 +499,13 @@ class _$StorageStateImpl implements _StorageState {
 abstract class _StorageState implements StorageState {
   const factory _StorageState(
       {required final StateStatus stateStatus,
-      required final List<StorageEntity> storageEntity,
+      required final List<StorageEntity> storages,
       required final List<WheelEntity> wheels}) = _$StorageStateImpl;
 
   @override
   StateStatus get stateStatus;
   @override
-  List<StorageEntity> get storageEntity;
+  List<StorageEntity> get storages;
   @override
   List<WheelEntity> get wheels;
   @override

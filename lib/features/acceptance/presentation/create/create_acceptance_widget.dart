@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:wheel_crm/core/network/entity/state_status.dart';
+import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
+import 'package:wheel_crm/features/acceptance/domain/entity/create_acceptance_entity.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_create_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_detail_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/dropdown_selected_widget.dart';
@@ -26,9 +29,10 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   late final ValueNotifier<String?> _selectedItemNotifier;
   late final ValueNotifier<bool> _visibleAllListNotifier;
 
-  final List<String> _wheels = [];
+  final List<WheelEntity> _wheels = [];
   int _countWheel = 0;
-  StorageEntity? storageSelected;
+  StorageEntity? _storageSelected;
+  WheelEntity? deletedItem;
 
   @override
   void initState() {
@@ -56,7 +60,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
                 const SizedBox(height: AppProps.kPageMargin),
                 _buildRowSelectedDate(),
                 const SizedBox(height: AppProps.kPageMargin),
-                _buildWarehouseSelection(state.storageEntity),
+                _buildWarehouseSelection(state.storages),
                 const SizedBox(height: AppProps.kPageMargin),
                 const Divider(height: 1, color: AppColors.kDivider),
                 const SizedBox(height: AppProps.kPageMargin),
@@ -176,7 +180,23 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
               visible: value,
               child: SizedBox(
                 height: _getHeightList(wheels),
-                child: const WheelDetailWidget(),
+                child: WheelDetailWidget(
+                  onSearch: _onSearch,
+                  deletedItem: deletedItem,
+                  onDeletedItem: (WheelEntity item) {
+                    setState(() {
+                      _wheels.remove(item);
+                    });
+                  },
+                  onSelectedItem: (WheelEntity item) {
+                    setState(() {
+                      _wheels.add(item);
+                    });
+                  },
+                  onClear: () {
+                    deletedItem = null;
+                  },
+                ),
               ),
             );
           },
@@ -192,7 +212,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
         GestureDetector(
           onTap: () {
             setState(() {
-              _wheels.add('');
+              _wheels.add(WheelEntity.empty());
             });
           },
           child: _buildProductOption(t.addNewProduct),
@@ -205,10 +225,15 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
               _countWheel = count;
             });
           },
-          onPressedDeleteItem: (String item) {
+          onPressedDeleteItem: (WheelEntity item) {
             setState(() {
               _wheels.remove(item);
+              deletedItem = item;
             });
+          },
+          onUpdateAllWheels: (List<WheelEntity> wheels) {
+            _wheels.clear();
+            _wheels.addAll(wheels);
           },
         ),
       ],
@@ -240,11 +265,38 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   }
 
   Widget _buildSaveButton() {
-    return AppButton(
-      onTap: () {},
-      text: t.save,
-      borderRadius: AppProps.kSmallBorderRadius,
+    return BlocConsumer<AcceptanceBloc, AcceptanceState>(
+      listener: (context, state) {
+        if (state.stateStatus is SuccessStatus) {
+          context.router.pop(true);
+        }
+      },
+      builder: (context, state) {
+        return AppButton(
+          isLoading: state.stateStatus is LoadingStatus,
+          onTap: _onSaveButton,
+          text: t.save,
+          borderRadius: AppProps.kSmallBorderRadius,
+        );
+      },
     );
+  }
+
+  void _onSaveButton() {
+    var storageWheels = context.read<StorageBloc>().state.wheels;
+    var existingWheels = _wheels.where((e) => storageWheels.any((w) => w.title == e.title)).toList();
+    var newWheels = _wheels.where((e) => !existingWheels.any((w) => w.title == e.title)).toList();
+
+    context.read<AcceptanceBloc>().add(
+          AcceptanceEvent.addAcceptance(
+            createAcceptanceEntity: CreateAcceptanceEntity(
+              createAt: _dateController.text.parceddMMyyyy()!,
+              storage: _storageSelected!.id!,
+              wheels: existingWheels,
+              newWheels: newWheels,
+            ),
+          ),
+        );
   }
 
   Future<void> _selectedDate() async {
@@ -272,27 +324,34 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
 
   void _onSelectedItemDropDown(List<StorageEntity> storages, String? selectedItem) {
     _selectedItemNotifier.value = selectedItem;
-    storageSelected = storages.firstWhere((e) => e.title == selectedItem);
+    _storageSelected = storages.firstWhere((e) => e.title == selectedItem);
 
-    if (storageSelected != null && storageSelected?.id != null) {
-      context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: storageSelected!.id!));
+    if (_storageSelected != null && _storageSelected?.id != null) {
+      context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!));
     }
+  }
+
+  void _onSearch(String search) {
+    context.read<StorageBloc>().add(StorageEvent.getStoragesById(
+          storageId: _storageSelected!.id!,
+          search: search,
+        ));
   }
 
   double _getHeightList(List<WheelEntity> wheels) {
     switch (wheels.length) {
       case 0:
-        return 0;
+        return 150;
       case 1:
-        return 100;
-      case 2:
         return 190;
+      case 2:
+        return 230;
       case 3:
-        return 250;
+        return 270;
       case 4:
-        return 300;
+        return 320;
       default:
-        return 300;
+        return 320;
     }
   }
 

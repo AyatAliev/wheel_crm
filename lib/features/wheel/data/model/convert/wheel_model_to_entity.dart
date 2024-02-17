@@ -9,6 +9,7 @@ class WheelModelToEntity extends Converter<WheelModel, WheelEntity> {
   @override
   WheelEntity convert(WheelModel input) {
     return WheelEntity(
+      id: input.id,
       amount: input.amount ?? 0,
       title: input.title,
     );

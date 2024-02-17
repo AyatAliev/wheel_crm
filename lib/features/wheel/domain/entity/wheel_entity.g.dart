@@ -7,9 +7,11 @@ part of 'wheel_entity.dart';
 // **************************************************************************
 
 abstract class _$WheelEntityCWProxy {
-  WheelEntity amount(int amount);
+  WheelEntity id(int? id);
 
-  WheelEntity title(String title);
+  WheelEntity amount(int? amount);
+
+  WheelEntity title(String? title);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WheelEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -18,6 +20,7 @@ abstract class _$WheelEntityCWProxy {
   /// WheelEntity(...).copyWith(id: 12, name: "My name")
   /// ````
   WheelEntity call({
+    int? id,
     int? amount,
     String? title,
   });
@@ -30,10 +33,13 @@ class _$WheelEntityCWProxyImpl implements _$WheelEntityCWProxy {
   final WheelEntity _value;
 
   @override
-  WheelEntity amount(int amount) => this(amount: amount);
+  WheelEntity id(int? id) => this(id: id);
 
   @override
-  WheelEntity title(String title) => this(title: title);
+  WheelEntity amount(int? amount) => this(amount: amount);
+
+  @override
+  WheelEntity title(String? title) => this(title: title);
 
   @override
 
@@ -44,18 +50,23 @@ class _$WheelEntityCWProxyImpl implements _$WheelEntityCWProxy {
   /// WheelEntity(...).copyWith(id: 12, name: "My name")
   /// ````
   WheelEntity call({
+    Object? id = const $CopyWithPlaceholder(),
     Object? amount = const $CopyWithPlaceholder(),
     Object? title = const $CopyWithPlaceholder(),
   }) {
     return WheelEntity(
-      amount: amount == const $CopyWithPlaceholder() || amount == null
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as int?,
+      amount: amount == const $CopyWithPlaceholder()
           ? _value.amount
           // ignore: cast_nullable_to_non_nullable
-          : amount as int,
-      title: title == const $CopyWithPlaceholder() || title == null
+          : amount as int?,
+      title: title == const $CopyWithPlaceholder()
           ? _value.title
           // ignore: cast_nullable_to_non_nullable
-          : title as String,
+          : title as String?,
     );
   }
 }
