@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 27
+/// Strings: 38
 ///
-/// Built on 2024-02-12 at 18:52 UTC
+/// Built on 2024-02-20 at 18:00 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -174,6 +174,17 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get quantity => 'Кол-во';
 	String get collapseList => 'Свернуть список';
 	String get youNeedChooseRoom => 'Нужно выбрать помещение!';
+	String get roomType => 'Тип помещения';
+	String get emptyStorageTitle => 'У вас пока нет мест, для хранения вашего товара';
+	String get emptyStorageDesc => 'Что бы иметь места, нужно сообщить об этом руководителю, только он имеет право';
+	String get emptySellTitle => 'У вас пока нет продаж';
+	String get emptySellDesc => 'Чтобы отметить продажу, нажмите на синий плюсик';
+	String get typeAction => 'Тип действия';
+	String get returned => 'Возврат';
+	String get marriage => 'Брак';
+	String get summer => 'Лето';
+	String get winter => 'Зима';
+	String get season => 'Временна года';
 }
 
 /// Flat map(s) containing all translations.
@@ -209,6 +220,17 @@ extension on Translations {
 			case 'quantity': return 'Кол-во';
 			case 'collapseList': return 'Свернуть список';
 			case 'youNeedChooseRoom': return 'Нужно выбрать помещение!';
+			case 'roomType': return 'Тип помещения';
+			case 'emptyStorageTitle': return 'У вас пока нет мест, для хранения вашего товара';
+			case 'emptyStorageDesc': return 'Что бы иметь места, нужно сообщить об этом руководителю, только он имеет право';
+			case 'emptySellTitle': return 'У вас пока нет продаж';
+			case 'emptySellDesc': return 'Чтобы отметить продажу, нажмите на синий плюсик';
+			case 'typeAction': return 'Тип действия';
+			case 'returned': return 'Возврат';
+			case 'marriage': return 'Брак';
+			case 'summer': return 'Лето';
+			case 'winter': return 'Зима';
+			case 'season': return 'Временна года';
 			default: return null;
 		}
 	}

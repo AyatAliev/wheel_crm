@@ -7,6 +7,8 @@ import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
 import 'package:wheel_crm/features/acceptance/presentation/acceptance_widget.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/weclome/welcome_screen.dart';
+import 'package:wheel_crm/features/wheel/domain/bloc/wheel_bloc.dart';
+import 'package:wheel_crm/features/wheel/presentation/wheel_widget.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 import 'package:wheel_crm/injection/injection.dart';
 
@@ -99,10 +101,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildSelectedWidget(int index) {
     switch (index) {
       case 0:
-        return const WelcomeScreen();
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<AcceptanceBloc>()),
+            BlocProvider(create: (_) => getIt<WheelBloc>()..add(const WheelEvent.getSales())),
+            BlocProvider(create: (_) => getIt<StorageBloc>()..add(const StorageEvent.getStorages())),
+          ],
+          child: const WheelWidget(),
+        );
       case 1:
         return MultiBlocProvider(
           providers: [
+            BlocProvider(create: (_) => getIt<WheelBloc>()),
             BlocProvider(create: (_) => getIt<AcceptanceBloc>()..add(const AcceptanceEvent.getAcceptance())),
             BlocProvider(create: (_) => getIt<StorageBloc>()..add(const StorageEvent.getStorages())),
           ],

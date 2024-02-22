@@ -80,6 +80,7 @@ dev_dependencies:
   json_serializable: ^6.7.0
   copy_with_extension_gen: ^5.0.4
   slang_build_runner: 3.29.0
+  analyzer: ^6.4.1
 
   flutter_lints: ^3.0.1
 

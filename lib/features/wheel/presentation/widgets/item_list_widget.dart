@@ -1,0 +1,69 @@
+import 'package:flutter/cupertino.dart';
+import 'package:io_ui/io_ui.dart';
+import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
+
+class ItemListWidget extends StatelessWidget {
+  final WheelEntity entity;
+  final Function(WheelEntity entity)? toggleSelection;
+  final bool isSelected;
+  final List<WheelEntity> selectedWheels;
+
+  const ItemListWidget({
+    super.key,
+    this.toggleSelection,
+    required this.entity,
+    required this.isSelected,
+    required this.selectedWheels,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: AppProps.kMediumMargin),
+      child: GestureDetector(
+        onTap: () => toggleSelection?.call(entity.copyWith(amount: 0)),
+        child: Row(
+          children: [
+            Expanded(
+              child: AppInput.border(
+                height: 35,
+                controller: TextEditingController(text: entity.title),
+                readOnly: true,
+                onTap: () => toggleSelection?.call(entity.copyWith(amount: 0)),
+                textStyle: AppTextStyle.bodyLargeStyle.copyWith(
+                  color: isSelected ? AppColors.kBlack : AppColors.kDarkGrey,
+                  fontWeight: FontWeight.w400,
+                ),
+                boxDecoration: BoxDecoration(
+                  color: AppColors.kWhite,
+                  borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),
+                  border: Border.all(color: isSelected ? AppColors.kPrimary : AppColors.kBorder),
+                ),
+              ),
+            ),
+            const SizedBox(width: AppProps.kMediumMargin),
+            Expanded(
+              child: AppInput.border(
+                height: 35,
+                controller: TextEditingController(
+                    text: isSelected
+                        ? (selectedWheels.firstWhere((e) => e.id == entity.id).amount)?.toString() ?? '0'
+                        : '0'),
+                onTap: () => toggleSelection?.call(entity.copyWith(amount: 0)),
+                textStyle: AppTextStyle.bodyLargeStyle.copyWith(
+                  color: isSelected == true ? AppColors.kBlack : AppColors.kDarkGrey,
+                  fontWeight: FontWeight.w400,
+                ),
+                boxDecoration: BoxDecoration(
+                  color: AppColors.kWhite,
+                  borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),
+                  border: Border.all(color: isSelected == true ? AppColors.kPrimary : AppColors.kBorder),
+                ),
+              ),
+            )
+          ],
+        ),
+      ).withOpaqueBehavior(),
+    );
+  }
+}

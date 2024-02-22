@@ -11,6 +11,8 @@ abstract class _$StorageEntityCWProxy {
 
   StorageEntity title(String? title);
 
+  StorageEntity amount(int? amount);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StorageEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -20,6 +22,7 @@ abstract class _$StorageEntityCWProxy {
   StorageEntity call({
     int? id,
     String? title,
+    int? amount,
   });
 }
 
@@ -36,6 +39,9 @@ class _$StorageEntityCWProxyImpl implements _$StorageEntityCWProxy {
   StorageEntity title(String? title) => this(title: title);
 
   @override
+  StorageEntity amount(int? amount) => this(amount: amount);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StorageEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -46,6 +52,7 @@ class _$StorageEntityCWProxyImpl implements _$StorageEntityCWProxy {
   StorageEntity call({
     Object? id = const $CopyWithPlaceholder(),
     Object? title = const $CopyWithPlaceholder(),
+    Object? amount = const $CopyWithPlaceholder(),
   }) {
     return StorageEntity(
       id: id == const $CopyWithPlaceholder()
@@ -56,6 +63,10 @@ class _$StorageEntityCWProxyImpl implements _$StorageEntityCWProxy {
           ? _value.title
           // ignore: cast_nullable_to_non_nullable
           : title as String?,
+      amount: amount == const $CopyWithPlaceholder()
+          ? _value.amount
+          // ignore: cast_nullable_to_non_nullable
+          : amount as int?,
     );
   }
 }

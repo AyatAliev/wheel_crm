@@ -15,6 +15,7 @@ import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart';
 import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
+import 'package:wheel_crm/utils/functions_utils.dart';
 
 class CreateAcceptanceWidget extends StatefulWidget {
   const CreateAcceptanceWidget({super.key});
@@ -179,7 +180,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
             return Visibility(
               visible: value,
               child: SizedBox(
-                height: _getHeightList(wheels),
+                height: FunctionsUtils.getHeightList(wheels),
                 child: WheelDetailWidget(
                   onSearch: _onSearch,
                   deletedItem: deletedItem,
@@ -336,23 +337,6 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
           storageId: _storageSelected!.id!,
           search: search,
         ));
-  }
-
-  double _getHeightList(List<WheelEntity> wheels) {
-    switch (wheels.length) {
-      case 0:
-        return 150;
-      case 1:
-        return 190;
-      case 2:
-        return 230;
-      case 3:
-        return 270;
-      case 4:
-        return 320;
-      default:
-        return 320;
-    }
   }
 
   @override

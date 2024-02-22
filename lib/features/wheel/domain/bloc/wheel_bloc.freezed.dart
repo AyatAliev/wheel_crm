@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$WheelEvent {
-  int get wheelId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int wheelId) getWheelsById,
+    required TResult Function() getSales,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function()? getSales,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int wheelId)? getWheelsById,
+    TResult Function()? getSales,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_GetSales value) getSales,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_GetSales value)? getSales,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_GetSales value)? getSales,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $WheelEventCopyWith<WheelEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +61,6 @@ abstract class $WheelEventCopyWith<$Res> {
   factory $WheelEventCopyWith(
           WheelEvent value, $Res Function(WheelEvent) then) =
       _$WheelEventCopyWithImpl<$Res, WheelEvent>;
-  @useResult
-  $Res call({int wheelId});
 }
 
 /// @nodoc
@@ -73,28 +72,13 @@ class _$WheelEventCopyWithImpl<$Res, $Val extends WheelEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? wheelId = null,
-  }) {
-    return _then(_value.copyWith(
-      wheelId: null == wheelId
-          ? _value.wheelId
-          : wheelId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetWheelsByIdImplCopyWith<$Res>
-    implements $WheelEventCopyWith<$Res> {
+abstract class _$$GetWheelsByIdImplCopyWith<$Res> {
   factory _$$GetWheelsByIdImplCopyWith(
           _$GetWheelsByIdImpl value, $Res Function(_$GetWheelsByIdImpl) then) =
       __$$GetWheelsByIdImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int wheelId});
 }
@@ -155,6 +139,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int wheelId) getWheelsById,
+    required TResult Function() getSales,
   }) {
     return getWheelsById(wheelId);
   }
@@ -163,6 +148,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function()? getSales,
   }) {
     return getWheelsById?.call(wheelId);
   }
@@ -171,6 +157,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int wheelId)? getWheelsById,
+    TResult Function()? getSales,
     required TResult orElse(),
   }) {
     if (getWheelsById != null) {
@@ -183,6 +170,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_GetSales value) getSales,
   }) {
     return getWheelsById(this);
   }
@@ -191,6 +179,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_GetSales value)? getSales,
   }) {
     return getWheelsById?.call(this);
   }
@@ -199,6 +188,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_GetSales value)? getSales,
     required TResult orElse(),
   }) {
     if (getWheelsById != null) {
@@ -212,18 +202,119 @@ abstract class _GetWheelsById implements WheelEvent {
   const factory _GetWheelsById({required final int wheelId}) =
       _$GetWheelsByIdImpl;
 
-  @override
   int get wheelId;
-  @override
   @JsonKey(ignore: true)
   _$$GetWheelsByIdImplCopyWith<_$GetWheelsByIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
+abstract class _$$GetSalesImplCopyWith<$Res> {
+  factory _$$GetSalesImplCopyWith(
+          _$GetSalesImpl value, $Res Function(_$GetSalesImpl) then) =
+      __$$GetSalesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetSalesImplCopyWithImpl<$Res>
+    extends _$WheelEventCopyWithImpl<$Res, _$GetSalesImpl>
+    implements _$$GetSalesImplCopyWith<$Res> {
+  __$$GetSalesImplCopyWithImpl(
+      _$GetSalesImpl _value, $Res Function(_$GetSalesImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetSalesImpl implements _GetSales {
+  const _$GetSalesImpl();
+
+  @override
+  String toString() {
+    return 'WheelEvent.getSales()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetSalesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int wheelId) getWheelsById,
+    required TResult Function() getSales,
+  }) {
+    return getSales();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function()? getSales,
+  }) {
+    return getSales?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int wheelId)? getWheelsById,
+    TResult Function()? getSales,
+    required TResult orElse(),
+  }) {
+    if (getSales != null) {
+      return getSales();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_GetSales value) getSales,
+  }) {
+    return getSales(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_GetSales value)? getSales,
+  }) {
+    return getSales?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_GetSales value)? getSales,
+    required TResult orElse(),
+  }) {
+    if (getSales != null) {
+      return getSales(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSales implements WheelEvent {
+  const factory _GetSales() = _$GetSalesImpl;
+}
+
+/// @nodoc
 mixin _$WheelState {
   StateStatus get stateStatus => throw _privateConstructorUsedError;
-  List<WheelEntity> get wheels => throw _privateConstructorUsedError;
+  SalesDetailEntity? get wheelDetail => throw _privateConstructorUsedError;
+  List<SalesEntity> get sales => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WheelStateCopyWith<WheelState> get copyWith =>
@@ -236,7 +327,10 @@ abstract class $WheelStateCopyWith<$Res> {
           WheelState value, $Res Function(WheelState) then) =
       _$WheelStateCopyWithImpl<$Res, WheelState>;
   @useResult
-  $Res call({StateStatus stateStatus, List<WheelEntity> wheels});
+  $Res call(
+      {StateStatus stateStatus,
+      SalesDetailEntity? wheelDetail,
+      List<SalesEntity> sales});
 
   $StateStatusCopyWith<$Res> get stateStatus;
 }
@@ -255,17 +349,22 @@ class _$WheelStateCopyWithImpl<$Res, $Val extends WheelState>
   @override
   $Res call({
     Object? stateStatus = null,
-    Object? wheels = null,
+    Object? wheelDetail = freezed,
+    Object? sales = null,
   }) {
     return _then(_value.copyWith(
       stateStatus: null == stateStatus
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus,
-      wheels: null == wheels
-          ? _value.wheels
-          : wheels // ignore: cast_nullable_to_non_nullable
-              as List<WheelEntity>,
+      wheelDetail: freezed == wheelDetail
+          ? _value.wheelDetail
+          : wheelDetail // ignore: cast_nullable_to_non_nullable
+              as SalesDetailEntity?,
+      sales: null == sales
+          ? _value.sales
+          : sales // ignore: cast_nullable_to_non_nullable
+              as List<SalesEntity>,
     ) as $Val);
   }
 
@@ -286,7 +385,10 @@ abstract class _$$WheelStateImplCopyWith<$Res>
       __$$WheelStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({StateStatus stateStatus, List<WheelEntity> wheels});
+  $Res call(
+      {StateStatus stateStatus,
+      SalesDetailEntity? wheelDetail,
+      List<SalesEntity> sales});
 
   @override
   $StateStatusCopyWith<$Res> get stateStatus;
@@ -304,17 +406,22 @@ class __$$WheelStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? stateStatus = null,
-    Object? wheels = null,
+    Object? wheelDetail = freezed,
+    Object? sales = null,
   }) {
     return _then(_$WheelStateImpl(
       stateStatus: null == stateStatus
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus,
-      wheels: null == wheels
-          ? _value._wheels
-          : wheels // ignore: cast_nullable_to_non_nullable
-              as List<WheelEntity>,
+      wheelDetail: freezed == wheelDetail
+          ? _value.wheelDetail
+          : wheelDetail // ignore: cast_nullable_to_non_nullable
+              as SalesDetailEntity?,
+      sales: null == sales
+          ? _value._sales
+          : sales // ignore: cast_nullable_to_non_nullable
+              as List<SalesEntity>,
     ));
   }
 }
@@ -323,22 +430,26 @@ class __$$WheelStateImplCopyWithImpl<$Res>
 
 class _$WheelStateImpl implements _WheelState {
   const _$WheelStateImpl(
-      {required this.stateStatus, required final List<WheelEntity> wheels})
-      : _wheels = wheels;
+      {required this.stateStatus,
+      this.wheelDetail,
+      required final List<SalesEntity> sales})
+      : _sales = sales;
 
   @override
   final StateStatus stateStatus;
-  final List<WheelEntity> _wheels;
   @override
-  List<WheelEntity> get wheels {
-    if (_wheels is EqualUnmodifiableListView) return _wheels;
+  final SalesDetailEntity? wheelDetail;
+  final List<SalesEntity> _sales;
+  @override
+  List<SalesEntity> get sales {
+    if (_sales is EqualUnmodifiableListView) return _sales;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_wheels);
+    return EqualUnmodifiableListView(_sales);
   }
 
   @override
   String toString() {
-    return 'WheelState(stateStatus: $stateStatus, wheels: $wheels)';
+    return 'WheelState(stateStatus: $stateStatus, wheelDetail: $wheelDetail, sales: $sales)';
   }
 
   @override
@@ -348,12 +459,14 @@ class _$WheelStateImpl implements _WheelState {
             other is _$WheelStateImpl &&
             (identical(other.stateStatus, stateStatus) ||
                 other.stateStatus == stateStatus) &&
-            const DeepCollectionEquality().equals(other._wheels, _wheels));
+            (identical(other.wheelDetail, wheelDetail) ||
+                other.wheelDetail == wheelDetail) &&
+            const DeepCollectionEquality().equals(other._sales, _sales));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, stateStatus, const DeepCollectionEquality().hash(_wheels));
+  int get hashCode => Object.hash(runtimeType, stateStatus, wheelDetail,
+      const DeepCollectionEquality().hash(_sales));
 
   @JsonKey(ignore: true)
   @override
@@ -365,12 +478,15 @@ class _$WheelStateImpl implements _WheelState {
 abstract class _WheelState implements WheelState {
   const factory _WheelState(
       {required final StateStatus stateStatus,
-      required final List<WheelEntity> wheels}) = _$WheelStateImpl;
+      final SalesDetailEntity? wheelDetail,
+      required final List<SalesEntity> sales}) = _$WheelStateImpl;
 
   @override
   StateStatus get stateStatus;
   @override
-  List<WheelEntity> get wheels;
+  SalesDetailEntity? get wheelDetail;
+  @override
+  List<SalesEntity> get sales;
   @override
   @JsonKey(ignore: true)
   _$$WheelStateImplCopyWith<_$WheelStateImpl> get copyWith =>

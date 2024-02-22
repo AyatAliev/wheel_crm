@@ -44,7 +44,7 @@ class _AcceptanceWidgetState extends State<AcceptanceWidget> {
                   ),
                 );
 
-                if ((result ?? false) && mounted) {
+                if ((result ?? false) && context.mounted) {
                   context.read<AcceptanceBloc>().add(const AcceptanceEvent.getAcceptance());
                 }
               },

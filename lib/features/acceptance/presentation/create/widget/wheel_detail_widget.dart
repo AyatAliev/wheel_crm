@@ -9,6 +9,8 @@ import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
+import '../../../../wheel/presentation/widgets/item_list_widget.dart';
+
 class WheelDetailWidget extends StatefulWidget {
   final void Function(WheelEntity item)? onSelectedItem;
   final void Function(WheelEntity item)? onDeletedItem;
@@ -16,6 +18,7 @@ class WheelDetailWidget extends StatefulWidget {
   final void Function(String search)? onSearch;
   final WheelEntity? deletedItem;
   final String? title;
+  final List<WheelEntity>? selectedItems;
 
   const WheelDetailWidget({
     super.key,
@@ -25,6 +28,7 @@ class WheelDetailWidget extends StatefulWidget {
     this.onClear,
     this.deletedItem,
     this.title,
+    this.selectedItems,
   });
 
   @override
@@ -49,6 +53,10 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
   @override
   void initState() {
     super.initState();
+    if (widget.selectedItems != null) {
+      _selectedWheels.addAll(widget.selectedItems!.toList());
+    }
+
     _maskFormatter = MaskTextInputFormatter(mask: '###/## r##');
   }
 
@@ -121,50 +129,11 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
               shrinkWrap: true,
               itemBuilder: (context, i) {
                 final isSelected = _selectedWheels.any((e) => e.id == state.wheels[i].id);
-                return Container(
-                  margin: const EdgeInsets.only(bottom: AppProps.kMediumMargin),
-                  child: GestureDetector(
-                    onTap: () => _toggleSelection(state.wheels[i].copyWith(amount: 0)),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: AppInput.border(
-                            height: 35,
-                            controller: TextEditingController(text: state.wheels[i].title),
-                            readOnly: true,
-                            onTap: () => _toggleSelection(state.wheels[i].copyWith(amount: 0)),
-                            textStyle: AppTextStyle.bodyLargeStyle.copyWith(
-                              color: isSelected ? AppColors.kBlack : AppColors.kDarkGrey,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            boxDecoration: BoxDecoration(
-                              color: AppColors.kWhite,
-                              borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),
-                              border: Border.all(color: isSelected ? AppColors.kPrimary : AppColors.kBorder),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: AppProps.kMediumMargin),
-                        Expanded(
-                          child: AppInput.border(
-                            height: 35,
-                            controller: TextEditingController(text: state.wheels[i].amount.toString()),
-                            readOnly: true,
-                            onTap: () => _toggleSelection(state.wheels[i].copyWith(amount: 0)),
-                            textStyle: AppTextStyle.bodyLargeStyle.copyWith(
-                              color: isSelected == true ? AppColors.kBlack : AppColors.kDarkGrey,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            boxDecoration: BoxDecoration(
-                              color: AppColors.kWhite,
-                              borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),
-                              border: Border.all(color: isSelected == true ? AppColors.kPrimary : AppColors.kBorder),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ).withOpaqueBehavior(),
+                return ItemListWidget(
+                  toggleSelection: _toggleSelection,
+                  entity: state.wheels[i],
+                  isSelected: isSelected,
+                  selectedWheels: _selectedWheels,
                 );
               },
               itemCount: state.wheels.length,

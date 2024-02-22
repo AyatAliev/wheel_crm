@@ -4,6 +4,7 @@ import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_detail_widget.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart';
+import 'package:wheel_crm/gen/strings.g.dart';
 import 'package:wheel_crm/injection/injection.dart';
 
 class StorageItemWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class StorageItemWidget extends StatelessWidget {
       onTap: () => onTapItem(context),
       child: Container(
         padding: const EdgeInsets.symmetric(
-          vertical: AppProps.kTwentyMargin,
+          vertical: AppProps.kPageMargin,
           horizontal: AppProps.kPageMargin,
         ),
         margin: const EdgeInsets.all(AppProps.kSmallMargin),
@@ -37,7 +38,7 @@ class StorageItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Тип помещения:',
+              '${t.roomType}:',
               style: AppTextStyle.mediumStyle.copyWith(color: AppColors.kDarkGrey),
             ),
             const SizedBox(height: AppProps.kMediumMargin),
@@ -53,7 +54,7 @@ class StorageItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Кол-во:',
+                  '${t.quantity}:',
                   style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kPrimary),
                 ),
                 Text(

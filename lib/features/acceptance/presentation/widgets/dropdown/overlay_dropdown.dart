@@ -77,12 +77,8 @@ class _OverlayDropdownState extends State<OverlayDropdown> {
           if (!isFirstItem) const SizedBox(height: AppProps.kSmallMarginX2),
           GestureDetector(
             onTap: () {
-              if (!isFirstItem) {
                 widget.onSelectItem(item);
                 _hideOverlay();
-              } else {
-                _hideOverlay();
-              }
             },
             child: SizedBox(
               width: double.infinity,

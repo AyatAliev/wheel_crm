@@ -1,30 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
+import 'package:wheel_crm/features/acceptance/presentation/acceptance_widget.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
-import 'package:wheel_crm/features/storage/presentation/widgets/storage_list_widget.dart';
+import 'package:wheel_crm/features/wheel/domain/bloc/wheel_bloc.dart';
+import 'package:wheel_crm/features/wheel/presentation/detail/sales_detail_widget.dart';
+import 'package:wheel_crm/features/wheel/presentation/widgets/other/wheel_list.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
-class StorageWidget extends StatefulWidget {
-  const StorageWidget({super.key});
+class WheelWidget extends StatefulWidget {
+  const WheelWidget({super.key});
 
   @override
-  State<StorageWidget> createState() => _StorageWidgetState();
+  State<WheelWidget> createState() => _WheelWidgetState();
 }
 
-class _StorageWidgetState extends State<StorageWidget> {
+class _WheelWidgetState extends State<WheelWidget> {
   final ValueNotifier<bool> _isLoading = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<StorageBloc, StorageState>(
-      listener: _listenerAcceptanceBloc,
+    return BlocConsumer<WheelBloc, WheelState>(
+      listener: _listenerWheelBloc,
       builder: (context, state) {
         return Stack(
           children: [
             SizedBox(
               width: double.infinity,
-              child: state.storages.isEmpty ? _StorageEmpty() : StoragesListWidget(storages: state.storages),
+              child: state.sales.isEmpty ? _WheelEmpty() : WheelList(sales: state.sales),
+            ),
+            FabButtonWidget(
+              onTap: () async {
+                final result = await AppBottomSheet.show<bool>(
+                  context: context,
+                  child: MultiBlocProvider(
+                    providers: [
+                      BlocProvider.value(value: BlocProvider.of<StorageBloc>(context)),
+                      BlocProvider.value(value: BlocProvider.of<WheelBloc>(context)),
+                    ],
+                    child: const SalesDetailWidget(),
+                  ),
+                );
+
+                if ((result ?? false) && context.mounted) {
+                  context.read<WheelBloc>().add(const WheelEvent.getSales());
+                }
+              },
             ),
             ValueListenableBuilder(
               valueListenable: _isLoading,
@@ -42,7 +63,7 @@ class _StorageWidgetState extends State<StorageWidget> {
     );
   }
 
-  void _listenerAcceptanceBloc(BuildContext context, StorageState state) {
+  void _listenerWheelBloc(BuildContext context, WheelState state) {
     state.stateStatus.whenOrNull(
       success: (val) => _isLoading.value = false,
       loading: () => _isLoading.value = true,
@@ -60,7 +81,7 @@ class _StorageWidgetState extends State<StorageWidget> {
   }
 }
 
-class _StorageEmpty extends StatelessWidget {
+class _WheelEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -71,13 +92,14 @@ class _StorageEmpty extends StatelessWidget {
         children: [
           const SizedBox(height: 36),
           Text(
-            t.emptyStorageTitle,
+            t.emptySellTitle,
             style: AppTextStyle.titleStyle.copyWith(color: AppColors.kGreyDark),
           ),
           const SizedBox(height: AppProps.kSmallMargin),
           Text(
-            t.emptyStorageDesc,
+            t.emptySellDesc,
             style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kGreyDark),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

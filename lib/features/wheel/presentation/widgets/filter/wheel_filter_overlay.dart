@@ -8,23 +8,26 @@ import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
-class AcceptanceFilterOverlay extends StatefulWidget {
+class WheelFilterOverlay extends StatefulWidget {
   final bool actionType;
 
-  const AcceptanceFilterOverlay({
+  const WheelFilterOverlay({
     super.key,
     this.actionType = false,
   });
 
   @override
-  State<AcceptanceFilterOverlay> createState() => _AcceptanceFilterOverlayState();
+  State<WheelFilterOverlay> createState() => _WheelFilterOverlayState();
 }
 
-class _AcceptanceFilterOverlayState extends State<AcceptanceFilterOverlay> {
+class _WheelFilterOverlayState extends State<WheelFilterOverlay> {
   late final MaskTextInputFormatter _maskFormatter = MaskTextInputFormatter(mask: '##-##-####');
   late final TextEditingController _startDateController = TextEditingController();
   late final TextEditingController _endDateController = TextEditingController();
-  late final ValueNotifier<String?> _selectedItemNotifier = ValueNotifier(null);
+
+  late final ValueNotifier<String?> _selectedItemStorageNotifier = ValueNotifier(null);
+  late final ValueNotifier<String?> _selectedItemTypeNotifier = ValueNotifier(null);
+  late final ValueNotifier<String?> _selectedItemSeasonNotifier = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +39,60 @@ class _AcceptanceFilterOverlayState extends State<AcceptanceFilterOverlay> {
             _buildDates(),
             const SizedBox(height: AppProps.kPageMargin),
             ValueListenableBuilder(
-              valueListenable: _selectedItemNotifier,
+              valueListenable: _selectedItemStorageNotifier,
               builder: (context, value, child) {
                 return OverlayDropdown(
                   items: [t.choose, ...state.storages.map((e) => e.title ?? '')],
                   selectedItem: value,
                   onSelectItem: (selectedItem) {
-                    _selectedItemNotifier.value = selectedItem;
+                    _selectedItemStorageNotifier.value = selectedItem;
                   },
                   child: Container(
                     margin: const EdgeInsets.only(right: 60),
                     child: DropDownSelectedWidget(
                       title: t.warehouseSpace,
+                      desc: t.choose,
+                      selectedValue: value,
+                    ),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: AppProps.kPageMargin),
+            ValueListenableBuilder(
+              valueListenable: _selectedItemTypeNotifier,
+              builder: (context, value, child) {
+                return OverlayDropdown(
+                  items: [t.choose, t.seller, t.returned, t.marriage],
+                  selectedItem: value,
+                  onSelectItem: (selectedItem) {
+                    _selectedItemTypeNotifier.value = selectedItem;
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 60),
+                    child: DropDownSelectedWidget(
+                      title: t.typeAction,
+                      desc: t.choose,
+                      selectedValue: value,
+                    ),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: AppProps.kPageMargin),
+            ValueListenableBuilder(
+              valueListenable: _selectedItemSeasonNotifier,
+              builder: (context, value, child) {
+                return OverlayDropdown(
+                  items: [t.choose, t.summer, t.winter],
+                  selectedItem: value,
+                  onSelectItem: (selectedItem) {
+                    _selectedItemSeasonNotifier.value = selectedItem;
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 60),
+                    child: DropDownSelectedWidget(
+                      title: t.season,
                       desc: t.choose,
                       selectedValue: value,
                     ),
@@ -121,5 +166,13 @@ class _AcceptanceFilterOverlayState extends State<AcceptanceFilterOverlay> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _selectedItemSeasonNotifier.dispose();
+    _selectedItemTypeNotifier.dispose();
+    _selectedItemStorageNotifier.dispose();
+    super.dispose();
   }
 }

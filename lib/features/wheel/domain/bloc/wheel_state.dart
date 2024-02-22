@@ -4,6 +4,7 @@ part of 'wheel_bloc.dart';
 class WheelState with _$WheelState {
   const factory WheelState({
     required final StateStatus stateStatus,
-    required List<WheelEntity> wheels,
+    SalesDetailEntity? wheelDetail,
+    required List<SalesEntity> sales,
   }) = _WheelState;
 }
