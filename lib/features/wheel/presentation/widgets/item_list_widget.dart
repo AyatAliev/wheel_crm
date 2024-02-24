@@ -7,6 +7,7 @@ class ItemListWidget extends StatelessWidget {
   final Function(WheelEntity entity)? toggleSelection;
   final bool isSelected;
   final List<WheelEntity> selectedWheels;
+  final bool readOnly;
 
   const ItemListWidget({
     super.key,
@@ -14,10 +15,12 @@ class ItemListWidget extends StatelessWidget {
     required this.entity,
     required this.isSelected,
     required this.selectedWheels,
+    this.readOnly = true,
   });
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: const EdgeInsets.only(bottom: AppProps.kMediumMargin),
       child: GestureDetector(
@@ -27,7 +30,7 @@ class ItemListWidget extends StatelessWidget {
             Expanded(
               child: AppInput.border(
                 height: 35,
-                controller: TextEditingController(text: entity.title),
+                controller: isSelected ? selectedWheels.firstWhere((e) => e.id == entity.id).nameController :  entity.nameController,
                 readOnly: true,
                 onTap: () => toggleSelection?.call(entity.copyWith(amount: 0)),
                 textStyle: AppTextStyle.bodyLargeStyle.copyWith(
@@ -45,10 +48,10 @@ class ItemListWidget extends StatelessWidget {
             Expanded(
               child: AppInput.border(
                 height: 35,
-                controller: TextEditingController(
-                    text: isSelected
-                        ? (selectedWheels.firstWhere((e) => e.id == entity.id).amount)?.toString() ?? '0'
-                        : '0'),
+                inputType: TextInputType.number,
+                controller: entity.countController,
+                hintText: '0',
+                readOnly: readOnly,
                 onTap: () => toggleSelection?.call(entity.copyWith(amount: 0)),
                 textStyle: AppTextStyle.bodyLargeStyle.copyWith(
                   color: isSelected == true ? AppColors.kBlack : AppColors.kDarkGrey,

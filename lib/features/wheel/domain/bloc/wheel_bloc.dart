@@ -9,9 +9,7 @@ import 'package:wheel_crm/features/wheel/domain/entity/sales_entity.dart';
 import 'package:wheel_crm/features/wheel/domain/repository/wheel_repository.dart';
 
 part 'wheel_bloc.freezed.dart';
-
 part 'wheel_event.dart';
-
 part 'wheel_state.dart';
 
 @injectable
@@ -25,6 +23,7 @@ class WheelBloc extends Bloc<WheelEvent, WheelState> {
         )) {
     on<_GetWheelsById>(_onGetWheelsById);
     on<_GetSales>(_onGetSales);
+    on<_AddWheel>(_onAddWheel);
   }
 
   FutureOr<void> _onGetWheelsById(_GetWheelsById event, Emitter<WheelState> emit) async {
@@ -50,6 +49,18 @@ class WheelBloc extends Bloc<WheelEvent, WheelState> {
       emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));
     }, (r) {
       emit(state.copyWith(stateStatus: const StateStatus.success(), sales: r));
+    });
+  }
+
+  Future<FutureOr<void>> _onAddWheel(_AddWheel event, Emitter<WheelState> emit) async {
+    emit(state.copyWith(stateStatus: const StateStatus.loading()));
+
+    final result = await _repository.addWheel(event.salesDetailEntity);
+
+    result.fold((l) {
+      emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));
+    }, (r) {
+      emit(state.copyWith(stateStatus: const StateStatus.success()));
     });
   }
 }

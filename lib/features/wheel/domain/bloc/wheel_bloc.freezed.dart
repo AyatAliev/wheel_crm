@@ -19,18 +19,21 @@ mixin _$WheelEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int wheelId) getWheelsById,
+    required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getSales,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getSales,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int wheelId)? getWheelsById,
+    TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getSales,
     required TResult orElse(),
   }) =>
@@ -38,18 +41,21 @@ mixin _$WheelEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetSales value) getSales,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetSales value)? getSales,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetSales value)? getSales,
     required TResult orElse(),
   }) =>
@@ -139,6 +145,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int wheelId) getWheelsById,
+    required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getSales,
   }) {
     return getWheelsById(wheelId);
@@ -148,6 +155,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getSales,
   }) {
     return getWheelsById?.call(wheelId);
@@ -157,6 +165,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int wheelId)? getWheelsById,
+    TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getSales,
     required TResult orElse(),
   }) {
@@ -170,6 +179,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetSales value) getSales,
   }) {
     return getWheelsById(this);
@@ -179,6 +189,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetSales value)? getSales,
   }) {
     return getWheelsById?.call(this);
@@ -188,6 +199,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetSales value)? getSales,
     required TResult orElse(),
   }) {
@@ -205,6 +217,147 @@ abstract class _GetWheelsById implements WheelEvent {
   int get wheelId;
   @JsonKey(ignore: true)
   _$$GetWheelsByIdImplCopyWith<_$GetWheelsByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddWheelImplCopyWith<$Res> {
+  factory _$$AddWheelImplCopyWith(
+          _$AddWheelImpl value, $Res Function(_$AddWheelImpl) then) =
+      __$$AddWheelImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SalesDetailEntity salesDetailEntity});
+}
+
+/// @nodoc
+class __$$AddWheelImplCopyWithImpl<$Res>
+    extends _$WheelEventCopyWithImpl<$Res, _$AddWheelImpl>
+    implements _$$AddWheelImplCopyWith<$Res> {
+  __$$AddWheelImplCopyWithImpl(
+      _$AddWheelImpl _value, $Res Function(_$AddWheelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? salesDetailEntity = null,
+  }) {
+    return _then(_$AddWheelImpl(
+      salesDetailEntity: null == salesDetailEntity
+          ? _value.salesDetailEntity
+          : salesDetailEntity // ignore: cast_nullable_to_non_nullable
+              as SalesDetailEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddWheelImpl implements _AddWheel {
+  const _$AddWheelImpl({required this.salesDetailEntity});
+
+  @override
+  final SalesDetailEntity salesDetailEntity;
+
+  @override
+  String toString() {
+    return 'WheelEvent.addWheel(salesDetailEntity: $salesDetailEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddWheelImpl &&
+            (identical(other.salesDetailEntity, salesDetailEntity) ||
+                other.salesDetailEntity == salesDetailEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, salesDetailEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddWheelImplCopyWith<_$AddWheelImpl> get copyWith =>
+      __$$AddWheelImplCopyWithImpl<_$AddWheelImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int wheelId) getWheelsById,
+    required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
+    required TResult Function() getSales,
+  }) {
+    return addWheel(salesDetailEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
+    TResult? Function()? getSales,
+  }) {
+    return addWheel?.call(salesDetailEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int wheelId)? getWheelsById,
+    TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
+    TResult Function()? getSales,
+    required TResult orElse(),
+  }) {
+    if (addWheel != null) {
+      return addWheel(salesDetailEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_AddWheel value) addWheel,
+    required TResult Function(_GetSales value) getSales,
+  }) {
+    return addWheel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_AddWheel value)? addWheel,
+    TResult? Function(_GetSales value)? getSales,
+  }) {
+    return addWheel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_AddWheel value)? addWheel,
+    TResult Function(_GetSales value)? getSales,
+    required TResult orElse(),
+  }) {
+    if (addWheel != null) {
+      return addWheel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddWheel implements WheelEvent {
+  const factory _AddWheel(
+      {required final SalesDetailEntity salesDetailEntity}) = _$AddWheelImpl;
+
+  SalesDetailEntity get salesDetailEntity;
+  @JsonKey(ignore: true)
+  _$$AddWheelImplCopyWith<_$AddWheelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -247,6 +400,7 @@ class _$GetSalesImpl implements _GetSales {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int wheelId) getWheelsById,
+    required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getSales,
   }) {
     return getSales();
@@ -256,6 +410,7 @@ class _$GetSalesImpl implements _GetSales {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getSales,
   }) {
     return getSales?.call();
@@ -265,6 +420,7 @@ class _$GetSalesImpl implements _GetSales {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int wheelId)? getWheelsById,
+    TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getSales,
     required TResult orElse(),
   }) {
@@ -278,6 +434,7 @@ class _$GetSalesImpl implements _GetSales {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetSales value) getSales,
   }) {
     return getSales(this);
@@ -287,6 +444,7 @@ class _$GetSalesImpl implements _GetSales {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetSales value)? getSales,
   }) {
     return getSales?.call(this);
@@ -296,6 +454,7 @@ class _$GetSalesImpl implements _GetSales {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetSales value)? getSales,
     required TResult orElse(),
   }) {

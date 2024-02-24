@@ -16,7 +16,6 @@ import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 import 'package:wheel_crm/features/wheel/presentation/widgets/item_list_widget.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
-import 'package:wheel_crm/utils/functions_utils.dart';
 
 class SalesDetailWidget extends StatefulWidget {
   const SalesDetailWidget({super.key});
@@ -208,39 +207,9 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
               const SizedBox(height: AppProps.kMediumMargin),
               GestureDetector(
                 onTap: _onChangeDisplayList,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _buildProductOption(t.selectFromList),
-                    ValueListenableBuilder<bool>(
-                      valueListenable: _visibleAllListNotifier,
-                      builder: (context, value, child) {
-                        return Text(
-                          value ? t.collapseList : '',
-                          style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kRed),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                child: _buildProductOption(t.selectFromList),
               ).withOpaqueBehavior(),
-              ValueListenableBuilder<bool>(
-                valueListenable: _visibleAllListNotifier,
-                builder: (context, value, child) {
-                  return Visibility(
-                    visible: value,
-                    child: _salesDetailEntity.value != null
-                        ? Column(children: _buildOnlySelectedWidgets(wheels))
-                        : SizedBox(
-                            height: FunctionsUtils.getHeightList(state.wheels),
-                            child: WheelDetailWidget(
-                              onSearch: _onSearch,
-                              selectedItems: wheels,
-                            ),
-                          ),
-                  );
-                },
-              ),
+              Column(children: _buildOnlySelectedWidgets(wheels)),
             ],
           );
         },
@@ -252,10 +221,11 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     return [
       const SizedBox(height: AppProps.kPageMargin),
       ...list.map(
-        (element) => ItemListWidget(
+            (element) => ItemListWidget(
           entity: element,
           isSelected: true,
           selectedWheels: list,
+          readOnly: false,
         ),
       ),
     ];
@@ -298,7 +268,25 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     );
   }
 
-  void _onSaveButton() {}
+  void _onSaveButton() {
+    if (_storageSelected != null) {
+      context.read<WheelBloc>().add(
+            WheelEvent.addWheel(
+              salesDetailEntity: SalesDetailEntity(
+                storage: _storageSelected!,
+                createdAt: _dateController.text.parceddMMyyyy()!,
+                wheels: _notifierWheels.value,
+              ),
+            ),
+          );
+    } else {
+      AppSnackBar.show(
+        context: context,
+        titleText: t.youNeedChooseRoom,
+        error: true,
+      );
+    }
+  }
 
   Future<void> _selectedDate() async {
     final picked = await AppDatePicker.show(
@@ -311,9 +299,30 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     }
   }
 
-  void _onChangeDisplayList() {
-    if (_selectedItemNotifier.value != null) {
+  Future<void> _onChangeDisplayList() async {
+    if (_salesDetailEntity.value != null && _selectedItemNotifier.value != null) {
       _visibleAllListNotifier.value = !_visibleAllListNotifier.value;
+    } else if (_salesDetailEntity.value == null && _selectedItemNotifier.value != null) {
+      final result = await AppBottomSheet.show<List<WheelEntity>>(
+        context: context,
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: BlocProvider.of<StorageBloc>(context)),
+          ],
+          child: Padding(
+            padding: const EdgeInsets.all(AppProps.kPageMargin),
+            child: WheelDetailWidget(
+              title: _storageSelected?.title,
+              selectedItems: _notifierWheels.value,
+              editor: true,
+            ),
+          ),
+        ),
+      );
+
+      if (result != null && result.isNotEmpty) {
+        _notifierWheels.value = result;
+      }
     } else {
       AppSnackBar.show(
         context: context,
@@ -330,15 +339,6 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     if (_storageSelected != null && _storageSelected?.id != null) {
       context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!));
     }
-  }
-
-  void _onSearch(String search) {
-    context.read<StorageBloc>().add(
-          StorageEvent.getStoragesById(
-            storageId: _storageSelected!.id!,
-            search: search,
-          ),
-        );
   }
 
   @override

@@ -30,7 +30,12 @@ class WheelEntity {
 
   int? get amount => int.tryParse(countController.text);
 
-  Map<String, dynamic> toJson() => {"amount": amount, "title": title};
+  Map<String, dynamic> toJson() => {
+        "amount": amount,
+        "title": title,
+        "price": 2100,
+        "season": "Зима",
+      };
 
   @override
   bool operator ==(Object other) =>

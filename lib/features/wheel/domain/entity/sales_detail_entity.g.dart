@@ -7,15 +7,15 @@ part of 'sales_detail_entity.dart';
 // **************************************************************************
 
 abstract class _$SalesDetailEntityCWProxy {
-  SalesDetailEntity id(int id);
+  SalesDetailEntity id(int? id);
+
+  SalesDetailEntity user(String? user);
 
   SalesDetailEntity storage(StorageEntity storage);
 
   SalesDetailEntity createdAt(DateTime createdAt);
 
   SalesDetailEntity wheels(List<WheelEntity> wheels);
-
-  SalesDetailEntity user(String user);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalesDetailEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -25,10 +25,10 @@ abstract class _$SalesDetailEntityCWProxy {
   /// ````
   SalesDetailEntity call({
     int? id,
+    String? user,
     StorageEntity? storage,
     DateTime? createdAt,
     List<WheelEntity>? wheels,
-    String? user,
   });
 }
 
@@ -39,7 +39,10 @@ class _$SalesDetailEntityCWProxyImpl implements _$SalesDetailEntityCWProxy {
   final SalesDetailEntity _value;
 
   @override
-  SalesDetailEntity id(int id) => this(id: id);
+  SalesDetailEntity id(int? id) => this(id: id);
+
+  @override
+  SalesDetailEntity user(String? user) => this(user: user);
 
   @override
   SalesDetailEntity storage(StorageEntity storage) => this(storage: storage);
@@ -51,9 +54,6 @@ class _$SalesDetailEntityCWProxyImpl implements _$SalesDetailEntityCWProxy {
   SalesDetailEntity wheels(List<WheelEntity> wheels) => this(wheels: wheels);
 
   @override
-  SalesDetailEntity user(String user) => this(user: user);
-
-  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalesDetailEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -63,16 +63,20 @@ class _$SalesDetailEntityCWProxyImpl implements _$SalesDetailEntityCWProxy {
   /// ````
   SalesDetailEntity call({
     Object? id = const $CopyWithPlaceholder(),
+    Object? user = const $CopyWithPlaceholder(),
     Object? storage = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? wheels = const $CopyWithPlaceholder(),
-    Object? user = const $CopyWithPlaceholder(),
   }) {
     return SalesDetailEntity(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
-          : id as int,
+          : id as int?,
+      user: user == const $CopyWithPlaceholder()
+          ? _value.user
+          // ignore: cast_nullable_to_non_nullable
+          : user as String?,
       storage: storage == const $CopyWithPlaceholder() || storage == null
           ? _value.storage
           // ignore: cast_nullable_to_non_nullable
@@ -85,10 +89,6 @@ class _$SalesDetailEntityCWProxyImpl implements _$SalesDetailEntityCWProxy {
           ? _value.wheels
           // ignore: cast_nullable_to_non_nullable
           : wheels as List<WheelEntity>,
-      user: user == const $CopyWithPlaceholder() || user == null
-          ? _value.user
-          // ignore: cast_nullable_to_non_nullable
-          : user as String,
     );
   }
 }

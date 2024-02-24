@@ -19,6 +19,7 @@ class WheelDetailWidget extends StatefulWidget {
   final WheelEntity? deletedItem;
   final String? title;
   final List<WheelEntity>? selectedItems;
+  final bool editor;
 
   const WheelDetailWidget({
     super.key,
@@ -29,6 +30,7 @@ class WheelDetailWidget extends StatefulWidget {
     this.deletedItem,
     this.title,
     this.selectedItems,
+    this.editor = false,
   });
 
   @override
@@ -76,6 +78,19 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
         _list(),
         const SizedBox(height: AppProps.kMediumMargin),
       ],
+    );
+  }
+
+  Widget _buildSaveButton() {
+    return Positioned.fill(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: AppButton(
+          onTap: _onSaveButton,
+          text: t.save,
+          borderRadius: AppProps.kSmallBorderRadius,
+        ),
+      ),
     );
   }
 
@@ -138,6 +153,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
               },
               itemCount: state.wheels.length,
             ),
+            _buildSaveButton(),
             if (state.wheels.isEmpty && state.stateStatus is SuccessStatus)
               const Center(
                 child: Text(
@@ -151,18 +167,6 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
         );
       }),
     );
-  }
-
-  void _toggleSelection(WheelEntity wheel) {
-    setState(() {
-      if (_selectedWheels.contains(wheel)) {
-        _selectedWheels.remove(wheel);
-        widget.onDeletedItem?.call(wheel);
-      } else {
-        _selectedWheels.add(wheel);
-        widget.onSelectedItem?.call(wheel);
-      }
-    });
   }
 
   Widget _title() {
@@ -183,5 +187,21 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
         ),
       ],
     );
+  }
+
+  void _toggleSelection(WheelEntity wheel) {
+    setState(() {
+      if (_selectedWheels.contains(wheel)) {
+        _selectedWheels.remove(wheel);
+        widget.onDeletedItem?.call(wheel);
+      } else {
+        _selectedWheels.add(wheel);
+        widget.onSelectedItem?.call(wheel);
+      }
+    });
+  }
+
+  void _onSaveButton() {
+    context.router.pop(_selectedWheels);
   }
 }

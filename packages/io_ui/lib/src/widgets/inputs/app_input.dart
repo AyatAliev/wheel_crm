@@ -146,7 +146,7 @@ class _AppInputState extends State<AppInput> {
   Widget _input() {
     return Expanded(
       child: TextFormField(
-        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+        // onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         textAlign: widget.textAlign,
         onTap: widget.onTap,
         obscureText: widget.obscureText,
@@ -199,7 +199,7 @@ class _AppInputState extends State<AppInput> {
         },
         readOnly: widget.readOnly,
         onEditingComplete: () {
-          FocusManager.instance.primaryFocus?.unfocus();
+          // FocusManager.instance.primaryFocus?.unfocus();
         },
       ),
     );
