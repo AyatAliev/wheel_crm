@@ -16,7 +16,7 @@ class AppBottomSheet {
       builder: (ctx) {
         return DraggableScrollableSheet(
           expand: false,
-          initialChildSize: initialChildSize ?? 0.918,
+          initialChildSize: initialChildSize ?? 0.91,
           builder: (_, controller) {
             return Container(
               decoration: const BoxDecoration(

@@ -255,35 +255,39 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   }
 
   void _onSaveButton() {
-    if (_dateController.text.isNotEmpty) {
-      if (_storageSelected != null) {
-        final storageWheels = context.read<StorageBloc>().state.wheels;
-        final existingWheels = _notifierWheels.value.where((e) => storageWheels.any((w) => w.title == e.title)).toList();
-        final newWheels = _notifierWheels.value.where((e) => !existingWheels.any((w) => w.title == e.title)).toList();
-
-        context.read<AcceptanceBloc>().add(
-              AcceptanceEvent.addAcceptance(
-                createAcceptanceEntity: CreateAcceptanceEntity(
-                  createAt: _dateController.text.parceddMMyyyy()!,
-                  storage: _storageSelected!.id!,
-                  wheels: existingWheels,
-                  newWheels: newWheels,
-                ),
-              ),
-            );
-      } else {
-        AppSnackBar.show(
-          context: context,
-          titleText: t.youNeedChooseRoom,
-          error: true,
-        );
-      }
-    } else {
+    if (_dateController.text.isEmpty) {
       AppSnackBar.show(
         context: context,
         titleText: t.selectDateSales,
         error: true,
       );
+    } else if (_storageSelected == null) {
+      AppSnackBar.show(
+        context: context,
+        titleText: t.youNeedChooseRoom,
+        error: true,
+      );
+    } else if (_notifierWheels.value.isEmpty) {
+      AppSnackBar.show(
+        context: context,
+        titleText: t.fillAcceptanceProduct,
+        error: true,
+      );
+    } else {
+      final storageWheels = context.read<StorageBloc>().state.wheels;
+      final existingWheels = _notifierWheels.value.where((e) => storageWheels.any((w) => w.title == e.title)).toList();
+      final newWheels = _notifierWheels.value.where((e) => !existingWheels.any((w) => w.title == e.title)).toList();
+
+      context.read<AcceptanceBloc>().add(
+            AcceptanceEvent.addAcceptance(
+              createAcceptanceEntity: CreateAcceptanceEntity(
+                createAt: _dateController.text.parceddMMyyyy()!,
+                storage: _storageSelected!.id!,
+                wheels: existingWheels,
+                newWheels: newWheels,
+              ),
+            ),
+          );
     }
   }
 

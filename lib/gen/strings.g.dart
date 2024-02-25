@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 40
+/// Strings: 41
 ///
-/// Built on 2024-02-25 at 12:20 UTC
+/// Built on 2024-02-25 at 12:27 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -187,6 +187,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get season => 'Временна года';
 	String get salesDate => 'Дата продажи';
 	String get selectDateSales => 'Надо выбрать дату создания продажи!';
+	String get fillAcceptanceProduct => 'Нужно заполнить приемку товарами!';
 }
 
 /// Flat map(s) containing all translations.
@@ -235,6 +236,7 @@ extension on Translations {
 			case 'season': return 'Временна года';
 			case 'salesDate': return 'Дата продажи';
 			case 'selectDateSales': return 'Надо выбрать дату создания продажи!';
+			case 'fillAcceptanceProduct': return 'Нужно заполнить приемку товарами!';
 			default: return null;
 		}
 	}
