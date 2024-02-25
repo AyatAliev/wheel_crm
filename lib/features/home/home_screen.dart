@@ -37,37 +37,39 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.kPrimary,
-      body: Column(
-        children: [
-          ValueListenableBuilder<int>(
-              valueListenable: _titleSelectedIndexNotifier,
-              builder: (context, index, child) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppProps.kPageMargin,
-                    vertical: AppProps.kTwentyMargin,
-                  ),
-                  child: Row(children: _itemLabels()),
-                );
-              }),
-          Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                color: AppColors.kWhite,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(AppProps.kTwentyRadius),
-                  topRight: Radius.circular(AppProps.kTwentyRadius),
-                ),
-              ),
-              child: ValueListenableBuilder<int>(
+      body: SafeArea(
+        child: Column(
+          children: [
+            ValueListenableBuilder<int>(
                 valueListenable: _titleSelectedIndexNotifier,
                 builder: (context, index, child) {
-                  return _buildSelectedWidget(index);
-                },
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppProps.kPageMargin,
+                      vertical: AppProps.kTwentyMargin,
+                    ),
+                    child: Row(children: _itemLabels()),
+                  );
+                }),
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: AppColors.kWhite,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(AppProps.kTwentyRadius),
+                    topRight: Radius.circular(AppProps.kTwentyRadius),
+                  ),
+                ),
+                child: ValueListenableBuilder<int>(
+                  valueListenable: _titleSelectedIndexNotifier,
+                  builder: (context, index, child) {
+                    return _buildSelectedWidget(index);
+                  },
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
