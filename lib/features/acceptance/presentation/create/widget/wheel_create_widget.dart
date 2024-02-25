@@ -107,7 +107,7 @@ class _WheelCreateWidgetState extends State<WheelCreateWidget> {
                 controller: item.nameController,
                 readOnly: item.isRead,
                 decoration: const InputDecoration(
-                  hintText: '____/__ r__',
+                  hintText: '___/__ r__',
                   filled: true,
                   isDense: true,
                   isCollapsed: true,

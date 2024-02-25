@@ -13,6 +13,8 @@ abstract class _$WheelEntityCWProxy {
 
   WheelEntity title(String? title);
 
+  WheelEntity season(String? season);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WheelEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +25,7 @@ abstract class _$WheelEntityCWProxy {
     int? id,
     int? amount,
     String? title,
+    String? season,
   });
 }
 
@@ -42,6 +45,9 @@ class _$WheelEntityCWProxyImpl implements _$WheelEntityCWProxy {
   WheelEntity title(String? title) => this(title: title);
 
   @override
+  WheelEntity season(String? season) => this(season: season);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WheelEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -53,6 +59,7 @@ class _$WheelEntityCWProxyImpl implements _$WheelEntityCWProxy {
     Object? id = const $CopyWithPlaceholder(),
     Object? amount = const $CopyWithPlaceholder(),
     Object? title = const $CopyWithPlaceholder(),
+    Object? season = const $CopyWithPlaceholder(),
   }) {
     return WheelEntity(
       id: id == const $CopyWithPlaceholder()
@@ -67,6 +74,10 @@ class _$WheelEntityCWProxyImpl implements _$WheelEntityCWProxy {
           ? _value.title
           // ignore: cast_nullable_to_non_nullable
           : title as String?,
+      season: season == const $CopyWithPlaceholder()
+          ? _value.season
+          // ignore: cast_nullable_to_non_nullable
+          : season as String?,
     );
   }
 }

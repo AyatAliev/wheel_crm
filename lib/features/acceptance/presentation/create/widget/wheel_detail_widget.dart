@@ -5,6 +5,7 @@ import 'package:io_ui/io_ui.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wheel_crm/core/network/entity/state_status.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
+import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart';
 import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
@@ -17,7 +18,7 @@ class WheelDetailWidget extends StatefulWidget {
   final void Function()? onClear;
   final void Function(String search)? onSearch;
   final WheelEntity? deletedItem;
-  final String? title;
+  final StorageEntity? storage;
   final List<WheelEntity>? selectedItems;
   final bool editor;
 
@@ -28,7 +29,7 @@ class WheelDetailWidget extends StatefulWidget {
     this.onSearch,
     this.onClear,
     this.deletedItem,
-    this.title,
+    this.storage,
     this.selectedItems,
     this.editor = false,
   });
@@ -67,7 +68,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.title != null) _titleAndClose(),
+        if (widget.storage != null) _titleAndClose(),
         const SizedBox(height: AppProps.kPageMargin),
         _search(),
         const SizedBox(height: AppProps.kPageMargin),
@@ -100,7 +101,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          widget.title!,
+          widget.storage!.title!,
           style: AppTextStyle.bodyLargeStyle,
         ),
         GestureDetector(
@@ -126,7 +127,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
               borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),
               border: Border.all(color: AppColors.kBorder),
             ),
-            onChanged: widget.onSearch,
+            onChanged: onChangeSearch,
           ),
         ),
         const SizedBox(width: AppProps.kSmallMargin),
@@ -153,7 +154,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
               },
               itemCount: state.wheels.length,
             ),
-            _buildSaveButton(),
+            if (widget.editor == false) _buildSaveButton(),
             if (state.wheels.isEmpty && state.stateStatus is SuccessStatus)
               const Center(
                 child: Text(
@@ -190,18 +191,24 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
   }
 
   void _toggleSelection(WheelEntity wheel) {
-    setState(() {
-      if (_selectedWheels.contains(wheel)) {
-        _selectedWheels.remove(wheel);
-        widget.onDeletedItem?.call(wheel);
-      } else {
-        _selectedWheels.add(wheel);
-        widget.onSelectedItem?.call(wheel);
-      }
-    });
+    if (widget.editor == false) {
+      setState(() {
+        if (_selectedWheels.contains(wheel)) {
+          _selectedWheels.remove(wheel);
+          widget.onDeletedItem?.call(wheel);
+        } else {
+          _selectedWheels.add(wheel);
+          widget.onSelectedItem?.call(wheel);
+        }
+      });
+    }
   }
 
   void _onSaveButton() {
     context.router.pop(_selectedWheels);
+  }
+
+  void onChangeSearch(String val) {
+    context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: widget.storage!.id!, search: val));
   }
 }

@@ -5,7 +5,6 @@ import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/wheel/domain/bloc/wheel_bloc.dart';
 import 'package:wheel_crm/features/wheel/domain/entity/sales_entity.dart';
 import 'package:wheel_crm/features/wheel/presentation/detail/sales_detail_widget.dart';
-import 'package:wheel_crm/features/wheel/presentation/widgets/filter/wheel_filter.dart';
 import 'package:wheel_crm/features/wheel/presentation/widgets/other/wheel_item.dart';
 
 class WheelList extends StatelessWidget {
@@ -15,35 +14,22 @@ class WheelList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.only(
-            top: AppProps.kPageMargin,
-            left: AppProps.kPageMargin,
+    return ListView.builder(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () => onTapItem(context, index),
+          child: WheelItem(
+            createDate: sales[index].createdAt ?? DateTime.now(),
+            whoAdded: sales[index].user ?? '',
+            storage: sales[index].storage?.title ?? '',
+            count: sales[index].amount ?? 0,
+            isLastItem: (sales.length - 1) == index,
+            typeAction: 'Продажа',
           ),
-          child: const WheelFilter(),
-        ),
-        Expanded(
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () => onTapItem(context, index),
-                child: WheelItem(
-                  createDate: sales[index].createdAt ?? DateTime.now(),
-                  whoAdded: sales[index].user ?? '',
-                  storage: sales[index].storage?.title ?? '',
-                  count: sales[index].amount ?? 0,
-                  isLastItem: (sales.length - 1) == index,
-                  typeAction: 'Продажа',
-                ),
-              ).withOpaqueBehavior();
-            },
-            itemCount: sales.length,
-          ),
-        )
-      ],
+        ).withOpaqueBehavior();
+      },
+      itemCount: sales.length,
     );
   }
 

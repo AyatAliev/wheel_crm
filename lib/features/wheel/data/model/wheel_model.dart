@@ -5,10 +5,12 @@ class WheelModel {
   final int id;
   final String title;
   final int? amount;
+  final String? season;
 
   WheelModel({
     required this.id,
     required this.title,
+    required this.season,
     this.amount,
   });
 
@@ -17,6 +19,7 @@ class WheelModel {
       title: json['title'],
       amount: json['amount'],
       id: json['id'],
+      season: json['season'],
     );
   }
 }

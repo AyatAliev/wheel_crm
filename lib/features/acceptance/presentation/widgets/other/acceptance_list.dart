@@ -11,31 +11,18 @@ class AcceptanceList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.only(
-            top: AppProps.kPageMargin,
-            left: AppProps.kPageMargin,
-          ),
-          child: const AcceptanceFilter(),
-        ),
-        Expanded(
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return AcceptanceItem(
-                createDate: acceptances[index].createAt,
-                whoAdded: acceptances[index].whoAdded ?? '',
-                storage: acceptances[index].storage.title ?? '',
-                count: acceptances[index].amount,
-                isLastItem: (acceptances.length - 1) == index,
-              );
-            },
-            itemCount: acceptances.length,
-          ),
-        )
-      ],
+    return ListView.builder(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return AcceptanceItem(
+          createDate: acceptances[index].createAt,
+          whoAdded: acceptances[index].whoAdded ?? '',
+          storage: acceptances[index].storage.title ?? '',
+          count: acceptances[index].amount,
+          isLastItem: (acceptances.length - 1) == index,
+        );
+      },
+      itemCount: acceptances.length,
     );
   }
 }

@@ -8,6 +8,7 @@ class ItemListWidget extends StatelessWidget {
   final bool isSelected;
   final List<WheelEntity> selectedWheels;
   final bool readOnly;
+  final Function(String val)? onChange;
 
   const ItemListWidget({
     super.key,
@@ -15,6 +16,7 @@ class ItemListWidget extends StatelessWidget {
     required this.entity,
     required this.isSelected,
     required this.selectedWheels,
+    this.onChange,
     this.readOnly = true,
   });
 
@@ -52,6 +54,7 @@ class ItemListWidget extends StatelessWidget {
                 controller: entity.countController,
                 hintText: '0',
                 readOnly: readOnly,
+                onChanged: onChange,
                 onTap: () => toggleSelection?.call(entity.copyWith(amount: 0)),
                 textStyle: AppTextStyle.bodyLargeStyle.copyWith(
                   color: isSelected == true ? AppColors.kBlack : AppColors.kDarkGrey,

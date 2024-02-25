@@ -79,7 +79,7 @@ class StorageItemWidget extends StatelessWidget {
           ),
         child: Padding(
           padding: const EdgeInsets.all(AppProps.kPageMargin),
-          child: WheelDetailWidget(title: storage.title),
+          child: WheelDetailWidget(storage: storage, editor: true,),
         ),
       ),
     );

@@ -12,6 +12,7 @@ class WheelModelToEntity extends Converter<WheelModel, WheelEntity> {
       id: input.id,
       amount: input.amount ?? 0,
       title: input.title,
+      season: input.season,
     );
   }
 }

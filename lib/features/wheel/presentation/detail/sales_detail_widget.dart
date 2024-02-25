@@ -158,7 +158,7 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          t.acceptanceDate,
+          t.salesDate,
           style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
         ),
         GestureDetector(
@@ -221,7 +221,8 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     return [
       const SizedBox(height: AppProps.kPageMargin),
       ...list.map(
-            (element) => ItemListWidget(
+        (element) => ItemListWidget(
+          onChange: onChangeCountField,
           entity: element,
           isSelected: true,
           selectedWheels: list,
@@ -229,6 +230,18 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
         ),
       ),
     ];
+  }
+
+  void onChangeCountField(String text) {
+    int count = 0;
+
+    for (var element in _notifierWheels.value) {
+      if (element.countController.text.isNotEmpty) {
+        count += int.parse(element.countController.text);
+      }
+    }
+
+    _countWheel.value = count;
   }
 
   Widget _buildProductOption(String label) {
@@ -269,20 +282,28 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
   }
 
   void _onSaveButton() {
-    if (_storageSelected != null) {
-      context.read<WheelBloc>().add(
-            WheelEvent.addWheel(
-              salesDetailEntity: SalesDetailEntity(
-                storage: _storageSelected!,
-                createdAt: _dateController.text.parceddMMyyyy()!,
-                wheels: _notifierWheels.value,
-              ),
+    if (_dateController.text.isNotEmpty) {
+      if (_storageSelected != null) {
+        context.read<WheelBloc>().add(
+          WheelEvent.addWheel(
+            salesDetailEntity: SalesDetailEntity(
+              storage: _storageSelected!,
+              createdAt: _dateController.text.parceddMMyyyy()!,
+              wheels: _notifierWheels.value,
             ),
-          );
+          ),
+        );
+      } else {
+        AppSnackBar.show(
+          context: context,
+          titleText: t.youNeedChooseRoom,
+          error: true,
+        );
+      }
     } else {
       AppSnackBar.show(
         context: context,
-        titleText: t.youNeedChooseRoom,
+        titleText: t.selectDateSales,
         error: true,
       );
     }
@@ -312,9 +333,8 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
           child: Padding(
             padding: const EdgeInsets.all(AppProps.kPageMargin),
             child: WheelDetailWidget(
-              title: _storageSelected?.title,
+              storage: _storageSelected,
               selectedItems: _notifierWheels.value,
-              editor: true,
             ),
           ),
         ),

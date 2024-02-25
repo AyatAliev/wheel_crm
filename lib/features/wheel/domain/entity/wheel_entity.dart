@@ -11,16 +11,18 @@ class WheelEntity {
   TextEditingController nameController;
   TextEditingController countController;
   bool isRead;
+  String? season;
 
   WheelEntity({
     required this.id,
     required int? amount,
     required String? title,
+    required this.season,
   })  : nameController = TextEditingController(text: title),
         isRead = true,
         countController = TextEditingController(text: amount == 0 ? null : amount.toString());
 
-  WheelEntity.empty()
+  WheelEntity.empty({required this.season})
       : id = ++_idCounter,
         isRead = false,
         nameController = TextEditingController(),
@@ -30,11 +32,12 @@ class WheelEntity {
 
   int? get amount => int.tryParse(countController.text);
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "amount": amount,
         "title": title,
         "price": 2100,
-        "season": "Зима",
+        "season": season,
       };
 
   @override
@@ -51,6 +54,6 @@ class WheelEntity {
 
   @override
   String toString() {
-    return 'WheelEntity{id: $id, amount: $amount, title: $title, nameController: ${nameController.text}, countController: ${countController.text}';
+    return 'WheelEntity{id: $id, amount: $amount, season: $season, title: $title, nameController: ${nameController.text}, countController: ${countController.text}';
   }
 }

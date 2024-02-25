@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:wheel_crm/core/const/season_enum.dart';
 import 'package:wheel_crm/core/network/entity/state_status.dart';
 import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
 import 'package:wheel_crm/features/acceptance/domain/entity/create_acceptance_entity.dart';
@@ -10,12 +11,12 @@ import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_c
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_detail_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/dropdown_selected_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/overlay_dropdown.dart';
+import 'package:wheel_crm/features/acceptance/presentation/widgets/other/season_selection.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart';
 import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
-import 'package:wheel_crm/utils/functions_utils.dart';
 
 class CreateAcceptanceWidget extends StatefulWidget {
   const CreateAcceptanceWidget({super.key});
@@ -28,12 +29,12 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   late final MaskTextInputFormatter _maskFormatter;
   late final TextEditingController _dateController;
   late final ValueNotifier<String?> _selectedItemNotifier;
-  late final ValueNotifier<bool> _visibleAllListNotifier;
+  late final ValueNotifier<List<WheelEntity>> _notifierWheels = ValueNotifier([]);
 
-  final List<WheelEntity> _wheels = [];
   int _countWheel = 0;
   StorageEntity? _storageSelected;
   WheelEntity? deletedItem;
+  String _season = Season.summer.title;
 
   @override
   void initState() {
@@ -41,7 +42,6 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     _maskFormatter = MaskTextInputFormatter(mask: '##-##-####');
     _dateController = TextEditingController();
     _selectedItemNotifier = ValueNotifier(null);
-    _visibleAllListNotifier = ValueNotifier(false);
   }
 
   @override
@@ -156,88 +156,59 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
           style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
         ),
         const SizedBox(height: AppProps.kMediumMargin),
-        GestureDetector(
-          onTap: _onChangeDisplayList,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildProductOption(t.selectFromList),
-              ValueListenableBuilder<bool>(
-                valueListenable: _visibleAllListNotifier,
-                builder: (context, value, child) {
-                  return Text(
-                    value ? t.collapseList : '',
-                    style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kRed),
-                  );
-                },
-              ),
-            ],
-          ),
-        ).withOpaqueBehavior(),
-        ValueListenableBuilder<bool>(
-          valueListenable: _visibleAllListNotifier,
-          builder: (context, value, child) {
-            return Visibility(
-              visible: value,
-              child: SizedBox(
-                height: FunctionsUtils.getHeightList(wheels),
-                child: WheelDetailWidget(
-                  onSearch: _onSearch,
-                  deletedItem: deletedItem,
-                  onDeletedItem: (WheelEntity item) {
-                    setState(() {
-                      _wheels.remove(item);
-                    });
-                  },
-                  onSelectedItem: (WheelEntity item) {
-                    setState(() {
-                      _wheels.add(item);
-                    });
-                  },
-                  onClear: () {
-                    deletedItem = null;
-                  },
-                ),
-              ),
-            );
+        SeasonSelection(
+          selected: _season,
+          onTap: (String text) {
+            _season = text;
           },
         ),
+        const SizedBox(height: AppProps.kMediumMargin),
+        GestureDetector(
+          onTap: _onChangeDisplayList,
+          child: _buildProductOption(t.selectFromList),
+        ).withOpaqueBehavior(),
       ],
     );
   }
 
   Widget _buildAddNewProduct() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _wheels.add(WheelEntity.empty());
-            });
-          },
-          child: _buildProductOption(t.addNewProduct),
-        ).withOpaqueBehavior(),
-        const SizedBox(height: AppProps.kMediumMargin),
-        WheelCreateWidget(
-          wheels: _wheels,
-          onCountController: (int count) {
-            setState(() {
-              _countWheel = count;
-            });
-          },
-          onPressedDeleteItem: (WheelEntity item) {
-            setState(() {
-              _wheels.remove(item);
-              deletedItem = item;
-            });
-          },
-          onUpdateAllWheels: (List<WheelEntity> wheels) {
-            _wheels.clear();
-            _wheels.addAll(wheels);
-          },
-        ),
-      ],
+    return ValueListenableBuilder(
+      valueListenable: _notifierWheels,
+      builder: (BuildContext context, List<WheelEntity> wheels, _) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  final newWheels = wheels..add(WheelEntity.empty(season: _season));
+                  _notifierWheels.value = newWheels;
+                });
+              },
+              child: _buildProductOption(t.addNewProduct),
+            ).withOpaqueBehavior(),
+            const SizedBox(height: AppProps.kMediumMargin),
+            WheelCreateWidget(
+              wheels: wheels,
+              onCountController: (int count) {
+                setState(() {
+                  _countWheel = count;
+                });
+              },
+              onPressedDeleteItem: (WheelEntity item) {
+                setState(() {
+                  wheels.remove(item);
+                  deletedItem = item;
+                });
+              },
+              onUpdateAllWheels: (List<WheelEntity> wheels) {
+                _notifierWheels.value.clear();
+                _notifierWheels.value.addAll(wheels);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -284,20 +255,36 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   }
 
   void _onSaveButton() {
-    var storageWheels = context.read<StorageBloc>().state.wheels;
-    var existingWheels = _wheels.where((e) => storageWheels.any((w) => w.title == e.title)).toList();
-    var newWheels = _wheels.where((e) => !existingWheels.any((w) => w.title == e.title)).toList();
+    if (_dateController.text.isNotEmpty) {
+      if (_storageSelected != null) {
+        final storageWheels = context.read<StorageBloc>().state.wheels;
+        final existingWheels = _notifierWheels.value.where((e) => storageWheels.any((w) => w.title == e.title)).toList();
+        final newWheels = _notifierWheels.value.where((e) => !existingWheels.any((w) => w.title == e.title)).toList();
 
-    context.read<AcceptanceBloc>().add(
-          AcceptanceEvent.addAcceptance(
-            createAcceptanceEntity: CreateAcceptanceEntity(
-              createAt: _dateController.text.parceddMMyyyy()!,
-              storage: _storageSelected!.id!,
-              wheels: existingWheels,
-              newWheels: newWheels,
-            ),
-          ),
+        context.read<AcceptanceBloc>().add(
+              AcceptanceEvent.addAcceptance(
+                createAcceptanceEntity: CreateAcceptanceEntity(
+                  createAt: _dateController.text.parceddMMyyyy()!,
+                  storage: _storageSelected!.id!,
+                  wheels: existingWheels,
+                  newWheels: newWheels,
+                ),
+              ),
+            );
+      } else {
+        AppSnackBar.show(
+          context: context,
+          titleText: t.youNeedChooseRoom,
+          error: true,
         );
+      }
+    } else {
+      AppSnackBar.show(
+        context: context,
+        titleText: t.selectDateSales,
+        error: true,
+      );
+    }
   }
 
   Future<void> _selectedDate() async {
@@ -311,9 +298,28 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     }
   }
 
-  void _onChangeDisplayList() {
+  Future<void> _onChangeDisplayList() async {
     if (_selectedItemNotifier.value != null) {
-      _visibleAllListNotifier.value = !_visibleAllListNotifier.value;
+      final result = await AppBottomSheet.show<List<WheelEntity>>(
+        context: context,
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: BlocProvider.of<StorageBloc>(context)),
+          ],
+          child: Padding(
+            padding: const EdgeInsets.all(AppProps.kPageMargin),
+            child: WheelDetailWidget(
+              storage: _storageSelected,
+              selectedItems: _notifierWheels.value,
+              editor: true,
+            ),
+          ),
+        ),
+      );
+
+      if (result != null && result.isNotEmpty) {
+        _notifierWheels.value = result;
+      }
     } else {
       AppSnackBar.show(
         context: context,
@@ -332,19 +338,11 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     }
   }
 
-  void _onSearch(String search) {
-    context.read<StorageBloc>().add(StorageEvent.getStoragesById(
-          storageId: _storageSelected!.id!,
-          search: search,
-        ));
-  }
-
   @override
   void dispose() {
     _maskFormatter.clear();
     _dateController.dispose();
     _selectedItemNotifier.dispose();
-    _visibleAllListNotifier.dispose();
     super.dispose();
   }
 }
