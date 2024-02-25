@@ -16,7 +16,7 @@ class BottomMenuScreen extends StatefulWidget {
 class _BottomMenuScreenState extends State<BottomMenuScreen> {
   final List<PageRouteInfo<void>> _buildRoutes = const [
     HomeRoute(),
-    HomeRoute(),
+    ProfileRoute(),
   ];
 
   List<Widget> _navBarsItems({

@@ -27,6 +27,7 @@ class AppRouter extends $AppRouter {
           ],
           children: [
             AutoRoute(page: HomeRoute.page),
+            AutoRoute(page: ProfileRoute.page),
           ],
         ),
       ];
