@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:io_ui/io_ui.dart';
 
@@ -41,19 +42,16 @@ class _OverlayDropdownState extends State<OverlayDropdown> {
     final renderBox = context.findRenderObject() as RenderBox;
     final childPosition = renderBox.localToGlobal(Offset.zero);
     final overlayTop = childPosition.dy;
+    final double height = widget.items.length * 32 + widget.items.length - 1 + 2;
 
     return Positioned(
-      top: overlayTop - 2,
+      top: overlayTop + 24,
       width: renderBox.size.width - 60,
-      height: widget.items.length * 24,
+      height: height,
       left: 16,
       child: Material(
         color: Colors.transparent,
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: AppProps.kSmallMarginX2,
-            horizontal: AppProps.kMediumMargin,
-          ),
           decoration: BoxDecoration(
             color: AppColors.kWhite,
             border: Border.all(color: AppColors.kBorder),
@@ -71,41 +69,34 @@ class _OverlayDropdownState extends State<OverlayDropdown> {
   List<Widget> _buildItems() {
     return widget.items.mapIndexed((index, item) {
       final isFirstItem = item == widget.items.first;
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (!isFirstItem) const SizedBox(height: AppProps.kSmallMarginX2),
-          GestureDetector(
-            onTap: () {
-                widget.onSelectItem(item);
-                _hideOverlay();
-            },
-            child: SizedBox(
+      return GestureDetector(
+        onTap: () {
+          widget.onSelectItem(item);
+          _hideOverlay();
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
               width: double.infinity,
+              height: 32,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: AppProps.kMediumMargin),
               child: Text(
                 item,
-                style: AppTextStyle.secondaryStyle.copyWith(
-                  color: item == widget.selectedItem && widget.selectedItem != widget.items.first
-                      ? AppColors.kPrimary
-                      : isFirstItem
-                          ? AppColors.kDarkGrey.withOpacity(0.7)
-                          : AppColors.kDarkGrey,
-                ),
+                style: isFirstItem
+                    ? AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey.withOpacity(0.7))
+                    : AppTextStyle.secondaryStyle.copyWith(
+                        color: item == widget.selectedItem && widget.selectedItem != widget.items.first
+                            ? AppColors.kPrimary
+                            : AppColors.kDarkGrey,
+                      ),
               ),
             ),
-          ).withOpaqueBehavior(),
-          if (index != widget.items.length - 1)
-            const Column(
-              children: [
-                SizedBox(height: AppProps.kSmallMarginX2),
-                Divider(
-                  height: 1,
-                  color: AppColors.kDivider,
-                ),
-              ],
-            ),
-        ],
-      );
+            if (index != widget.items.length - 1) const Divider(height: 1, color: AppColors.kDivider),
+          ],
+        ),
+      ).withOpaqueBehavior();
     }).toList();
   }
 

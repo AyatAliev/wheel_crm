@@ -66,7 +66,6 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
                 const Divider(height: 1, color: AppColors.kDivider),
                 const SizedBox(height: AppProps.kPageMargin),
                 _buildProductSelection(state.wheels),
-                const SizedBox(height: AppProps.kMediumMargin),
                 _buildAddNewProduct(),
                 const SizedBox(height: AppProps.kPageMargin),
                 const Divider(height: 1, color: AppColors.kDivider),
@@ -162,7 +161,6 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
             _season = text;
           },
         ),
-        const SizedBox(height: AppProps.kMediumMargin),
         GestureDetector(
           onTap: _onChangeDisplayList,
           child: _buildProductOption(t.selectFromList),
@@ -187,7 +185,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
               },
               child: _buildProductOption(t.addNewProduct),
             ).withOpaqueBehavior(),
-            const SizedBox(height: AppProps.kMediumMargin),
+            const SizedBox(height: AppProps.kPageMargin),
             WheelCreateWidget(
               wheels: wheels,
               onCountController: (int count) {
@@ -213,9 +211,15 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   }
 
   Widget _buildProductOption(String label) {
-    return Text(
-      label,
-      style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kPrimary),
+    return SizedBox(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.only(top: AppProps.kPageMargin),
+        child: Text(
+          label,
+          style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kPrimary),
+        ),
+      ),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
@@ -43,13 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ValueListenableBuilder<int>(
                 valueListenable: _titleSelectedIndexNotifier,
                 builder: (context, index, child) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppProps.kPageMargin,
-                      vertical: AppProps.kTwentyMargin,
-                    ),
-                    child: Row(children: _itemLabels()),
-                  );
+                  return Row(children: _itemLabels());
                 }),
             Expanded(
               child: Container(
@@ -80,21 +75,27 @@ class _HomeScreenState extends State<HomeScreen> {
     for (int i = 0; i < _titles.length; i++) {
       final isSelected = i == _titleSelectedIndexNotifier.value;
       list.add(
-        GestureDetector(
-          onTap: () {
-            _titleSelectedIndexNotifier.value = i;
-          },
-          child: Text(
-            _titles[i],
-            style: AppTextStyle.bodyLargeStyle.copyWith(
-              color: isSelected ? AppColors.kWhite : AppColors.kWhite.withOpacity(0.8),
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+        Expanded(
+          child: GestureDetector(
+            onTap: () {
+              _titleSelectedIndexNotifier.value = i;
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppProps.kPageMargin,
+                vertical: AppProps.kTwentyMargin,
+              ),
+              child: Text(
+                _titles[i],
+                style: AppTextStyle.bodyLargeStyle.copyWith(
+                  color: isSelected ? AppColors.kWhite : AppColors.kWhite.withOpacity(0.8),
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                ),
+              ),
             ),
-          ),
+          ).withOpaqueBehavior(),
         ),
       );
-
-      list.add(const SizedBox(width: AppProps.kBigMargin));
     }
 
     return list;

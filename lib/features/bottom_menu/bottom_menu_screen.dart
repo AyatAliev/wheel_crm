@@ -91,7 +91,7 @@ class _BottomMenuScreenState extends State<BottomMenuScreen> {
             ],
           ),
           child: SizedBox(
-            height: 70,
+            height: 60,
             child: Row(
               children: _navBarsItems(
                 activeIndex: tabsRouter.activeIndex,

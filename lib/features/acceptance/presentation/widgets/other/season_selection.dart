@@ -6,7 +6,7 @@ class SeasonSelection extends StatefulWidget {
   final Function(String text) onTap;
   final String selected;
 
-  const SeasonSelection({Key? key, required this.onTap, required this.selected}) : super(key: key);
+  const SeasonSelection({super.key, required this.onTap, required this.selected});
 
   @override
   State<SeasonSelection> createState() => _SeasonSelectionState();

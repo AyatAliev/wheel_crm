@@ -6,6 +6,7 @@ class SystemChromeTheme {
   static void themeLight() {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
+        systemNavigationBarIconBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.light,
         systemNavigationBarColor: Colors.white,
         statusBarColor: AppColors.kPrimary,
@@ -16,6 +17,7 @@ class SystemChromeTheme {
   static void themeDark() {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
+        systemNavigationBarIconBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: Colors.white,
         statusBarColor: Colors.white,

@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:wheel_crm/core/const/season_enum.dart';
 import 'package:wheel_crm/core/network/entity/state_status.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_detail_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/dropdown_selected_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/dropdown/overlay_dropdown.dart';
+import 'package:wheel_crm/features/acceptance/presentation/widgets/other/season_selection.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart';
 import 'package:wheel_crm/features/wheel/domain/bloc/wheel_bloc.dart';
 import 'package:wheel_crm/features/wheel/domain/entity/sales_detail_entity.dart';
 import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 import 'package:wheel_crm/features/wheel/presentation/widgets/item_list_widget.dart';
-import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
 class SalesDetailWidget extends StatefulWidget {
@@ -26,7 +27,6 @@ class SalesDetailWidget extends StatefulWidget {
 
 class _SalesDetailWidgetState extends State<SalesDetailWidget> {
   late final MaskTextInputFormatter _maskFormatter;
-  late final TextEditingController _dateController;
   late final ValueNotifier<String?> _selectedItemNotifier;
   late final ValueNotifier<bool> _visibleAllListNotifier;
   late final ValueNotifier<int> _countWheel = ValueNotifier(0);
@@ -34,12 +34,12 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
   late final ValueNotifier<SalesDetailEntity?> _salesDetailEntity = ValueNotifier(null);
 
   StorageEntity? _storageSelected;
+  String _season = Season.summer.title;
 
   @override
   void initState() {
     super.initState();
     _maskFormatter = MaskTextInputFormatter(mask: '##-##-####');
-    _dateController = TextEditingController();
     _selectedItemNotifier = ValueNotifier(null);
     _visibleAllListNotifier = ValueNotifier(false);
   }
@@ -61,20 +61,13 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
                     builder: (context, value, _) {
                       return Column(
                         children: [
-                          _buildDateSelection(),
+                          _buildClose(),
                           IgnorePointer(
                             ignoring: value != null ? true : false,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const SizedBox(height: AppProps.kPageMargin),
-                                const Divider(height: 1, color: AppColors.kDivider),
-                                const SizedBox(height: AppProps.kPageMargin),
-                                _buildRowSelectedDate(),
-                                const SizedBox(height: AppProps.kPageMargin),
                                 _buildWarehouseSelection(),
-                                const SizedBox(height: AppProps.kPageMargin),
-                                const Divider(height: 1, color: AppColors.kDivider),
                                 const SizedBox(height: AppProps.kPageMargin),
                                 _buildProductSelection(),
                                 const SizedBox(height: AppProps.kPageMargin),
@@ -106,7 +99,6 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
       success: (val) {
         if (state.wheelDetail != null && val == WheelBlocSuccess.details) {
           _salesDetailEntity.value = state.wheelDetail;
-          _dateController.text = state.wheelDetail!.createdAt.formatddMMyyyy();
           _selectedItemNotifier.value = state.wheelDetail!.storage.title;
           _storageSelected = state.wheelDetail!.storage;
           _notifierWheels.value = state.wheelDetail!.wheels;
@@ -125,48 +117,17 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     );
   }
 
-  Widget _buildRowSelectedDate() {
+  Widget _buildClose() {
     return GestureDetector(
-      onTap: _selectedDate,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 120,
-            child: AppInput.border(
-              inputType: TextInputType.number,
-              formatters: [_maskFormatter],
-              hintText: '__-__-____',
-              readOnly: true,
-              controller: _dateController,
-              onTap: _selectedDate,
-              boxDecoration: BoxDecoration(
-                color: AppColors.kWhite,
-                borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),
-                border: Border.all(color: AppColors.kBorder),
-              ),
-            ),
-          ),
-          const SizedBox(width: AppProps.kSmallMargin),
-          Assets.icons.icCalendar.svg(),
-        ],
+      onTap: () => context.router.pop(),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(vertical: AppProps.kSmallMargin),
+        child: Align(
+          alignment: Alignment.centerRight,
+          child: Icon(Icons.close),
+        ),
       ),
     ).withOpaqueBehavior();
-  }
-
-  Widget _buildDateSelection() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          t.salesDate,
-          style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
-        ),
-        GestureDetector(
-          onTap: () => context.router.pop(),
-          child: const Icon(Icons.close),
-        ),
-      ],
-    );
   }
 
   Widget _buildWarehouseSelection() {
@@ -205,6 +166,12 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
                 style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
               ),
               const SizedBox(height: AppProps.kMediumMargin),
+              SeasonSelection(
+                selected: _season,
+                onTap: (String text) {
+                  _season = text;
+                },
+              ),
               GestureDetector(
                 onTap: _onChangeDisplayList,
                 child: _buildProductOption(t.selectFromList),
@@ -219,7 +186,6 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
 
   List<Widget> _buildOnlySelectedWidgets(List<WheelEntity> list) {
     return [
-      const SizedBox(height: AppProps.kPageMargin),
       ...list.map(
         (element) => ItemListWidget(
           onChange: onChangeCountField,
@@ -245,9 +211,12 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
   }
 
   Widget _buildProductOption(String label) {
-    return Text(
-      label,
-      style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kPrimary),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: AppProps.kPageMargin),
+      child: Text(
+        label,
+        style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kPrimary),
+      ),
     );
   }
 
@@ -282,15 +251,14 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
   }
 
   void _onSaveButton() {
-    if (_dateController.text.isNotEmpty) {
       if (_storageSelected != null) {
         context.read<WheelBloc>().add(
           WheelEvent.addWheel(
             salesDetailEntity: SalesDetailEntity(
               storage: _storageSelected!,
-              createdAt: _dateController.text.parceddMMyyyy()!,
-              wheels: _notifierWheels.value,
-            ),
+                createdAt: DateTime.now(),
+                wheels: _notifierWheels.value,
+              ),
           ),
         );
       } else {
@@ -300,25 +268,7 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
           error: true,
         );
       }
-    } else {
-      AppSnackBar.show(
-        context: context,
-        titleText: t.selectDateSales,
-        error: true,
-      );
     }
-  }
-
-  Future<void> _selectedDate() async {
-    final picked = await AppDatePicker.show(
-      context,
-      initialDate: _dateController.text.parceddMMyyyy() ?? DateTime.now(),
-    );
-
-    if (picked != null) {
-      _dateController.text = picked.formatddMMyyyy();
-    }
-  }
 
   Future<void> _onChangeDisplayList() async {
     if (_salesDetailEntity.value != null && _selectedItemNotifier.value != null) {
@@ -364,7 +314,6 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
   @override
   void dispose() {
     _maskFormatter.clear();
-    _dateController.dispose();
     _selectedItemNotifier.dispose();
     _visibleAllListNotifier.dispose();
     _salesDetailEntity.dispose();
