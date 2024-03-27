@@ -390,7 +390,7 @@ abstract class _AddAcceptance implements AcceptanceEvent {
 /// @nodoc
 mixin _$AcceptanceState {
   StateStatus get stateStatus => throw _privateConstructorUsedError;
-  List<AcceptanceEntity> get acceptanceEntity =>
+  List<AcceptanceEntity> get acceptanceEntitys =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -404,7 +404,8 @@ abstract class $AcceptanceStateCopyWith<$Res> {
           AcceptanceState value, $Res Function(AcceptanceState) then) =
       _$AcceptanceStateCopyWithImpl<$Res, AcceptanceState>;
   @useResult
-  $Res call({StateStatus stateStatus, List<AcceptanceEntity> acceptanceEntity});
+  $Res call(
+      {StateStatus stateStatus, List<AcceptanceEntity> acceptanceEntitys});
 
   $StateStatusCopyWith<$Res> get stateStatus;
 }
@@ -423,16 +424,16 @@ class _$AcceptanceStateCopyWithImpl<$Res, $Val extends AcceptanceState>
   @override
   $Res call({
     Object? stateStatus = null,
-    Object? acceptanceEntity = null,
+    Object? acceptanceEntitys = null,
   }) {
     return _then(_value.copyWith(
       stateStatus: null == stateStatus
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus,
-      acceptanceEntity: null == acceptanceEntity
-          ? _value.acceptanceEntity
-          : acceptanceEntity // ignore: cast_nullable_to_non_nullable
+      acceptanceEntitys: null == acceptanceEntitys
+          ? _value.acceptanceEntitys
+          : acceptanceEntitys // ignore: cast_nullable_to_non_nullable
               as List<AcceptanceEntity>,
     ) as $Val);
   }
@@ -454,7 +455,8 @@ abstract class _$$AcceptanceStateImplCopyWith<$Res>
       __$$AcceptanceStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({StateStatus stateStatus, List<AcceptanceEntity> acceptanceEntity});
+  $Res call(
+      {StateStatus stateStatus, List<AcceptanceEntity> acceptanceEntitys});
 
   @override
   $StateStatusCopyWith<$Res> get stateStatus;
@@ -472,16 +474,16 @@ class __$$AcceptanceStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? stateStatus = null,
-    Object? acceptanceEntity = null,
+    Object? acceptanceEntitys = null,
   }) {
     return _then(_$AcceptanceStateImpl(
       stateStatus: null == stateStatus
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus,
-      acceptanceEntity: null == acceptanceEntity
-          ? _value._acceptanceEntity
-          : acceptanceEntity // ignore: cast_nullable_to_non_nullable
+      acceptanceEntitys: null == acceptanceEntitys
+          ? _value._acceptanceEntitys
+          : acceptanceEntitys // ignore: cast_nullable_to_non_nullable
               as List<AcceptanceEntity>,
     ));
   }
@@ -492,23 +494,23 @@ class __$$AcceptanceStateImplCopyWithImpl<$Res>
 class _$AcceptanceStateImpl implements _AcceptanceState {
   const _$AcceptanceStateImpl(
       {required this.stateStatus,
-      required final List<AcceptanceEntity> acceptanceEntity})
-      : _acceptanceEntity = acceptanceEntity;
+      required final List<AcceptanceEntity> acceptanceEntitys})
+      : _acceptanceEntitys = acceptanceEntitys;
 
   @override
   final StateStatus stateStatus;
-  final List<AcceptanceEntity> _acceptanceEntity;
+  final List<AcceptanceEntity> _acceptanceEntitys;
   @override
-  List<AcceptanceEntity> get acceptanceEntity {
-    if (_acceptanceEntity is EqualUnmodifiableListView)
-      return _acceptanceEntity;
+  List<AcceptanceEntity> get acceptanceEntitys {
+    if (_acceptanceEntitys is EqualUnmodifiableListView)
+      return _acceptanceEntitys;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_acceptanceEntity);
+    return EqualUnmodifiableListView(_acceptanceEntitys);
   }
 
   @override
   String toString() {
-    return 'AcceptanceState(stateStatus: $stateStatus, acceptanceEntity: $acceptanceEntity)';
+    return 'AcceptanceState(stateStatus: $stateStatus, acceptanceEntitys: $acceptanceEntitys)';
   }
 
   @override
@@ -519,12 +521,12 @@ class _$AcceptanceStateImpl implements _AcceptanceState {
             (identical(other.stateStatus, stateStatus) ||
                 other.stateStatus == stateStatus) &&
             const DeepCollectionEquality()
-                .equals(other._acceptanceEntity, _acceptanceEntity));
+                .equals(other._acceptanceEntitys, _acceptanceEntitys));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, stateStatus,
-      const DeepCollectionEquality().hash(_acceptanceEntity));
+      const DeepCollectionEquality().hash(_acceptanceEntitys));
 
   @JsonKey(ignore: true)
   @override
@@ -537,13 +539,13 @@ class _$AcceptanceStateImpl implements _AcceptanceState {
 abstract class _AcceptanceState implements AcceptanceState {
   const factory _AcceptanceState(
           {required final StateStatus stateStatus,
-          required final List<AcceptanceEntity> acceptanceEntity}) =
+          required final List<AcceptanceEntity> acceptanceEntitys}) =
       _$AcceptanceStateImpl;
 
   @override
   StateStatus get stateStatus;
   @override
-  List<AcceptanceEntity> get acceptanceEntity;
+  List<AcceptanceEntity> get acceptanceEntitys;
   @override
   @JsonKey(ignore: true)
   _$$AcceptanceStateImplCopyWith<_$AcceptanceStateImpl> get copyWith =>

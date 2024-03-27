@@ -8,5 +8,11 @@ abstract class AcceptanceDataSource {
     int? storageId,
   });
 
-  Future<void> addAcceptance({required CreateAcceptanceEntity createAcceptanceEntity});
+  Future<void> addAcceptance(
+      {required CreateAcceptanceEntity createAcceptanceEntity});
+
+  Future<AcceptanceModel> getAcceptanceById({
+    required int storageId,
+    // required String search,
+  });
 }
