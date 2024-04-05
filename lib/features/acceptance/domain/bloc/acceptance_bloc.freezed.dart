@@ -23,6 +23,7 @@ mixin _$AcceptanceEvent {
         getAcceptance,
     required TResult Function(CreateAcceptanceEntity createAcceptanceEntity)
         addAcceptance,
+    required TResult Function(int? acceptanceId) getAcceptanceById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,6 +32,7 @@ mixin _$AcceptanceEvent {
         getAcceptance,
     TResult? Function(CreateAcceptanceEntity createAcceptanceEntity)?
         addAcceptance,
+    TResult? Function(int? acceptanceId)? getAcceptanceById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +41,7 @@ mixin _$AcceptanceEvent {
         getAcceptance,
     TResult Function(CreateAcceptanceEntity createAcceptanceEntity)?
         addAcceptance,
+    TResult Function(int? acceptanceId)? getAcceptanceById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,18 +49,21 @@ mixin _$AcceptanceEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAcceptance value) getAcceptance,
     required TResult Function(_AddAcceptance value) addAcceptance,
+    required TResult Function(_GetAcceptanceById value) getAcceptanceById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAcceptance value)? getAcceptance,
     TResult? Function(_AddAcceptance value)? addAcceptance,
+    TResult? Function(_GetAcceptanceById value)? getAcceptanceById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAcceptance value)? getAcceptance,
     TResult Function(_AddAcceptance value)? addAcceptance,
+    TResult Function(_GetAcceptanceById value)? getAcceptanceById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -168,6 +174,7 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
         getAcceptance,
     required TResult Function(CreateAcceptanceEntity createAcceptanceEntity)
         addAcceptance,
+    required TResult Function(int? acceptanceId) getAcceptanceById,
   }) {
     return getAcceptance(startDate, endDate, storageId);
   }
@@ -179,6 +186,7 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
         getAcceptance,
     TResult? Function(CreateAcceptanceEntity createAcceptanceEntity)?
         addAcceptance,
+    TResult? Function(int? acceptanceId)? getAcceptanceById,
   }) {
     return getAcceptance?.call(startDate, endDate, storageId);
   }
@@ -190,6 +198,7 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
         getAcceptance,
     TResult Function(CreateAcceptanceEntity createAcceptanceEntity)?
         addAcceptance,
+    TResult Function(int? acceptanceId)? getAcceptanceById,
     required TResult orElse(),
   }) {
     if (getAcceptance != null) {
@@ -203,6 +212,7 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAcceptance value) getAcceptance,
     required TResult Function(_AddAcceptance value) addAcceptance,
+    required TResult Function(_GetAcceptanceById value) getAcceptanceById,
   }) {
     return getAcceptance(this);
   }
@@ -212,6 +222,7 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAcceptance value)? getAcceptance,
     TResult? Function(_AddAcceptance value)? addAcceptance,
+    TResult? Function(_GetAcceptanceById value)? getAcceptanceById,
   }) {
     return getAcceptance?.call(this);
   }
@@ -221,6 +232,7 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAcceptance value)? getAcceptance,
     TResult Function(_AddAcceptance value)? addAcceptance,
+    TResult Function(_GetAcceptanceById value)? getAcceptanceById,
     required TResult orElse(),
   }) {
     if (getAcceptance != null) {
@@ -314,6 +326,7 @@ class _$AddAcceptanceImpl implements _AddAcceptance {
         getAcceptance,
     required TResult Function(CreateAcceptanceEntity createAcceptanceEntity)
         addAcceptance,
+    required TResult Function(int? acceptanceId) getAcceptanceById,
   }) {
     return addAcceptance(createAcceptanceEntity);
   }
@@ -325,6 +338,7 @@ class _$AddAcceptanceImpl implements _AddAcceptance {
         getAcceptance,
     TResult? Function(CreateAcceptanceEntity createAcceptanceEntity)?
         addAcceptance,
+    TResult? Function(int? acceptanceId)? getAcceptanceById,
   }) {
     return addAcceptance?.call(createAcceptanceEntity);
   }
@@ -336,6 +350,7 @@ class _$AddAcceptanceImpl implements _AddAcceptance {
         getAcceptance,
     TResult Function(CreateAcceptanceEntity createAcceptanceEntity)?
         addAcceptance,
+    TResult Function(int? acceptanceId)? getAcceptanceById,
     required TResult orElse(),
   }) {
     if (addAcceptance != null) {
@@ -349,6 +364,7 @@ class _$AddAcceptanceImpl implements _AddAcceptance {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAcceptance value) getAcceptance,
     required TResult Function(_AddAcceptance value) addAcceptance,
+    required TResult Function(_GetAcceptanceById value) getAcceptanceById,
   }) {
     return addAcceptance(this);
   }
@@ -358,6 +374,7 @@ class _$AddAcceptanceImpl implements _AddAcceptance {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAcceptance value)? getAcceptance,
     TResult? Function(_AddAcceptance value)? addAcceptance,
+    TResult? Function(_GetAcceptanceById value)? getAcceptanceById,
   }) {
     return addAcceptance?.call(this);
   }
@@ -367,6 +384,7 @@ class _$AddAcceptanceImpl implements _AddAcceptance {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAcceptance value)? getAcceptance,
     TResult Function(_AddAcceptance value)? addAcceptance,
+    TResult Function(_GetAcceptanceById value)? getAcceptanceById,
     required TResult orElse(),
   }) {
     if (addAcceptance != null) {
@@ -388,10 +406,160 @@ abstract class _AddAcceptance implements AcceptanceEvent {
 }
 
 /// @nodoc
+abstract class _$$GetAcceptanceByIdImplCopyWith<$Res> {
+  factory _$$GetAcceptanceByIdImplCopyWith(_$GetAcceptanceByIdImpl value,
+          $Res Function(_$GetAcceptanceByIdImpl) then) =
+      __$$GetAcceptanceByIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? acceptanceId});
+}
+
+/// @nodoc
+class __$$GetAcceptanceByIdImplCopyWithImpl<$Res>
+    extends _$AcceptanceEventCopyWithImpl<$Res, _$GetAcceptanceByIdImpl>
+    implements _$$GetAcceptanceByIdImplCopyWith<$Res> {
+  __$$GetAcceptanceByIdImplCopyWithImpl(_$GetAcceptanceByIdImpl _value,
+      $Res Function(_$GetAcceptanceByIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? acceptanceId = freezed,
+  }) {
+    return _then(_$GetAcceptanceByIdImpl(
+      acceptanceId: freezed == acceptanceId
+          ? _value.acceptanceId
+          : acceptanceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetAcceptanceByIdImpl implements _GetAcceptanceById {
+  const _$GetAcceptanceByIdImpl({required this.acceptanceId});
+
+  @override
+  final int? acceptanceId;
+
+  @override
+  String toString() {
+    return 'AcceptanceEvent.getAcceptanceById(acceptanceId: $acceptanceId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetAcceptanceByIdImpl &&
+            (identical(other.acceptanceId, acceptanceId) ||
+                other.acceptanceId == acceptanceId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, acceptanceId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetAcceptanceByIdImplCopyWith<_$GetAcceptanceByIdImpl> get copyWith =>
+      __$$GetAcceptanceByIdImplCopyWithImpl<_$GetAcceptanceByIdImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            DateTime? startDate, DateTime? endDate, int? storageId)
+        getAcceptance,
+    required TResult Function(CreateAcceptanceEntity createAcceptanceEntity)
+        addAcceptance,
+    required TResult Function(int? acceptanceId) getAcceptanceById,
+  }) {
+    return getAcceptanceById(acceptanceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? startDate, DateTime? endDate, int? storageId)?
+        getAcceptance,
+    TResult? Function(CreateAcceptanceEntity createAcceptanceEntity)?
+        addAcceptance,
+    TResult? Function(int? acceptanceId)? getAcceptanceById,
+  }) {
+    return getAcceptanceById?.call(acceptanceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? startDate, DateTime? endDate, int? storageId)?
+        getAcceptance,
+    TResult Function(CreateAcceptanceEntity createAcceptanceEntity)?
+        addAcceptance,
+    TResult Function(int? acceptanceId)? getAcceptanceById,
+    required TResult orElse(),
+  }) {
+    if (getAcceptanceById != null) {
+      return getAcceptanceById(acceptanceId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAcceptance value) getAcceptance,
+    required TResult Function(_AddAcceptance value) addAcceptance,
+    required TResult Function(_GetAcceptanceById value) getAcceptanceById,
+  }) {
+    return getAcceptanceById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAcceptance value)? getAcceptance,
+    TResult? Function(_AddAcceptance value)? addAcceptance,
+    TResult? Function(_GetAcceptanceById value)? getAcceptanceById,
+  }) {
+    return getAcceptanceById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAcceptance value)? getAcceptance,
+    TResult Function(_AddAcceptance value)? addAcceptance,
+    TResult Function(_GetAcceptanceById value)? getAcceptanceById,
+    required TResult orElse(),
+  }) {
+    if (getAcceptanceById != null) {
+      return getAcceptanceById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAcceptanceById implements AcceptanceEvent {
+  const factory _GetAcceptanceById({required final int? acceptanceId}) =
+      _$GetAcceptanceByIdImpl;
+
+  int? get acceptanceId;
+  @JsonKey(ignore: true)
+  _$$GetAcceptanceByIdImplCopyWith<_$GetAcceptanceByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AcceptanceState {
   StateStatus get stateStatus => throw _privateConstructorUsedError;
   List<AcceptanceEntity> get acceptanceEntitys =>
       throw _privateConstructorUsedError;
+  AcceptanceEntity? get acceptanceEntity => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AcceptanceStateCopyWith<AcceptanceState> get copyWith =>
@@ -405,7 +573,9 @@ abstract class $AcceptanceStateCopyWith<$Res> {
       _$AcceptanceStateCopyWithImpl<$Res, AcceptanceState>;
   @useResult
   $Res call(
-      {StateStatus stateStatus, List<AcceptanceEntity> acceptanceEntitys});
+      {StateStatus stateStatus,
+      List<AcceptanceEntity> acceptanceEntitys,
+      AcceptanceEntity? acceptanceEntity});
 
   $StateStatusCopyWith<$Res> get stateStatus;
 }
@@ -425,6 +595,7 @@ class _$AcceptanceStateCopyWithImpl<$Res, $Val extends AcceptanceState>
   $Res call({
     Object? stateStatus = null,
     Object? acceptanceEntitys = null,
+    Object? acceptanceEntity = freezed,
   }) {
     return _then(_value.copyWith(
       stateStatus: null == stateStatus
@@ -435,6 +606,10 @@ class _$AcceptanceStateCopyWithImpl<$Res, $Val extends AcceptanceState>
           ? _value.acceptanceEntitys
           : acceptanceEntitys // ignore: cast_nullable_to_non_nullable
               as List<AcceptanceEntity>,
+      acceptanceEntity: freezed == acceptanceEntity
+          ? _value.acceptanceEntity
+          : acceptanceEntity // ignore: cast_nullable_to_non_nullable
+              as AcceptanceEntity?,
     ) as $Val);
   }
 
@@ -456,7 +631,9 @@ abstract class _$$AcceptanceStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {StateStatus stateStatus, List<AcceptanceEntity> acceptanceEntitys});
+      {StateStatus stateStatus,
+      List<AcceptanceEntity> acceptanceEntitys,
+      AcceptanceEntity? acceptanceEntity});
 
   @override
   $StateStatusCopyWith<$Res> get stateStatus;
@@ -475,6 +652,7 @@ class __$$AcceptanceStateImplCopyWithImpl<$Res>
   $Res call({
     Object? stateStatus = null,
     Object? acceptanceEntitys = null,
+    Object? acceptanceEntity = freezed,
   }) {
     return _then(_$AcceptanceStateImpl(
       stateStatus: null == stateStatus
@@ -485,6 +663,10 @@ class __$$AcceptanceStateImplCopyWithImpl<$Res>
           ? _value._acceptanceEntitys
           : acceptanceEntitys // ignore: cast_nullable_to_non_nullable
               as List<AcceptanceEntity>,
+      acceptanceEntity: freezed == acceptanceEntity
+          ? _value.acceptanceEntity
+          : acceptanceEntity // ignore: cast_nullable_to_non_nullable
+              as AcceptanceEntity?,
     ));
   }
 }
@@ -494,7 +676,8 @@ class __$$AcceptanceStateImplCopyWithImpl<$Res>
 class _$AcceptanceStateImpl implements _AcceptanceState {
   const _$AcceptanceStateImpl(
       {required this.stateStatus,
-      required final List<AcceptanceEntity> acceptanceEntitys})
+      required final List<AcceptanceEntity> acceptanceEntitys,
+      required this.acceptanceEntity})
       : _acceptanceEntitys = acceptanceEntitys;
 
   @override
@@ -509,8 +692,11 @@ class _$AcceptanceStateImpl implements _AcceptanceState {
   }
 
   @override
+  final AcceptanceEntity? acceptanceEntity;
+
+  @override
   String toString() {
-    return 'AcceptanceState(stateStatus: $stateStatus, acceptanceEntitys: $acceptanceEntitys)';
+    return 'AcceptanceState(stateStatus: $stateStatus, acceptanceEntitys: $acceptanceEntitys, acceptanceEntity: $acceptanceEntity)';
   }
 
   @override
@@ -521,12 +707,17 @@ class _$AcceptanceStateImpl implements _AcceptanceState {
             (identical(other.stateStatus, stateStatus) ||
                 other.stateStatus == stateStatus) &&
             const DeepCollectionEquality()
-                .equals(other._acceptanceEntitys, _acceptanceEntitys));
+                .equals(other._acceptanceEntitys, _acceptanceEntitys) &&
+            (identical(other.acceptanceEntity, acceptanceEntity) ||
+                other.acceptanceEntity == acceptanceEntity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stateStatus,
-      const DeepCollectionEquality().hash(_acceptanceEntitys));
+  int get hashCode => Object.hash(
+      runtimeType,
+      stateStatus,
+      const DeepCollectionEquality().hash(_acceptanceEntitys),
+      acceptanceEntity);
 
   @JsonKey(ignore: true)
   @override
@@ -539,13 +730,16 @@ class _$AcceptanceStateImpl implements _AcceptanceState {
 abstract class _AcceptanceState implements AcceptanceState {
   const factory _AcceptanceState(
           {required final StateStatus stateStatus,
-          required final List<AcceptanceEntity> acceptanceEntitys}) =
+          required final List<AcceptanceEntity> acceptanceEntitys,
+          required final AcceptanceEntity? acceptanceEntity}) =
       _$AcceptanceStateImpl;
 
   @override
   StateStatus get stateStatus;
   @override
   List<AcceptanceEntity> get acceptanceEntitys;
+  @override
+  AcceptanceEntity? get acceptanceEntity;
   @override
   @JsonKey(ignore: true)
   _$$AcceptanceStateImplCopyWith<_$AcceptanceStateImpl> get copyWith =>

@@ -11,5 +11,11 @@ abstract class AcceptanceRepository {
     int? storageId,
   });
 
-  Future<Either<Failure, Success>> addAcceptance({required CreateAcceptanceEntity createAcceptanceEntity});
+  Future<Either<Failure, Success>> addAcceptance(
+      {required CreateAcceptanceEntity createAcceptanceEntity});
+
+  Future<Either<Failure, AcceptanceEntity>> getAcceptanceById({
+    required int? acceptanceId,
+    // required String search,
+  });
 }

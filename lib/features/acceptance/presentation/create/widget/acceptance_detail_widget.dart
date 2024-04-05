@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wheel_crm/core/network/entity/state_status.dart';
+import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
 import 'package:wheel_crm/features/acceptance/domain/entity/acceptance_entity.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart';
@@ -13,7 +14,7 @@ import 'package:wheel_crm/gen/strings.g.dart';
 
 import '../../../../wheel/presentation/widgets/item_list_widget.dart';
 
-class WheelDetailWidget extends StatefulWidget {
+class AcceptanceDetailWidget extends StatefulWidget {
   final void Function(WheelEntity item)? onSelectedItem;
   final void Function(WheelEntity item)? onDeletedItem;
   final void Function()? onClear;
@@ -24,7 +25,7 @@ class WheelDetailWidget extends StatefulWidget {
   final List<WheelEntity>? selectedItems;
   final bool editor;
 
-  const WheelDetailWidget({
+  const AcceptanceDetailWidget({
     super.key,
     this.onDeletedItem,
     this.onSelectedItem,
@@ -38,16 +39,16 @@ class WheelDetailWidget extends StatefulWidget {
   });
 
   @override
-  State<WheelDetailWidget> createState() => _WheelDetailWidgetState();
+  State<AcceptanceDetailWidget> createState() => _AcceptanceDetailWidgetState();
 }
 
-class _WheelDetailWidgetState extends State<WheelDetailWidget> {
+class _AcceptanceDetailWidgetState extends State<AcceptanceDetailWidget> {
   late final MaskTextInputFormatter _maskFormatter;
   late final List<WheelEntity> _selectedWheels = [];
   late final TextEditingController _searchController = TextEditingController();
 
   @override
-  void didUpdateWidget(covariant WheelDetailWidget oldWidget) {
+  void didUpdateWidget(covariant AcceptanceDetailWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.deletedItem != null) {
@@ -217,7 +218,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
   }
 
   void onChangeSearch(String val) {
-    context.read<StorageBloc>().add(StorageEvent.getStoragesById(
-        storageId: widget.storage!.id!, search: val));
+    context.read<AcceptanceBloc>().add(AcceptanceEvent.getAcceptanceById(
+        acceptanceId: widget.acceptanceEntity!.id));
   }
 }

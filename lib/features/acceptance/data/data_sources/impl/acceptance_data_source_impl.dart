@@ -12,7 +12,8 @@ class AcceptanceDataSourceImpl extends AcceptanceDataSource {
   AcceptanceDataSourceImpl(this._client);
 
   @override
-  Future<List<AcceptanceModel>> getAcceptance({DateTime? startDate, DateTime? endDate, int? storageId}) async {
+  Future<List<AcceptanceModel>> getAcceptance(
+      {DateTime? startDate, DateTime? endDate, int? storageId}) async {
     final result = await _client.get(
       HttpPaths.acceptance,
       queryParameters: {
@@ -22,11 +23,31 @@ class AcceptanceDataSourceImpl extends AcceptanceDataSource {
       },
     );
 
-    return (result.data as List).map((e) => AcceptanceModel.fromJson(e)).toList();
+    return (result.data as List)
+        .map((e) => AcceptanceModel.fromJson(e))
+        .toList();
   }
 
   @override
-  Future<void> addAcceptance({required CreateAcceptanceEntity createAcceptanceEntity}) async {
-    await _client.post(HttpPaths.acceptance, data: createAcceptanceEntity.toJson());
+  Future<void> addAcceptance(
+      {required CreateAcceptanceEntity createAcceptanceEntity}) async {
+    await _client.post(HttpPaths.acceptance,
+        data: createAcceptanceEntity.toJson());
+  }
+
+  @override
+  Future<AcceptanceModel> getAcceptanceById({
+    required int acceptanceId,
+    // required String search,
+  }) async {
+    final result = await _client.get(
+      HttpPaths.getAcceptanceById(acceptanceId),
+
+      // queryParameters: {'search': search},
+    );
+    print(result);
+
+    // return (result.data as List).map((e) => WheelModel.fromJson(e)).toList();
+    return AcceptanceModel.fromJson(result.data);
   }
 }

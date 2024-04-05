@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wheel_crm/core/network/entity/state_status.dart';
+import 'package:wheel_crm/core/network/http_client.dart';
 import 'package:wheel_crm/features/acceptance/domain/entity/acceptance_entity.dart';
 import 'package:wheel_crm/features/acceptance/domain/entity/create_acceptance_entity.dart';
 import 'package:wheel_crm/features/acceptance/domain/repository/acceptance_repository.dart';
@@ -18,14 +19,17 @@ class AcceptanceBloc extends Bloc<AcceptanceEvent, AcceptanceState> {
 
   AcceptanceBloc(this._repository)
       : super(const AcceptanceState(
-          stateStatus: StateStatus.initial(),
-          acceptanceEntity: [],
-        )) {
+            stateStatus: StateStatus.initial(),
+            acceptanceEntitys: [],
+            acceptanceEntity: null)) {
     on<_GetAcceptance>(_onGetAcceptance);
     on<_AddAcceptance>(_onAddAcceptance);
+    on<_GetAcceptanceById>(_onGetAcceptanceById,
+        transformer: debounceSequential(const Duration(milliseconds: 500)));
   }
 
-  FutureOr<void> _onGetAcceptance(_GetAcceptance event, Emitter<AcceptanceState> emit) async {
+  FutureOr<void> _onGetAcceptance(
+      _GetAcceptance event, Emitter<AcceptanceState> emit) async {
     emit(state.copyWith(stateStatus: const StateStatus.loading()));
 
     final result = await _repository.getAcceptance(
@@ -35,21 +39,47 @@ class AcceptanceBloc extends Bloc<AcceptanceEvent, AcceptanceState> {
     );
 
     result.fold((l) {
-      emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));
+      emit(state.copyWith(
+          stateStatus:
+              StateStatus.failure(message: l.message ?? l.toString())));
     }, (r) {
-      emit(state.copyWith(stateStatus: const StateStatus.success(), acceptanceEntity: r));
+      emit(state.copyWith(
+          stateStatus: const StateStatus.success(), acceptanceEntitys: r));
     });
   }
 
-  FutureOr<void> _onAddAcceptance(_AddAcceptance event, Emitter<AcceptanceState> emit) async {
+  FutureOr<void> _onAddAcceptance(
+      _AddAcceptance event, Emitter<AcceptanceState> emit) async {
     emit(state.copyWith(stateStatus: const StateStatus.loading()));
 
-    final result = await _repository.addAcceptance(createAcceptanceEntity: event.createAcceptanceEntity);
+    final result = await _repository.addAcceptance(
+        createAcceptanceEntity: event.createAcceptanceEntity);
 
     result.fold((l) {
-      emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));
+      emit(state.copyWith(
+          stateStatus:
+              StateStatus.failure(message: l.message ?? l.toString())));
     }, (r) {
       emit(state.copyWith(stateStatus: const StateStatus.success()));
+    });
+  }
+
+  FutureOr<void> _onGetAcceptanceById(
+      _GetAcceptanceById event, Emitter<AcceptanceState> emit) async {
+    emit(state.copyWith(stateStatus: const StateStatus.loading()));
+
+    final result = await _repository.getAcceptanceById(
+      acceptanceId: event.acceptanceId,
+    );
+    // print(result);
+
+    result.fold((l) {
+      emit(state.copyWith(
+          stateStatus:
+              StateStatus.failure(message: l.message ?? l.toString())));
+    }, (r) {
+      emit(state.copyWith(
+          stateStatus: const StateStatus.success(), acceptanceEntity: r));
     });
   }
 }

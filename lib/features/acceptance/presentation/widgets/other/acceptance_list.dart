@@ -15,6 +15,7 @@ class AcceptanceList extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return AcceptanceItem(
+          acceptanceEntity: acceptances[index],
           createDate: acceptances[index].createAt,
           whoAdded: acceptances[index].whoAdded ?? '',
           storage: acceptances[index].storage.title ?? '',

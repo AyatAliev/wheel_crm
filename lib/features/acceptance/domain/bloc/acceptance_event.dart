@@ -8,6 +8,12 @@ class AcceptanceEvent with _$AcceptanceEvent {
     int? storageId,
   }) = _GetAcceptance;
 
-  const factory AcceptanceEvent.addAcceptance({required CreateAcceptanceEntity createAcceptanceEntity}) =
+  const factory AcceptanceEvent.addAcceptance(
+          {required CreateAcceptanceEntity createAcceptanceEntity}) =
       _AddAcceptance;
+
+  const factory AcceptanceEvent.getAcceptanceById({
+    required int? acceptanceId,
+    // String? search,
+  }) = _GetAcceptanceById;
 }

@@ -28,7 +28,8 @@ class AcceptanceModel {
   factory AcceptanceModel.fromJson(Map<String, dynamic> json) {
     return AcceptanceModel(
       id: json['id'],
-      wheels: List<WheelModel>.from((json['wheels'] ?? []).map((x) => WheelModel.fromJson(x))),
+      wheels: List<WheelModel>.from(
+          (json['wheels'] ?? []).map((x) => WheelModel.fromJson(x))),
       createdAt: json['created_at'],
       user: json['user'],
       storage: StorageModel.fromJson(json['storage']),

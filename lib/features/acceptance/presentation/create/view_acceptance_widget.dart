@@ -6,6 +6,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wheel_crm/core/const/season_enum.dart';
 import 'package:wheel_crm/core/network/entity/state_status.dart';
 import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
+import 'package:wheel_crm/features/acceptance/domain/entity/acceptance_entity.dart';
 import 'package:wheel_crm/features/acceptance/domain/entity/create_acceptance_entity.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_create_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_detail_widget.dart';
@@ -18,18 +19,23 @@ import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
-class CreateAcceptanceWidget extends StatefulWidget {
-  const CreateAcceptanceWidget({super.key});
+class ViewAcceptanceWidget extends StatefulWidget {
+  final AcceptanceEntity? acceptanceEntity;
+  final bool editor;
+
+  const ViewAcceptanceWidget(
+      {super.key, this.acceptanceEntity, required this.editor});
 
   @override
-  State<CreateAcceptanceWidget> createState() => _CreateAcceptanceWidgetState();
+  State<ViewAcceptanceWidget> createState() => _ViewAcceptanceWidgetState();
 }
 
-class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
+class _ViewAcceptanceWidgetState extends State<ViewAcceptanceWidget> {
   late final MaskTextInputFormatter _maskFormatter;
   late final TextEditingController _dateController;
   late final ValueNotifier<String?> _selectedItemNotifier;
-  late final ValueNotifier<List<WheelEntity>> _notifierWheels = ValueNotifier([]);
+  late final ValueNotifier<List<WheelEntity>> _notifierWheels =
+      ValueNotifier([]);
 
   int _countWheel = 0;
   StorageEntity? _storageSelected;
@@ -39,6 +45,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   @override
   void initState() {
     super.initState();
+
     _maskFormatter = MaskTextInputFormatter(mask: '##-##-####');
     _dateController = TextEditingController();
     _selectedItemNotifier = ValueNotifier(null);
@@ -48,7 +55,8 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: BlocBuilder<StorageBloc, StorageState>(builder: (context, state) {
+      body: BlocBuilder<AcceptanceBloc, AcceptanceState>(
+          builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(AppProps.kPageMargin),
           child: SingleChildScrollView(
@@ -59,20 +67,24 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
                 const SizedBox(height: AppProps.kPageMargin),
                 const Divider(height: 1, color: AppColors.kDivider),
                 const SizedBox(height: AppProps.kPageMargin),
-                _buildRowSelectedDate(),
-                const SizedBox(height: AppProps.kPageMargin),
-                _buildWarehouseSelection(state.storages),
-                const SizedBox(height: AppProps.kPageMargin),
-                const Divider(height: 1, color: AppColors.kDivider),
-                const SizedBox(height: AppProps.kPageMargin),
-                _buildProductSelection(state.wheels),
-                _buildAddNewProduct(),
-                const SizedBox(height: AppProps.kPageMargin),
-                const Divider(height: 1, color: AppColors.kDivider),
-                const SizedBox(height: AppProps.kPageMargin),
-                _buildTotal(),
-                const SizedBox(height: AppProps.kBigMargin),
-                _buildSaveButton(),
+                _buildRowSelectedDate(state.acceptanceEntity?.createAt),
+                const SizedBox(
+                  height: AppProps.kPageMargin,
+                ),
+                // Text(state.acceptanceEntity!.id.toString()),
+                // Text(state.acceptanceEntity.)
+                // _buildWarehouseSelection(state.acceptanceEntity),
+                // const SizedBox(height: AppProps.kPageMargin),
+                // const Divider(height: 1, color: AppColors.kDivider),
+                // const SizedBox(height: AppProps.kPageMargin),
+                // _buildProductSelection(),
+                // _buildAddNewProduct(),
+                // const SizedBox(height: AppProps.kPageMargin),
+                // const Divider(height: 1, color: AppColors.kDivider),
+                // const SizedBox(height: AppProps.kPageMargin),
+                // _buildTotal(),
+                // const SizedBox(height: AppProps.kBigMargin),
+                // _buildSaveButton(),
               ],
             ),
           ),
@@ -81,27 +93,15 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     );
   }
 
-  Widget _buildRowSelectedDate() {
+  Widget _buildRowSelectedDate(DateTime? createAt) {
+    if (createAt == null) {
+      return Container(); // или любой другой виджет, чтобы обозначить отсутствие данных
+    }
     return GestureDetector(
       onTap: _selectedDate,
       child: Row(
         children: [
-          SizedBox(
-            width: 120,
-            child: AppInput.border(
-              inputType: TextInputType.number,
-              formatters: [_maskFormatter],
-              hintText: '__-__-____',
-              readOnly: true,
-              controller: _dateController,
-              onTap: _selectedDate,
-              boxDecoration: BoxDecoration(
-                color: AppColors.kWhite,
-                borderRadius: BorderRadius.circular(AppProps.kSmallX2BorderRadius),
-                border: Border.all(color: AppColors.kBorder),
-              ),
-            ),
-          ),
+          SizedBox(width: 120, child: Text(createAt.toString())),
           const SizedBox(width: AppProps.kSmallMargin),
           Assets.icons.icCalendar.svg(),
         ],
@@ -115,7 +115,8 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
       children: [
         Text(
           t.acceptanceDate,
-          style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
+          style:
+              AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
         ),
         GestureDetector(
           onTap: () => context.router.pop(),
@@ -125,34 +126,26 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     );
   }
 
-  Widget _buildWarehouseSelection(List<StorageEntity> storages) {
+  Widget _buildWarehouseSelection(AcceptanceEntity acceptanceEntity) {
     return ValueListenableBuilder(
       valueListenable: _selectedItemNotifier,
       builder: (context, value, child) {
-        return OverlayDropdown(
-          items: [t.choose, ...storages.map((e) => e.title ?? '')],
-          selectedItem: value,
-          onSelectItem: (val) => _onSelectedItemDropDown(storages, val),
-          child: Container(
-            margin: const EdgeInsets.only(right: 60),
-            child: DropDownSelectedWidget(
-              title: t.warehouseSpace,
-              desc: t.choose,
-              selectedValue: value,
-            ),
-          ),
+        return Container(
+          margin: const EdgeInsets.only(right: 60),
+          child: Text(acceptanceEntity!.storage.title!),
         );
       },
     );
   }
 
-  Widget _buildProductSelection(List<WheelEntity> wheels) {
+  Widget _buildProductSelection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           t.chooseProduct,
-          style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
+          style:
+              AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
         ),
         const SizedBox(height: AppProps.kMediumMargin),
         SeasonSelection(
@@ -179,7 +172,8 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  final newWheels = wheels..add(WheelEntity.empty(season: _season));
+                  final newWheels = wheels
+                    ..add(WheelEntity.empty(season: _season));
                   _notifierWheels.value = newWheels;
                 });
               },
@@ -217,7 +211,8 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
         padding: const EdgeInsets.only(top: AppProps.kPageMargin),
         child: Text(
           label,
-          style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kPrimary),
+          style:
+              AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kPrimary),
         ),
       ),
     );
@@ -230,11 +225,13 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
       children: [
         Text(
           t.total,
-          style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
+          style:
+              AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
         ),
         Text(
           _countWheel.toString(),
-          style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kPrimary),
+          style:
+              AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kPrimary),
         ),
       ],
     );
@@ -279,8 +276,12 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
       );
     } else {
       final storageWheels = context.read<StorageBloc>().state.wheels;
-      final existingWheels = _notifierWheels.value.where((e) => storageWheels.any((w) => w.title == e.title)).toList();
-      final newWheels = _notifierWheels.value.where((e) => !existingWheels.any((w) => w.title == e.title)).toList();
+      final existingWheels = _notifierWheels.value
+          .where((e) => storageWheels.any((w) => w.title == e.title))
+          .toList();
+      final newWheels = _notifierWheels.value
+          .where((e) => !existingWheels.any((w) => w.title == e.title))
+          .toList();
 
       context.read<AcceptanceBloc>().add(
             AcceptanceEvent.addAcceptance(
@@ -337,12 +338,15 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     }
   }
 
-  void _onSelectedItemDropDown(List<StorageEntity> storages, String? selectedItem) {
+  void _onSelectedItemDropDown(
+      List<StorageEntity> storages, String? selectedItem) {
     _selectedItemNotifier.value = selectedItem;
     _storageSelected = storages.firstWhere((e) => e.title == selectedItem);
 
     if (_storageSelected != null && _storageSelected?.id != null) {
-      context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!));
+      context
+          .read<StorageBloc>()
+          .add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!));
     }
   }
 

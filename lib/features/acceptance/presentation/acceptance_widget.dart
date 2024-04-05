@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
-import 'package:wheel_crm/features/acceptance/presentation/create/create_acceptance_widget.dart';
+import 'package:wheel_crm/features/acceptance/presentation/create/view_acceptance_widget.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/other/acceptance_list.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
+
+import 'create/create_acceptance_widget copy.dart';
 
 class AcceptanceWidget extends StatefulWidget {
   const AcceptanceWidget({super.key});
@@ -27,9 +29,9 @@ class _AcceptanceWidgetState extends State<AcceptanceWidget> {
           children: [
             SizedBox(
               width: double.infinity,
-              child: state.acceptanceEntity.isEmpty
+              child: state.acceptanceEntitys.isEmpty
                   ? _AcceptanceEmpty()
-                  : AcceptanceList(acceptances: state.acceptanceEntity),
+                  : AcceptanceList(acceptances: state.acceptanceEntitys),
             ),
             FabButtonWidget(
               onTap: () async {
@@ -37,15 +39,19 @@ class _AcceptanceWidgetState extends State<AcceptanceWidget> {
                   context: context,
                   child: MultiBlocProvider(
                     providers: [
-                      BlocProvider.value(value: BlocProvider.of<StorageBloc>(context)),
-                      BlocProvider.value(value: BlocProvider.of<AcceptanceBloc>(context)),
+                      BlocProvider.value(
+                          value: BlocProvider.of<StorageBloc>(context)),
+                      BlocProvider.value(
+                          value: BlocProvider.of<AcceptanceBloc>(context)),
                     ],
                     child: const CreateAcceptanceWidget(),
                   ),
                 );
 
                 if ((result ?? false) && context.mounted) {
-                  context.read<AcceptanceBloc>().add(const AcceptanceEvent.getAcceptance());
+                  context
+                      .read<AcceptanceBloc>()
+                      .add(const AcceptanceEvent.getAcceptance());
                 }
               },
             ),
@@ -53,7 +59,9 @@ class _AcceptanceWidgetState extends State<AcceptanceWidget> {
               valueListenable: _isLoading,
               builder: (BuildContext context, bool value, Widget? child) {
                 if (value) {
-                  return const Center(child: CircularProgressIndicator(color: AppColors.kPrimary));
+                  return const Center(
+                      child:
+                          CircularProgressIndicator(color: AppColors.kPrimary));
                 }
 
                 return const SizedBox();
@@ -100,7 +108,8 @@ class _AcceptanceEmpty extends StatelessWidget {
           const SizedBox(height: AppProps.kSmallMargin),
           Text(
             t.addedAcceptance,
-            style: AppTextStyle.secondaryStyle.copyWith(color: AppColors.kGreyDark),
+            style: AppTextStyle.secondaryStyle
+                .copyWith(color: AppColors.kGreyDark),
             textAlign: TextAlign.center,
           ),
         ],

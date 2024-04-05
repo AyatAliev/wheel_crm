@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
+import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
+import 'package:wheel_crm/features/acceptance/domain/entity/acceptance_entity.dart';
+import 'package:wheel_crm/features/acceptance/presentation/create/view_acceptance_widget.dart';
+import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
+import 'package:wheel_crm/injection/injection.dart';
 
 class AcceptanceItem extends StatelessWidget {
+  final AcceptanceEntity acceptanceEntity;
   final DateTime createDate;
   final String whoAdded;
   final String storage;
@@ -15,14 +22,13 @@ class AcceptanceItem extends StatelessWidget {
     required this.storage,
     required this.count,
     required this.isLastItem,
+    required this.acceptanceEntity,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('dfgdfg');
-      },
+      onTap: () => onTapItem(context),
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(
@@ -70,6 +76,34 @@ class AcceptanceItem extends StatelessWidget {
                 primary: true, fontWeight: FontWeight.w600, fontSize: 16),
             const SizedBox(height: AppProps.kSmallMargin),
           ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> onTapItem(BuildContext context) async {
+    AppBottomSheet.show(
+      context: context,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => getIt<AcceptanceBloc>()
+              ..add(
+                AcceptanceEvent.getAcceptanceById(
+                    acceptanceId: acceptanceEntity.id),
+              ),
+          ),
+          // BlocProvider(
+          //   create: (_) =>
+          //       getIt<StorageBloc>()..add(const StorageEvent.getStorages()),
+          // ),
+        ],
+        child: Padding(
+          padding: const EdgeInsets.all(AppProps.kPageMargin),
+          child: ViewAcceptanceWidget(
+            acceptanceEntity: acceptanceEntity,
+            editor: true,
+          ),
         ),
       ),
     );
