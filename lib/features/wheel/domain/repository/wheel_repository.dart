@@ -5,6 +5,6 @@ import 'package:wheel_crm/features/wheel/domain/entity/sales_entity.dart';
 
 abstract class WheelRepository {
   Future<Either<Failure, SalesDetailEntity>> getWheelsById({required int wheelId});
-  Future<Either<Failure, List<SalesEntity>>> getSales();
+  Future<Either<Failure, List<SalesEntity>>> getActions();
   Future<Either<Failure, String>> addWheel(SalesDetailEntity salesDetailEntity);
 }

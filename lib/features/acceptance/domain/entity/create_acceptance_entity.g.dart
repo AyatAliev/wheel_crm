@@ -15,6 +15,8 @@ abstract class _$CreateAcceptanceEntityCWProxy {
 
   CreateAcceptanceEntity newWheels(List<WheelEntity> newWheels);
 
+  CreateAcceptanceEntity season(String season);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateAcceptanceEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -26,6 +28,7 @@ abstract class _$CreateAcceptanceEntityCWProxy {
     int? storage,
     List<WheelEntity>? wheels,
     List<WheelEntity>? newWheels,
+    String? season,
   });
 }
 
@@ -52,6 +55,9 @@ class _$CreateAcceptanceEntityCWProxyImpl
       this(newWheels: newWheels);
 
   @override
+  CreateAcceptanceEntity season(String season) => this(season: season);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateAcceptanceEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -64,6 +70,7 @@ class _$CreateAcceptanceEntityCWProxyImpl
     Object? storage = const $CopyWithPlaceholder(),
     Object? wheels = const $CopyWithPlaceholder(),
     Object? newWheels = const $CopyWithPlaceholder(),
+    Object? season = const $CopyWithPlaceholder(),
   }) {
     return CreateAcceptanceEntity(
       createAt: createAt == const $CopyWithPlaceholder() || createAt == null
@@ -82,6 +89,10 @@ class _$CreateAcceptanceEntityCWProxyImpl
           ? _value.newWheels
           // ignore: cast_nullable_to_non_nullable
           : newWheels as List<WheelEntity>,
+      season: season == const $CopyWithPlaceholder() || season == null
+          ? _value.season
+          // ignore: cast_nullable_to_non_nullable
+          : season as String,
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:auto_route/annotations.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
@@ -107,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => getIt<AcceptanceBloc>()),
-            BlocProvider(create: (_) => getIt<WheelBloc>()..add(const WheelEvent.getSales())),
+            BlocProvider(create: (_) => getIt<WheelBloc>()..add(const WheelEvent.getActions())),
             BlocProvider(create: (_) => getIt<StorageBloc>()..add(const StorageEvent.getStorages())),
           ],
           child: const WheelWidget(),

@@ -20,15 +20,15 @@ class WheelDataSourceImpl extends WheelDataSource {
   }
 
   @override
-  Future<List<SalesModel>> getSales() async {
-    final result = await _client.get(HttpPaths.getSales);
+  Future<List<SalesModel>> getActions() async {
+    final result = await _client.get(HttpPaths.getActions);
 
     return (result.data as List).map((e) => SalesModel.fromJson(e)).toList();
   }
 
   @override
   Future<String> addWheel(SalesDetailEntity salesDetailEntity) async {
-    final result = await _client.post(HttpPaths.getSales, data: salesDetailEntity.toJson());
+    final result = await _client.post(HttpPaths.getActions, data: salesDetailEntity.toJson());
 
     return result.data['msg'];
   }

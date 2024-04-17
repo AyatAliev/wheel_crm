@@ -54,7 +54,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 _buildDateSelection(),
                 const SizedBox(height: AppProps.kPageMargin),
                 const Divider(height: 1, color: AppColors.kDivider),
@@ -179,7 +179,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  final newWheels = wheels..add(WheelEntity.empty(season: _season));
+                  final newWheels = wheels..add(WheelEntity.empty());
                   _notifierWheels.value = newWheels;
                 });
               },
@@ -285,6 +285,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
       context.read<AcceptanceBloc>().add(
             AcceptanceEvent.addAcceptance(
               createAcceptanceEntity: CreateAcceptanceEntity(
+                season: _season,
                 createAt: _dateController.text.parceddMMyyyy()!,
                 storage: _storageSelected!.id!,
                 wheels: existingWheels,

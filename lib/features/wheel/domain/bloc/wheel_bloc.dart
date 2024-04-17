@@ -22,7 +22,7 @@ class WheelBloc extends Bloc<WheelEvent, WheelState> {
           sales: [],
         )) {
     on<_GetWheelsById>(_onGetWheelsById);
-    on<_GetSales>(_onGetSales);
+    on<_GetActions>(_onGetSales);
     on<_AddWheel>(_onAddWheel);
   }
 
@@ -40,10 +40,10 @@ class WheelBloc extends Bloc<WheelEvent, WheelState> {
     });
   }
 
-  FutureOr<void> _onGetSales(_GetSales event, Emitter<WheelState> emit) async {
+  FutureOr<void> _onGetSales(_GetActions event, Emitter<WheelState> emit) async {
     emit(state.copyWith(stateStatus: const StateStatus.loading()));
 
-    final result = await _repository.getSales();
+    final result = await _repository.getActions();
 
     result.fold((l) {
       emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));

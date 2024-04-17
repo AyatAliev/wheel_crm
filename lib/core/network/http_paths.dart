@@ -12,6 +12,6 @@ class HttpPaths {
   static getStoryById(int storageId) => '$baseUrl/products/storages/$storageId';
 
   /// Actions
-  static const getSales = '$baseUrl/actions/sales/';
+  static const getActions = '$baseUrl/actions/';
   static getSaleById(int saleId) => '$baseUrl/actions/sales/$saleId';
 }

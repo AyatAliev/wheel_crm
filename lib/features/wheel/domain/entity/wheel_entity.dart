@@ -22,7 +22,7 @@ class WheelEntity {
         isRead = true,
         countController = TextEditingController(text: amount == 0 ? null : amount.toString());
 
-  WheelEntity.empty({required this.season})
+  WheelEntity.empty()
       : id = ++_idCounter,
         isRead = false,
         nameController = TextEditingController(),
@@ -37,7 +37,7 @@ class WheelEntity {
         "amount": amount,
         "title": title,
         "price": 2100,
-        "season": season,
+        if (season != null) "season": season,
       };
 
   @override

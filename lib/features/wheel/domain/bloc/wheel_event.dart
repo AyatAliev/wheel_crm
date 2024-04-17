@@ -4,5 +4,5 @@ part of 'wheel_bloc.dart';
 class WheelEvent with _$WheelEvent {
   const factory WheelEvent.getWheelsById({required int wheelId}) = _GetWheelsById;
   const factory WheelEvent.addWheel({required SalesDetailEntity salesDetailEntity}) = _AddWheel;
-  const factory WheelEvent.getSales() = _GetSales;
+  const factory WheelEvent.getActions() = _GetActions;
 }
