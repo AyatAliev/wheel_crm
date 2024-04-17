@@ -9,6 +9,7 @@ part 'create_acceptance_entity.g.dart';
 class CreateAcceptanceEntity {
   final DateTime createAt;
   final int storage;
+  final String season;
   final List<WheelEntity> wheels;
   final List<WheelEntity> newWheels;
 
@@ -17,11 +18,13 @@ class CreateAcceptanceEntity {
     required this.storage,
     required this.wheels,
     required this.newWheels,
+    required this.season,
   });
 
   Map<String, dynamic> toJson() => {
         "created_at": createAt.formatyyyyHyphenMMdd(),
         "storage": storage,
+        "season": season,
         "wheels": wheels.map((e) => e.toJson()).toList(),
         "new_wheels": newWheels.map((e) => e.toJson()).toList(),
       };
@@ -32,6 +35,7 @@ class CreateAcceptanceEntity {
       other is CreateAcceptanceEntity &&
           runtimeType == other.runtimeType &&
           createAt == other.createAt &&
+          season == other.season &&
           storage == other.storage &&
           const ListEquality<WheelEntity>().equals(wheels, other.wheels) &&
           const ListEquality<WheelEntity>().equals(newWheels, other.newWheels);
@@ -40,11 +44,12 @@ class CreateAcceptanceEntity {
   int get hashCode =>
       createAt.hashCode ^
       storage.hashCode ^
+      season.hashCode ^
       const ListEquality<WheelEntity>().hash(wheels) ^
       const ListEquality<WheelEntity>().hash(newWheels);
 
   @override
   String toString() {
-    return 'CreateAcceptanceEntity{createAt: $createAt, storage: $storage, wheels: $wheels, newWheels: $newWheels}';
+    return 'CreateAcceptanceEntity{createAt: $createAt, storage: $storage, season: $season, wheels: $wheels, newWheels: $newWheels}';
   }
 }

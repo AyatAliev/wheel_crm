@@ -43,7 +43,7 @@ class _WheelWidgetState extends State<WheelWidget> {
                 );
 
                 if ((result ?? false) && context.mounted) {
-                  context.read<WheelBloc>().add(const WheelEvent.getSales());
+                  context.read<WheelBloc>().add(const WheelEvent.getActions());
                 }
               },
             ),

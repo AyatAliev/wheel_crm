@@ -31,9 +31,9 @@ class WheelRepositoryImpl extends WheelRepository {
   }
 
   @override
-  Future<Either<Failure, List<SalesEntity>>> getSales() async {
+  Future<Either<Failure, List<SalesEntity>>> getActions() async {
     try {
-      final result = await _dataSource.getSales();
+      final result = await _dataSource.getActions();
 
       final sales = result.map((e) => _salesConverter.convert(e)).toList();
       return Right(sales);

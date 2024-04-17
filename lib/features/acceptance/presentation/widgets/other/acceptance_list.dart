@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/features/acceptance/domain/entity/acceptance_entity.dart';
-import 'package:wheel_crm/features/acceptance/presentation/widgets/filter/acceptance_filter.dart';
 import 'package:wheel_crm/features/acceptance/presentation/widgets/other/acceptance_item.dart';
 
 class AcceptanceList extends StatelessWidget {

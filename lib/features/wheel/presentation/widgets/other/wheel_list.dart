@@ -50,7 +50,7 @@ class WheelList extends StatelessWidget {
     );
 
     if ((result ?? false) && context.mounted) {
-      context.read<WheelBloc>().add(const WheelEvent.getSales());
+      context.read<WheelBloc>().add(const WheelEvent.getActions());
     }
   }
 }
