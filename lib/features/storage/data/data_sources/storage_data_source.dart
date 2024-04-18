@@ -7,5 +7,6 @@ abstract class StorageDataSource {
   Future<List<WheelModel>> getStoragesById({
     required int storageId,
     required String search,
+    String? season,
   });
 }

@@ -22,10 +22,14 @@ class StorageDataSourceImpl extends StorageDataSource {
   Future<List<WheelModel>> getStoragesById({
     required int storageId,
     required String search,
+    String? season,
   }) async {
     final result = await _client.get(
       HttpPaths.getStoryById(storageId),
-      queryParameters: {'search': search},
+      queryParameters: {
+        'search': search,
+        if (season != null) 'season': season,
+      },
     );
 
     return (result.data as List).map((e) => WheelModel.fromJson(e)).toList();

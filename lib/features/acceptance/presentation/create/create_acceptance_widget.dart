@@ -159,6 +159,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
           selected: _season,
           onTap: (String text) {
             _season = text;
+            context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!, season: _season));
           },
         ),
         GestureDetector(
@@ -320,7 +321,8 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
             child: WheelDetailWidget(
               storage: _storageSelected,
               selectedItems: _notifierWheels.value,
-              editor: true,
+              viewing: false,
+              season: _season,
             ),
           ),
         ),
@@ -343,7 +345,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     _storageSelected = storages.firstWhere((e) => e.title == selectedItem);
 
     if (_storageSelected != null && _storageSelected?.id != null) {
-      context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!));
+      context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!, season: _season));
     }
   }
 
