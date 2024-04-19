@@ -21,6 +21,7 @@ class CalendarRoomModelToEntity extends Converter<AcceptanceModel, AcceptanceEnt
       createAt: input.createdAt.parceyyyyHyphenMMdd(),
       storage: getIt<Converter<StorageModel, StorageEntity>>().convert(input.storage),
       amount: input.amount,
+      season: input.season,
     );
   }
 }

@@ -15,6 +15,7 @@ class AcceptanceModel {
   final String user;
   final StorageModel storage;
   final int amount;
+  final String season;
 
   AcceptanceModel({
     required this.id,
@@ -23,6 +24,7 @@ class AcceptanceModel {
     required this.user,
     required this.storage,
     required this.amount,
+    required this.season,
   });
 
   factory AcceptanceModel.fromJson(Map<String, dynamic> json) {
@@ -32,7 +34,8 @@ class AcceptanceModel {
       createdAt: json['created_at'],
       user: json['user'],
       storage: StorageModel.fromJson(json['storage']),
-      amount: json['amount'],
+      amount: json['amount'] ?? 0,
+      season: json['season'] ?? '',
     );
   }
 }

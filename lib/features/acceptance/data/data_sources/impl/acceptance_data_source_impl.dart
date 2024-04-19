@@ -29,4 +29,11 @@ class AcceptanceDataSourceImpl extends AcceptanceDataSource {
   Future<void> addAcceptance({required CreateAcceptanceEntity createAcceptanceEntity}) async {
     await _client.post(HttpPaths.acceptance, data: createAcceptanceEntity.toJson());
   }
+
+  @override
+  Future<AcceptanceModel> getAcceptanceById({required int id}) async {
+    final result = await _client.get(HttpPaths.getAcceptanceById(id));
+
+    return AcceptanceModel.fromJson(result.data);
+  }
 }

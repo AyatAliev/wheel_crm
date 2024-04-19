@@ -19,6 +19,8 @@ abstract class _$AcceptanceEntityCWProxy {
 
   AcceptanceEntity amount(int amount);
 
+  AcceptanceEntity season(String season);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AcceptanceEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +34,7 @@ abstract class _$AcceptanceEntityCWProxy {
     DateTime? createAt,
     StorageEntity? storage,
     int? amount,
+    String? season,
   });
 }
 
@@ -60,6 +63,9 @@ class _$AcceptanceEntityCWProxyImpl implements _$AcceptanceEntityCWProxy {
   AcceptanceEntity amount(int amount) => this(amount: amount);
 
   @override
+  AcceptanceEntity season(String season) => this(season: season);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AcceptanceEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -74,6 +80,7 @@ class _$AcceptanceEntityCWProxyImpl implements _$AcceptanceEntityCWProxy {
     Object? createAt = const $CopyWithPlaceholder(),
     Object? storage = const $CopyWithPlaceholder(),
     Object? amount = const $CopyWithPlaceholder(),
+    Object? season = const $CopyWithPlaceholder(),
   }) {
     return AcceptanceEntity(
       id: id == const $CopyWithPlaceholder()
@@ -100,6 +107,10 @@ class _$AcceptanceEntityCWProxyImpl implements _$AcceptanceEntityCWProxy {
           ? _value.amount
           // ignore: cast_nullable_to_non_nullable
           : amount as int,
+      season: season == const $CopyWithPlaceholder() || season == null
+          ? _value.season
+          // ignore: cast_nullable_to_non_nullable
+          : season as String,
     );
   }
 }

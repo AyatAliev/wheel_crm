@@ -244,8 +244,15 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
   Widget _buildSaveButton() {
     return BlocConsumer<AcceptanceBloc, AcceptanceState>(
       listener: (context, state) {
-        if (state.stateStatus is SuccessStatus) {
+        if (state.stateStatus is SuccessStatus &&
+            (state.stateStatus as SuccessStatus).value == AcceptanceStateSuccess.successCreate) {
           context.router.pop(true);
+        } else if (state.stateStatus is SuccessStatus && state.acceptanceEntity != null) {
+          _selectedItemNotifier.value = state.acceptanceEntity!.storage.title;
+          _storageSelected = state.acceptanceEntity?.storage;
+          _notifierWheels.value = state.acceptanceEntity?.wheels ?? [];
+          _season = state.acceptanceEntity!.season;
+          _dateController.text = state.acceptanceEntity!.createAt.formatddMMyyyy();
         }
       },
       builder: (context, state) {

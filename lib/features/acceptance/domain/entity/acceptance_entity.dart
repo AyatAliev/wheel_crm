@@ -12,6 +12,7 @@ class AcceptanceEntity {
   final int amount;
   final StorageEntity storage;
   final List<WheelEntity> wheels;
+  final String season;
 
   AcceptanceEntity({
     this.id,
@@ -20,6 +21,7 @@ class AcceptanceEntity {
     required this.createAt,
     required this.storage,
     required this.amount,
+    required this.season,
   });
 
   Map<String, dynamic> toJson() => {
