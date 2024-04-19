@@ -27,9 +27,9 @@ class _AcceptanceWidgetState extends State<AcceptanceWidget> {
           children: [
             SizedBox(
               width: double.infinity,
-              child: state.acceptanceEntity.isEmpty
+              child: state.acceptanceEntities.isEmpty
                   ? _AcceptanceEmpty()
-                  : AcceptanceList(acceptances: state.acceptanceEntity),
+                  : AcceptanceList(acceptances: state.acceptanceEntities),
             ),
             FabButtonWidget(
               onTap: () async {

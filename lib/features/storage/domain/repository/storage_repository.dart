@@ -9,5 +9,6 @@ abstract class StorageRepository {
   Future<Either<Failure, List<WheelEntity>>> getStoragesById({
     required int storageId,
     required String search,
+    required String? season,
   });
 }

@@ -20,7 +20,8 @@ class WheelDetailWidget extends StatefulWidget {
   final WheelEntity? deletedItem;
   final StorageEntity? storage;
   final List<WheelEntity>? selectedItems;
-  final bool editor;
+  final bool viewing;
+  final String? season;
 
   const WheelDetailWidget({
     super.key,
@@ -31,7 +32,8 @@ class WheelDetailWidget extends StatefulWidget {
     this.deletedItem,
     this.storage,
     this.selectedItems,
-    this.editor = false,
+    this.viewing = false,
+    this.season,
   });
 
   @override
@@ -154,7 +156,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
               },
               itemCount: state.wheels.length,
             ),
-            if (widget.editor == false) _buildSaveButton(),
+            if (widget.viewing == false) _buildSaveButton(),
             if (state.wheels.isEmpty && state.stateStatus is SuccessStatus)
               const Center(
                 child: Text(
@@ -191,7 +193,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
   }
 
   void _toggleSelection(WheelEntity wheel) {
-    if (widget.editor == false) {
+    if (widget.viewing == false) {
       setState(() {
         if (_selectedWheels.contains(wheel)) {
           _selectedWheels.remove(wheel);
@@ -209,6 +211,8 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
   }
 
   void onChangeSearch(String val) {
-    context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: widget.storage!.id!, search: val));
+    context
+        .read<StorageBloc>()
+        .add(StorageEvent.getStoragesById(storageId: widget.storage!.id!, search: val, season: widget.season));
   }
 }

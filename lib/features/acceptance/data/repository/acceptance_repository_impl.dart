@@ -19,8 +19,11 @@ class AcceptanceRepositoryImpl extends AcceptanceRepository {
   AcceptanceRepositoryImpl(this._dataSource, this._converter);
 
   @override
-  Future<Either<Failure, List<AcceptanceEntity>>> getAcceptance(
-      {DateTime? startDate, DateTime? endDate, int? storageId}) async {
+  Future<Either<Failure, List<AcceptanceEntity>>> getAcceptance({
+    DateTime? startDate,
+    DateTime? endDate,
+    int? storageId,
+  }) async {
     try {
       final result = await _dataSource.getAcceptance(startDate: startDate, endDate: endDate, storageId: storageId);
 
@@ -37,6 +40,16 @@ class AcceptanceRepositoryImpl extends AcceptanceRepository {
       await _dataSource.addAcceptance(createAcceptanceEntity: createAcceptanceEntity);
 
       return Success.right;
+    } catch (e) {
+      return onRepositoryException(e);
+    }
+  }
+
+  @override
+  Future<Either<Failure, AcceptanceEntity>> getAcceptanceById({required int id}) async {
+    try {
+      final result = await _dataSource.getAcceptanceById(id: id);
+      return Right(_converter.convert(result));
     } catch (e) {
       return onRepositoryException(e);
     }

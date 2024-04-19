@@ -19,10 +19,11 @@ class AcceptanceBloc extends Bloc<AcceptanceEvent, AcceptanceState> {
   AcceptanceBloc(this._repository)
       : super(const AcceptanceState(
           stateStatus: StateStatus.initial(),
-          acceptanceEntity: [],
+          acceptanceEntities: [],
         )) {
     on<_GetAcceptance>(_onGetAcceptance);
     on<_AddAcceptance>(_onAddAcceptance);
+    on<_GetAcceptanceById>(_onGetAcceptanceById);
   }
 
   FutureOr<void> _onGetAcceptance(_GetAcceptance event, Emitter<AcceptanceState> emit) async {
@@ -33,6 +34,18 @@ class AcceptanceBloc extends Bloc<AcceptanceEvent, AcceptanceState> {
       endDate: event.endDate,
       storageId: event.storageId,
     );
+
+    result.fold((l) {
+      emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));
+    }, (r) {
+      emit(state.copyWith(stateStatus: const StateStatus.success(), acceptanceEntities: r));
+    });
+  }
+
+  FutureOr<void> _onGetAcceptanceById(_GetAcceptanceById event, Emitter<AcceptanceState> emit) async {
+    emit(state.copyWith(stateStatus: const StateStatus.loading()));
+
+    final result = await _repository.getAcceptanceById(id: event.id);
 
     result.fold((l) {
       emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));
@@ -49,7 +62,11 @@ class AcceptanceBloc extends Bloc<AcceptanceEvent, AcceptanceState> {
     result.fold((l) {
       emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));
     }, (r) {
-      emit(state.copyWith(stateStatus: const StateStatus.success()));
+      emit(state.copyWith(stateStatus: const StateStatus.success(AcceptanceStateSuccess.successCreate)));
     });
   }
+}
+
+enum AcceptanceStateSuccess {
+  successCreate
 }

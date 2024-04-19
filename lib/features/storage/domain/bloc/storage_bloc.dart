@@ -44,7 +44,7 @@ class StorageBloc extends Bloc<StorageEvent, StorageState> {
   FutureOr<void> _onGetStoragesById(_GetStoragesById event, Emitter<StorageState> emit) async {
     emit(state.copyWith(stateStatus: const StateStatus.loading()));
 
-    final result = await _repository.getStoragesById(storageId: event.storageId, search: event.search ?? '');
+    final result = await _repository.getStoragesById(storageId: event.storageId, search: event.search ?? '', season: event.season);
 
     result.fold((l) {
       emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));

@@ -11,5 +11,7 @@ abstract class AcceptanceRepository {
     int? storageId,
   });
 
+  Future<Either<Failure, AcceptanceEntity>> getAcceptanceById({required int id});
+
   Future<Either<Failure, Success>> addAcceptance({required CreateAcceptanceEntity createAcceptanceEntity});
 }

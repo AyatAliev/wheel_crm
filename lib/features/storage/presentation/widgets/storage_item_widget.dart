@@ -75,11 +75,15 @@ class StorageItemWidget extends StatelessWidget {
       child: BlocProvider(
         create: (_) => getIt<StorageBloc>()
           ..add(
-            StorageEvent.getStoragesById(storageId: storage.id!),
+            StorageEvent.getStoragesById(storageId: storage.id!, season: ''),
           ),
         child: Padding(
           padding: const EdgeInsets.all(AppProps.kPageMargin),
-          child: WheelDetailWidget(storage: storage, editor: true,),
+          child: WheelDetailWidget(
+            storage: storage,
+            viewing: true,
+            season: '',
+          ),
         ),
       ),
     );

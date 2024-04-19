@@ -19,19 +19,22 @@ mixin _$StorageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getStorages,
-    required TResult Function(int storageId, String? search) getStoragesById,
+    required TResult Function(int storageId, String? season, String? search)
+        getStoragesById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStorages,
-    TResult? Function(int storageId, String? search)? getStoragesById,
+    TResult? Function(int storageId, String? season, String? search)?
+        getStoragesById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStorages,
-    TResult Function(int storageId, String? search)? getStoragesById,
+    TResult Function(int storageId, String? season, String? search)?
+        getStoragesById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +116,8 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getStorages,
-    required TResult Function(int storageId, String? search) getStoragesById,
+    required TResult Function(int storageId, String? season, String? search)
+        getStoragesById,
   }) {
     return getStorages();
   }
@@ -122,7 +126,8 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStorages,
-    TResult? Function(int storageId, String? search)? getStoragesById,
+    TResult? Function(int storageId, String? season, String? search)?
+        getStoragesById,
   }) {
     return getStorages?.call();
   }
@@ -131,7 +136,8 @@ class _$GetStoragesImpl implements _GetStorages {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStorages,
-    TResult Function(int storageId, String? search)? getStoragesById,
+    TResult Function(int storageId, String? season, String? search)?
+        getStoragesById,
     required TResult orElse(),
   }) {
     if (getStorages != null) {
@@ -182,7 +188,7 @@ abstract class _$$GetStoragesByIdImplCopyWith<$Res> {
           $Res Function(_$GetStoragesByIdImpl) then) =
       __$$GetStoragesByIdImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int storageId, String? search});
+  $Res call({int storageId, String? season, String? search});
 }
 
 /// @nodoc
@@ -197,6 +203,7 @@ class __$$GetStoragesByIdImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? storageId = null,
+    Object? season = freezed,
     Object? search = freezed,
   }) {
     return _then(_$GetStoragesByIdImpl(
@@ -204,6 +211,10 @@ class __$$GetStoragesByIdImplCopyWithImpl<$Res>
           ? _value.storageId
           : storageId // ignore: cast_nullable_to_non_nullable
               as int,
+      season: freezed == season
+          ? _value.season
+          : season // ignore: cast_nullable_to_non_nullable
+              as String?,
       search: freezed == search
           ? _value.search
           : search // ignore: cast_nullable_to_non_nullable
@@ -215,16 +226,19 @@ class __$$GetStoragesByIdImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetStoragesByIdImpl implements _GetStoragesById {
-  const _$GetStoragesByIdImpl({required this.storageId, this.search});
+  const _$GetStoragesByIdImpl(
+      {required this.storageId, this.season, this.search});
 
   @override
   final int storageId;
+  @override
+  final String? season;
   @override
   final String? search;
 
   @override
   String toString() {
-    return 'StorageEvent.getStoragesById(storageId: $storageId, search: $search)';
+    return 'StorageEvent.getStoragesById(storageId: $storageId, season: $season, search: $search)';
   }
 
   @override
@@ -234,11 +248,12 @@ class _$GetStoragesByIdImpl implements _GetStoragesById {
             other is _$GetStoragesByIdImpl &&
             (identical(other.storageId, storageId) ||
                 other.storageId == storageId) &&
+            (identical(other.season, season) || other.season == season) &&
             (identical(other.search, search) || other.search == search));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, storageId, search);
+  int get hashCode => Object.hash(runtimeType, storageId, season, search);
 
   @JsonKey(ignore: true)
   @override
@@ -251,29 +266,32 @@ class _$GetStoragesByIdImpl implements _GetStoragesById {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getStorages,
-    required TResult Function(int storageId, String? search) getStoragesById,
+    required TResult Function(int storageId, String? season, String? search)
+        getStoragesById,
   }) {
-    return getStoragesById(storageId, search);
+    return getStoragesById(storageId, season, search);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getStorages,
-    TResult? Function(int storageId, String? search)? getStoragesById,
+    TResult? Function(int storageId, String? season, String? search)?
+        getStoragesById,
   }) {
-    return getStoragesById?.call(storageId, search);
+    return getStoragesById?.call(storageId, season, search);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStorages,
-    TResult Function(int storageId, String? search)? getStoragesById,
+    TResult Function(int storageId, String? season, String? search)?
+        getStoragesById,
     required TResult orElse(),
   }) {
     if (getStoragesById != null) {
-      return getStoragesById(storageId, search);
+      return getStoragesById(storageId, season, search);
     }
     return orElse();
   }
@@ -313,9 +331,11 @@ class _$GetStoragesByIdImpl implements _GetStoragesById {
 abstract class _GetStoragesById implements StorageEvent {
   const factory _GetStoragesById(
       {required final int storageId,
+      final String? season,
       final String? search}) = _$GetStoragesByIdImpl;
 
   int get storageId;
+  String? get season;
   String? get search;
   @JsonKey(ignore: true)
   _$$GetStoragesByIdImplCopyWith<_$GetStoragesByIdImpl> get copyWith =>
