@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wheel_crm/core/const/season_enum.dart';
@@ -79,37 +80,39 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
                 ),
               ),
             ),
-            Positioned(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  color: AppColors.kGrey,
-                  width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 60,
-                        child: AppButton(
-                          borderRadius: 0,
-                          onTap: () {
-                            for (WheelEntity element in _notifierWheels.value) {
-                              print(element.focusNode.hasFocus);
-                              if (element.focusNode.hasFocus) {
-                                final newElement = element..nameController.text = '${element.nameController.text}C';
-                                print(newElement);
-                                final List<WheelEntity> list = _notifierWheels.value.toList()..remove(element)..add(newElement);
-                                _notifierWheels.value = list;
-                              }
-                            }
-                          },
-                          text: 'C',
-                        ),
-                      )
-                    ],
+            KeyboardVisibilityBuilder(
+              builder: (context, isKeyboardVisible) {
+                return isKeyboardVisible ? Positioned(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      color: AppColors.kGrey,
+                      width: double.infinity,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            width: 60,
+                            child: AppButton(
+                              borderRadius: 0,
+                              onTap: () {
+                                for (WheelEntity element in _notifierWheels.value) {
+                                  if (element.focusNode.hasFocus) {
+                                    final newElement = element..nameController.text = '${element.nameController.text}C';
+                                    final List<WheelEntity> list = _notifierWheels.value.toList()..remove(element)..add(newElement);
+                                    _notifierWheels.value = list;
+                                  }
+                                }
+                              },
+                              text: 'C',
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                ) : const SizedBox();
+              }
             )
           ],
         );
