@@ -49,33 +49,69 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: BlocBuilder<StorageBloc, StorageState>(builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.all(AppProps.kPageMargin),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildDateSelection(),
-                const SizedBox(height: AppProps.kPageMargin),
-                const Divider(height: 1, color: AppColors.kDivider),
-                const SizedBox(height: AppProps.kPageMargin),
-                _buildRowSelectedDate(),
-                const SizedBox(height: AppProps.kPageMargin),
-                _buildWarehouseSelection(state.storages),
-                const SizedBox(height: AppProps.kPageMargin),
-                const Divider(height: 1, color: AppColors.kDivider),
-                const SizedBox(height: AppProps.kPageMargin),
-                _buildProductSelection(state.wheels),
-                _buildAddNewProduct(),
-                const SizedBox(height: AppProps.kPageMargin),
-                const Divider(height: 1, color: AppColors.kDivider),
-                const SizedBox(height: AppProps.kPageMargin),
-                _buildTotal(),
-                const SizedBox(height: AppProps.kBigMargin),
-                _buildSaveButton(),
-              ],
+        return Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(AppProps.kPageMargin),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildDateSelection(),
+                    const SizedBox(height: AppProps.kPageMargin),
+                    const Divider(height: 1, color: AppColors.kDivider),
+                    const SizedBox(height: AppProps.kPageMargin),
+                    _buildRowSelectedDate(),
+                    const SizedBox(height: AppProps.kPageMargin),
+                    _buildWarehouseSelection(state.storages),
+                    const SizedBox(height: AppProps.kPageMargin),
+                    const Divider(height: 1, color: AppColors.kDivider),
+                    const SizedBox(height: AppProps.kPageMargin),
+                    _buildProductSelection(state.wheels),
+                    _buildAddNewProduct(),
+                    const SizedBox(height: AppProps.kPageMargin),
+                    const Divider(height: 1, color: AppColors.kDivider),
+                    const SizedBox(height: AppProps.kPageMargin),
+                    _buildTotal(),
+                    const SizedBox(height: AppProps.kBigMargin),
+                    _buildSaveButton(),
+                  ],
+                ),
+              ),
             ),
-          ),
+            Positioned(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  color: AppColors.kGrey,
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        width: 60,
+                        child: AppButton(
+                          borderRadius: 0,
+                          onTap: () {
+                            for (WheelEntity element in _notifierWheels.value) {
+                              print(element.focusNode.hasFocus);
+                              if (element.focusNode.hasFocus) {
+                                final newElement = element..nameController.text = '${element.nameController.text}C';
+                                print(newElement);
+                                final List<WheelEntity> list = _notifierWheels.value.toList()..remove(element)..add(newElement);
+                                _notifierWheels.value = list;
+                              }
+                            }
+                          },
+                          text: 'C',
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
         );
       }),
     );

@@ -1,4 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 part 'wheel_entity.g.dart';
@@ -10,6 +11,7 @@ class WheelEntity {
   int? id;
   TextEditingController nameController;
   TextEditingController countController;
+  FocusNode focusNode;
   bool isRead;
   String? season;
 
@@ -19,6 +21,7 @@ class WheelEntity {
     required String? title,
     required this.season,
   })  : nameController = TextEditingController(text: title),
+        focusNode = FocusNode(),
         isRead = true,
         countController = TextEditingController(text: amount == 0 ? null : amount.toString());
 
@@ -26,6 +29,7 @@ class WheelEntity {
       : id = ++_idCounter,
         isRead = false,
         nameController = TextEditingController(),
+        focusNode = FocusNode(),
         countController = TextEditingController();
 
   String? get title => nameController.text;

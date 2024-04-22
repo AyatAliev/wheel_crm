@@ -105,6 +105,7 @@ class _WheelCreateWidgetState extends State<WheelCreateWidget> {
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
                 controller: item.nameController,
+                focusNode: item.focusNode,
                 readOnly: item.isRead,
                 decoration: const InputDecoration(
                   hintText: '___/__ r__',
