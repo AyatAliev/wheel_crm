@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:wheel_crm/core/const/action_type.dart';
 import 'package:wheel_crm/core/const/season_enum.dart';
 import 'package:wheel_crm/core/network/entity/state_status.dart';
 import 'package:wheel_crm/features/acceptance/presentation/create/widget/wheel_detail_widget.dart';
@@ -28,6 +29,7 @@ class SalesDetailWidget extends StatefulWidget {
 class _SalesDetailWidgetState extends State<SalesDetailWidget> {
   late final MaskTextInputFormatter _maskFormatter;
   late final ValueNotifier<String?> _selectedItemNotifier;
+  late final ValueNotifier<ActionType?> _selectedActionTypeNotifier;
   late final ValueNotifier<bool> _visibleAllListNotifier;
   late final ValueNotifier<int> _countWheel = ValueNotifier(0);
   late final ValueNotifier<List<WheelEntity>> _notifierWheels = ValueNotifier([]);
@@ -40,6 +42,7 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
   void initState() {
     super.initState();
     _maskFormatter = MaskTextInputFormatter(mask: '##-##-####');
+    _selectedActionTypeNotifier = ValueNotifier(null);
     _selectedItemNotifier = ValueNotifier(null);
     _visibleAllListNotifier = ValueNotifier(false);
   }
@@ -67,6 +70,8 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                _buildActionType(),
+                                const SizedBox(height: AppProps.kPageMargin),
                                 _buildWarehouseSelection(),
                                 const SizedBox(height: AppProps.kPageMargin),
                                 _buildProductSelection(),
@@ -130,6 +135,28 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     ).withOpaqueBehavior();
   }
 
+  Widget _buildActionType() {
+    final list = [t.seller, t.returned, t.defect];
+    return ValueListenableBuilder(
+      valueListenable: _selectedActionTypeNotifier,
+      builder: (context, value, child) {
+        return OverlayDropdown(
+          items: [t.choose, ...list],
+          selectedItem: value?.title,
+          onSelectItem: (val) => _onSelectedActionTypeItemDropDown(val),
+          child: Container(
+            margin: const EdgeInsets.only(right: 60),
+            child: DropDownSelectedWidget(
+              title: t.typeAction,
+              desc: t.choose,
+              selectedValue: value?.title,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   Widget _buildWarehouseSelection() {
     return BlocBuilder<StorageBloc, StorageState>(builder: (context, state) {
       return ValueListenableBuilder(
@@ -166,10 +193,22 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
                 style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
               ),
               const SizedBox(height: AppProps.kMediumMargin),
-              SeasonSelection(
-                selected: _season,
-                onTap: (String text) {
-                  _season = text;
+              ValueListenableBuilder(
+                valueListenable: _selectedItemNotifier,
+                builder: (context, value, _) {
+                  if (_storageSelected != null) {
+                    return SeasonSelection(
+                      selected: _season,
+                      onTap: (String text) {
+                        _season = text;
+                        context.read<StorageBloc>().add(
+                              StorageEvent.getStoragesById(storageId: _storageSelected!.id!, season: _season),
+                            );
+                      },
+                    );
+                  }
+
+                  return const SizedBox();
                 },
               ),
               GestureDetector(
@@ -252,19 +291,52 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
 
   void _onSaveButton() {
       if (_storageSelected != null) {
-        context.read<WheelBloc>().add(
-          WheelEvent.addWheel(
-            salesDetailEntity: SalesDetailEntity(
-              storage: _storageSelected!,
-                createdAt: DateTime.now(),
-                wheels: _notifierWheels.value,
-              ),
-          ),
-        );
-      } else {
-        AppSnackBar.show(
-          context: context,
-          titleText: t.youNeedChooseRoom,
+      switch (_selectedActionTypeNotifier.value) {
+        case ActionType.sales:
+          {
+            context.read<WheelBloc>().add(
+                  WheelEvent.addWheel(
+                    salesDetailEntity: SalesDetailEntity(
+                      storage: _storageSelected!,
+                      createdAt: DateTime.now(),
+                      wheels: _notifierWheels.value,
+                    ),
+                  ),
+                );
+          }
+          break;
+        case ActionType.returned:
+          {
+            context.read<WheelBloc>().add(
+                  WheelEvent.actionReturn(
+                    salesDetailEntity: SalesDetailEntity(
+                      storage: _storageSelected!,
+                      createdAt: DateTime.now(),
+                      wheels: _notifierWheels.value,
+                    ),
+                  ),
+                );
+          }
+          break;
+        case ActionType.defect:
+          {
+            context.read<WheelBloc>().add(
+                  WheelEvent.actionDefect(
+                    salesDetailEntity: SalesDetailEntity(
+                      storage: _storageSelected!,
+                      createdAt: DateTime.now(),
+                      wheels: _notifierWheels.value,
+                    ),
+                  ),
+                );
+          }
+          break;
+        case null:
+      }
+    } else {
+      AppSnackBar.show(
+        context: context,
+        titleText: t.youNeedChooseRoom,
           error: true,
         );
       }
@@ -302,6 +374,16 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     }
   }
 
+  void _onSelectedActionTypeItemDropDown(String? selectedItem) {
+    if (ActionType.sales.title == selectedItem) {
+      _selectedActionTypeNotifier.value = ActionType.sales;
+    } else if (ActionType.returned.title == selectedItem) {
+      _selectedActionTypeNotifier.value = ActionType.returned;
+    } else if (ActionType.defect.title == selectedItem) {
+      _selectedActionTypeNotifier.value = ActionType.defect;
+    }
+  }
+
   void _onSelectedItemDropDown(List<StorageEntity> storages, String? selectedItem) {
     _selectedItemNotifier.value = selectedItem;
     _storageSelected = storages.firstWhereOrNull((e) => e.title == selectedItem);
@@ -316,6 +398,10 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     _maskFormatter.clear();
     _selectedItemNotifier.dispose();
     _visibleAllListNotifier.dispose();
+    _selectedActionTypeNotifier.dispose();
+    _salesDetailEntity.dispose();
+    _countWheel.dispose();
+    _notifierWheels.dispose();
     _salesDetailEntity.dispose();
     super.dispose();
   }

@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:io_ui/io_ui.dart';
 
@@ -22,7 +21,7 @@ class OverlayDropdown extends StatefulWidget {
 }
 
 class _OverlayDropdownState extends State<OverlayDropdown> {
-  late OverlayEntry _overlayEntry;
+  OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
@@ -39,7 +38,7 @@ class _OverlayDropdownState extends State<OverlayDropdown> {
   }
 
   Widget _buildOverlay() {
-    final renderBox = context.findRenderObject() as RenderBox;
+    final renderBox = (context.findRenderObject() as RenderBox);
     final childPosition = renderBox.localToGlobal(Offset.zero);
     final overlayTop = childPosition.dy;
     final double height = widget.items.length * 32 + widget.items.length - 1 + 2;
@@ -102,7 +101,7 @@ class _OverlayDropdownState extends State<OverlayDropdown> {
 
   void _toggleOverlayVisibility() {
     setState(() {
-      if (_overlayEntry.mounted) {
+      if (_overlayEntry?.mounted == true) {
         _hideOverlay();
       } else {
         _showOverlay();
@@ -111,16 +110,18 @@ class _OverlayDropdownState extends State<OverlayDropdown> {
   }
 
   void _showOverlay() {
-    Overlay.of(context).insert(_overlayEntry);
+    if (_overlayEntry != null) {
+      Overlay.of(context).insert(_overlayEntry!);
+    }
   }
 
   void _hideOverlay() {
-    _overlayEntry.remove();
+    _overlayEntry?.remove();
   }
 
   @override
   void dispose() {
-    _overlayEntry.dispose();
+    _overlayEntry?.dispose();
     super.dispose();
   }
 }

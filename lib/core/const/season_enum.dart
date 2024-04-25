@@ -1,6 +1,7 @@
 enum Season {
   summer('Лето'),
-  winter('Зима');
+  winter('Зима'),
+  allSeason('Всесезонка');
 
   final String title;
 

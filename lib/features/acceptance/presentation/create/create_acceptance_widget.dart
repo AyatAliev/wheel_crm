@@ -194,11 +194,22 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
           style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
         ),
         const SizedBox(height: AppProps.kMediumMargin),
-        SeasonSelection(
-          selected: _season,
-          onTap: (String text) {
-            _season = text;
-            context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!, season: _season));
+        ValueListenableBuilder(
+          valueListenable: _selectedItemNotifier,
+          builder: (context, value, _) {
+            if (_storageSelected != null) {
+              return SeasonSelection(
+                selected: _season,
+                onTap: (String text) {
+                  _season = text;
+                  context.read<StorageBloc>().add(
+                        StorageEvent.getStoragesById(storageId: _storageSelected!.id!, season: _season),
+                      );
+                },
+              );
+            }
+
+            return const SizedBox();
           },
         ),
         GestureDetector(

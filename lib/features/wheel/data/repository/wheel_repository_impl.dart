@@ -52,4 +52,26 @@ class WheelRepositoryImpl extends WheelRepository {
       return onRepositoryException(e);
     }
   }
+
+  @override
+  Future<Either<Failure, String>> addActionDefect(SalesDetailEntity salesDetailEntity) async {
+    try {
+      final result = await _dataSource.addActionDefect(salesDetailEntity);
+
+      return Right(result);
+    } catch (e) {
+      return onRepositoryException(e);
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> addActionReturn(SalesDetailEntity salesDetailEntity) async {
+    try {
+      final result = await _dataSource.addActionReturn(salesDetailEntity);
+
+      return Right(result);
+    } catch (e) {
+      return onRepositoryException(e);
+    }
+  }
 }

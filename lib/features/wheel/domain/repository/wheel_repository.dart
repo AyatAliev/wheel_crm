@@ -7,4 +7,6 @@ abstract class WheelRepository {
   Future<Either<Failure, SalesDetailEntity>> getWheelsById({required int wheelId});
   Future<Either<Failure, List<SalesEntity>>> getActions();
   Future<Either<Failure, String>> addWheel(SalesDetailEntity salesDetailEntity);
+  Future<Either<Failure, String>> addActionDefect(SalesDetailEntity salesDetailEntity);
+  Future<Either<Failure, String>> addActionReturn(SalesDetailEntity salesDetailEntity);
 }

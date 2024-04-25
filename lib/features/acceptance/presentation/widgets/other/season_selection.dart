@@ -15,13 +15,16 @@ class SeasonSelection extends StatefulWidget {
 class _SeasonSelectionState extends State<SeasonSelection> {
   late final ValueNotifier<bool> _isWinterSelected = ValueNotifier(false);
   late final ValueNotifier<bool> _isSummerSelected = ValueNotifier(false);
+  late final ValueNotifier<bool> _isAllSeasonSelected = ValueNotifier(false);
 
   @override
   void initState() {
     if (widget.selected == Season.summer.title) {
       _isSummerSelected.value = true;
-    } else {
+    } else if (widget.selected == Season.winter.title) {
       _isWinterSelected.value = true;
+    } else {
+      _isAllSeasonSelected.value = true;
     }
 
     super.initState();
@@ -49,6 +52,7 @@ class _SeasonSelectionState extends State<SeasonSelection> {
                         widget.onTap.call(Season.winter.title);
                         _isWinterSelected.value = true;
                         _isSummerSelected.value = false;
+                        _isAllSeasonSelected.value = false;
                       });
                     },
                     child: Container(
@@ -77,6 +81,7 @@ class _SeasonSelectionState extends State<SeasonSelection> {
                       setState(() {
                         widget.onTap.call(Season.summer.title);
                         _isWinterSelected.value = false;
+                        _isAllSeasonSelected.value = false;
                         _isSummerSelected.value = true;
                       });
                     },
@@ -88,6 +93,36 @@ class _SeasonSelectionState extends State<SeasonSelection> {
                       child: Center(
                         child: Text(
                           Season.summer.title,
+                          style: AppTextStyle.bodyLargeStyle.copyWith(
+                            color: value ? AppColors.kWhite : AppColors.kBlack,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+          ),
+          Expanded(
+            child: ValueListenableBuilder(
+                valueListenable: _isAllSeasonSelected,
+                builder: (context, value, _) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        widget.onTap.call(Season.allSeason.title);
+                        _isAllSeasonSelected.value = true;
+                        _isWinterSelected.value = false;
+                        _isSummerSelected.value = false;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: value ? AppColors.kPrimary : Colors.transparent,
+                        borderRadius: const BorderRadius.all(Radius.circular(AppProps.kMediumMargin)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          Season.allSeason.title,
                           style: AppTextStyle.bodyLargeStyle.copyWith(
                             color: value ? AppColors.kWhite : AppColors.kBlack,
                           ),

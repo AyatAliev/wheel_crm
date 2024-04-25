@@ -6,4 +6,6 @@ abstract class WheelDataSource {
   Future<SalesDetailModel> getWheelById({required int wheelId});
   Future<String> addWheel(SalesDetailEntity salesDetailEntity);
   Future<List<SalesModel>> getActions();
+  Future<String> addActionDefect(SalesDetailEntity salesDetailEntity);
+  Future<String> addActionReturn(SalesDetailEntity salesDetailEntity);
 }

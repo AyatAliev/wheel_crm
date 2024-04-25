@@ -21,6 +21,8 @@ mixin _$WheelEvent {
     required TResult Function(int wheelId) getWheelsById,
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,8 @@ mixin _$WheelEvent {
     TResult? Function(int wheelId)? getWheelsById,
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,8 @@ mixin _$WheelEvent {
     TResult Function(int wheelId)? getWheelsById,
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +49,8 @@ mixin _$WheelEvent {
     required TResult Function(_GetWheelsById value) getWheelsById,
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
+    required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionReturn value) actionReturn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +58,8 @@ mixin _$WheelEvent {
     TResult? Function(_GetWheelsById value)? getWheelsById,
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
+    TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionReturn value)? actionReturn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +67,8 @@ mixin _$WheelEvent {
     TResult Function(_GetWheelsById value)? getWheelsById,
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
+    TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +159,8 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     required TResult Function(int wheelId) getWheelsById,
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) {
     return getWheelsById(wheelId);
   }
@@ -157,6 +171,8 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     TResult? Function(int wheelId)? getWheelsById,
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) {
     return getWheelsById?.call(wheelId);
   }
@@ -167,6 +183,8 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     TResult Function(int wheelId)? getWheelsById,
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) {
     if (getWheelsById != null) {
@@ -181,6 +199,8 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     required TResult Function(_GetWheelsById value) getWheelsById,
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
+    required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionReturn value) actionReturn,
   }) {
     return getWheelsById(this);
   }
@@ -191,6 +211,8 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     TResult? Function(_GetWheelsById value)? getWheelsById,
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
+    TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionReturn value)? actionReturn,
   }) {
     return getWheelsById?.call(this);
   }
@@ -201,6 +223,8 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     TResult Function(_GetWheelsById value)? getWheelsById,
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
+    TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) {
     if (getWheelsById != null) {
@@ -288,6 +312,8 @@ class _$AddWheelImpl implements _AddWheel {
     required TResult Function(int wheelId) getWheelsById,
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) {
     return addWheel(salesDetailEntity);
   }
@@ -298,6 +324,8 @@ class _$AddWheelImpl implements _AddWheel {
     TResult? Function(int wheelId)? getWheelsById,
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) {
     return addWheel?.call(salesDetailEntity);
   }
@@ -308,6 +336,8 @@ class _$AddWheelImpl implements _AddWheel {
     TResult Function(int wheelId)? getWheelsById,
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) {
     if (addWheel != null) {
@@ -322,6 +352,8 @@ class _$AddWheelImpl implements _AddWheel {
     required TResult Function(_GetWheelsById value) getWheelsById,
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
+    required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionReturn value) actionReturn,
   }) {
     return addWheel(this);
   }
@@ -332,6 +364,8 @@ class _$AddWheelImpl implements _AddWheel {
     TResult? Function(_GetWheelsById value)? getWheelsById,
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
+    TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionReturn value)? actionReturn,
   }) {
     return addWheel?.call(this);
   }
@@ -342,6 +376,8 @@ class _$AddWheelImpl implements _AddWheel {
     TResult Function(_GetWheelsById value)? getWheelsById,
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
+    TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) {
     if (addWheel != null) {
@@ -402,6 +438,8 @@ class _$GetActionsImpl implements _GetActions {
     required TResult Function(int wheelId) getWheelsById,
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) {
     return getActions();
   }
@@ -412,6 +450,8 @@ class _$GetActionsImpl implements _GetActions {
     TResult? Function(int wheelId)? getWheelsById,
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) {
     return getActions?.call();
   }
@@ -422,6 +462,8 @@ class _$GetActionsImpl implements _GetActions {
     TResult Function(int wheelId)? getWheelsById,
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) {
     if (getActions != null) {
@@ -436,6 +478,8 @@ class _$GetActionsImpl implements _GetActions {
     required TResult Function(_GetWheelsById value) getWheelsById,
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
+    required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionReturn value) actionReturn,
   }) {
     return getActions(this);
   }
@@ -446,6 +490,8 @@ class _$GetActionsImpl implements _GetActions {
     TResult? Function(_GetWheelsById value)? getWheelsById,
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
+    TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionReturn value)? actionReturn,
   }) {
     return getActions?.call(this);
   }
@@ -456,6 +502,8 @@ class _$GetActionsImpl implements _GetActions {
     TResult Function(_GetWheelsById value)? getWheelsById,
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
+    TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) {
     if (getActions != null) {
@@ -467,6 +515,314 @@ class _$GetActionsImpl implements _GetActions {
 
 abstract class _GetActions implements WheelEvent {
   const factory _GetActions() = _$GetActionsImpl;
+}
+
+/// @nodoc
+abstract class _$$ActionDefectImplCopyWith<$Res> {
+  factory _$$ActionDefectImplCopyWith(
+          _$ActionDefectImpl value, $Res Function(_$ActionDefectImpl) then) =
+      __$$ActionDefectImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SalesDetailEntity salesDetailEntity});
+}
+
+/// @nodoc
+class __$$ActionDefectImplCopyWithImpl<$Res>
+    extends _$WheelEventCopyWithImpl<$Res, _$ActionDefectImpl>
+    implements _$$ActionDefectImplCopyWith<$Res> {
+  __$$ActionDefectImplCopyWithImpl(
+      _$ActionDefectImpl _value, $Res Function(_$ActionDefectImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? salesDetailEntity = null,
+  }) {
+    return _then(_$ActionDefectImpl(
+      salesDetailEntity: null == salesDetailEntity
+          ? _value.salesDetailEntity
+          : salesDetailEntity // ignore: cast_nullable_to_non_nullable
+              as SalesDetailEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ActionDefectImpl implements _ActionDefect {
+  const _$ActionDefectImpl({required this.salesDetailEntity});
+
+  @override
+  final SalesDetailEntity salesDetailEntity;
+
+  @override
+  String toString() {
+    return 'WheelEvent.actionDefect(salesDetailEntity: $salesDetailEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ActionDefectImpl &&
+            (identical(other.salesDetailEntity, salesDetailEntity) ||
+                other.salesDetailEntity == salesDetailEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, salesDetailEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ActionDefectImplCopyWith<_$ActionDefectImpl> get copyWith =>
+      __$$ActionDefectImplCopyWithImpl<_$ActionDefectImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int wheelId) getWheelsById,
+    required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
+    required TResult Function() getActions,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
+  }) {
+    return actionDefect(salesDetailEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
+    TResult? Function()? getActions,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
+  }) {
+    return actionDefect?.call(salesDetailEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int wheelId)? getWheelsById,
+    TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
+    TResult Function()? getActions,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
+    required TResult orElse(),
+  }) {
+    if (actionDefect != null) {
+      return actionDefect(salesDetailEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_AddWheel value) addWheel,
+    required TResult Function(_GetActions value) getActions,
+    required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionReturn value) actionReturn,
+  }) {
+    return actionDefect(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_AddWheel value)? addWheel,
+    TResult? Function(_GetActions value)? getActions,
+    TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionReturn value)? actionReturn,
+  }) {
+    return actionDefect?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_AddWheel value)? addWheel,
+    TResult Function(_GetActions value)? getActions,
+    TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionReturn value)? actionReturn,
+    required TResult orElse(),
+  }) {
+    if (actionDefect != null) {
+      return actionDefect(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ActionDefect implements WheelEvent {
+  const factory _ActionDefect(
+          {required final SalesDetailEntity salesDetailEntity}) =
+      _$ActionDefectImpl;
+
+  SalesDetailEntity get salesDetailEntity;
+  @JsonKey(ignore: true)
+  _$$ActionDefectImplCopyWith<_$ActionDefectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ActionReturnImplCopyWith<$Res> {
+  factory _$$ActionReturnImplCopyWith(
+          _$ActionReturnImpl value, $Res Function(_$ActionReturnImpl) then) =
+      __$$ActionReturnImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SalesDetailEntity salesDetailEntity});
+}
+
+/// @nodoc
+class __$$ActionReturnImplCopyWithImpl<$Res>
+    extends _$WheelEventCopyWithImpl<$Res, _$ActionReturnImpl>
+    implements _$$ActionReturnImplCopyWith<$Res> {
+  __$$ActionReturnImplCopyWithImpl(
+      _$ActionReturnImpl _value, $Res Function(_$ActionReturnImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? salesDetailEntity = null,
+  }) {
+    return _then(_$ActionReturnImpl(
+      salesDetailEntity: null == salesDetailEntity
+          ? _value.salesDetailEntity
+          : salesDetailEntity // ignore: cast_nullable_to_non_nullable
+              as SalesDetailEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ActionReturnImpl implements _ActionReturn {
+  const _$ActionReturnImpl({required this.salesDetailEntity});
+
+  @override
+  final SalesDetailEntity salesDetailEntity;
+
+  @override
+  String toString() {
+    return 'WheelEvent.actionReturn(salesDetailEntity: $salesDetailEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ActionReturnImpl &&
+            (identical(other.salesDetailEntity, salesDetailEntity) ||
+                other.salesDetailEntity == salesDetailEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, salesDetailEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ActionReturnImplCopyWith<_$ActionReturnImpl> get copyWith =>
+      __$$ActionReturnImplCopyWithImpl<_$ActionReturnImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int wheelId) getWheelsById,
+    required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
+    required TResult Function() getActions,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
+  }) {
+    return actionReturn(salesDetailEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
+    TResult? Function()? getActions,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
+  }) {
+    return actionReturn?.call(salesDetailEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int wheelId)? getWheelsById,
+    TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
+    TResult Function()? getActions,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
+    required TResult orElse(),
+  }) {
+    if (actionReturn != null) {
+      return actionReturn(salesDetailEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_AddWheel value) addWheel,
+    required TResult Function(_GetActions value) getActions,
+    required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionReturn value) actionReturn,
+  }) {
+    return actionReturn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_AddWheel value)? addWheel,
+    TResult? Function(_GetActions value)? getActions,
+    TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionReturn value)? actionReturn,
+  }) {
+    return actionReturn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_AddWheel value)? addWheel,
+    TResult Function(_GetActions value)? getActions,
+    TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionReturn value)? actionReturn,
+    required TResult orElse(),
+  }) {
+    if (actionReturn != null) {
+      return actionReturn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ActionReturn implements WheelEvent {
+  const factory _ActionReturn(
+          {required final SalesDetailEntity salesDetailEntity}) =
+      _$ActionReturnImpl;
+
+  SalesDetailEntity get salesDetailEntity;
+  @JsonKey(ignore: true)
+  _$$ActionReturnImplCopyWith<_$ActionReturnImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

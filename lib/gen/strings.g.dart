@@ -6,7 +6,7 @@
 /// Locales: 1
 /// Strings: 41
 ///
-/// Built on 2024-04-17 at 06:07 UTC
+/// Built on 2024-04-25 at 07:53 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -181,7 +181,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get emptySellDesc => 'Чтобы отметить продажу, нажмите на синий плюсик';
 	String get typeAction => 'Тип действия';
 	String get returned => 'Возврат';
-	String get marriage => 'Брак';
+	String get defect => 'Брак';
 	String get summer => 'Лето';
 	String get winter => 'Зима';
 	String get season => 'Временна года';
@@ -230,7 +230,7 @@ extension on Translations {
 			case 'emptySellDesc': return 'Чтобы отметить продажу, нажмите на синий плюсик';
 			case 'typeAction': return 'Тип действия';
 			case 'returned': return 'Возврат';
-			case 'marriage': return 'Брак';
+			case 'defect': return 'Брак';
 			case 'summer': return 'Лето';
 			case 'winter': return 'Зима';
 			case 'season': return 'Временна года';

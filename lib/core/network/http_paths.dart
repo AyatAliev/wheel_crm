@@ -1,5 +1,5 @@
 class HttpPaths {
-  static const baseUrl = 'http://34.94.101.144/api/v1';
+  static const baseUrl = 'http://34.16.154.156/api/v1';
 
   /// Auth
   static const authorization = '$baseUrl/accounts/login/';
@@ -15,4 +15,6 @@ class HttpPaths {
   /// Actions
   static const getActions = '$baseUrl/actions/';
   static getSaleById(int saleId) => '$baseUrl/actions/sales/$saleId';
+  static const defect = '$baseUrl/actions/defect';
+  static const returned = '$baseUrl/actions/return';
 }

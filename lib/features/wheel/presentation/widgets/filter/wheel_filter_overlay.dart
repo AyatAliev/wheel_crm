@@ -63,7 +63,7 @@ class _WheelFilterOverlayState extends State<WheelFilterOverlay> {
               valueListenable: _selectedItemTypeNotifier,
               builder: (context, value, child) {
                 return OverlayDropdown(
-                  items: [t.choose, t.seller, t.returned, t.marriage],
+                  items: [t.choose, t.seller, t.returned, t.defect],
                   selectedItem: value,
                   onSelectItem: (selectedItem) {
                     _selectedItemTypeNotifier.value = selectedItem;

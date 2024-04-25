@@ -32,4 +32,18 @@ class WheelDataSourceImpl extends WheelDataSource {
 
     return result.data['msg'];
   }
+
+  @override
+  Future<String> addActionDefect(SalesDetailEntity salesDetailEntity) async {
+    final result = await _client.post(HttpPaths.defect, data: salesDetailEntity.toJson());
+
+    return result.data['msg'];
+  }
+
+  @override
+  Future<String> addActionReturn(SalesDetailEntity salesDetailEntity) async {
+    final result = await _client.post(HttpPaths.returned, data: salesDetailEntity.toJson());
+
+    return result.data['msg'];
+  }
 }
