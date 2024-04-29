@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
+import 'package:wheel_crm/features/acceptance/presentation/acceptance_widget.dart';
+import 'package:wheel_crm/features/profile/domain/bloc/profile_bloc.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/storage/presentation/widgets/storage_list_widget.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
@@ -17,28 +19,42 @@ class _StorageWidgetState extends State<StorageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<StorageBloc, StorageState>(
-      listener: _listenerAcceptanceBloc,
-      builder: (context, state) {
-        return Stack(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              child: state.storages.isEmpty ? _StorageEmpty() : StoragesListWidget(storages: state.storages),
-            ),
-            ValueListenableBuilder(
-              valueListenable: _isLoading,
-              builder: (BuildContext context, bool value, Widget? child) {
-                if (value) {
-                  return const Center(child: CircularProgressIndicator(color: AppColors.kPrimary));
-                }
+    return Stack(
+      children: [
+        BlocConsumer<StorageBloc, StorageState>(
+          listener: _listenerAcceptanceBloc,
+          builder: (context, state) {
+            return Stack(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: state.storages.isEmpty ? _StorageEmpty() : StoragesListWidget(storages: state.storages),
+                ),
+                ValueListenableBuilder(
+                  valueListenable: _isLoading,
+                  builder: (BuildContext context, bool value, Widget? child) {
+                    if (value) {
+                      return const Center(child: CircularProgressIndicator(color: AppColors.kPrimary));
+                    }
 
-                return const SizedBox();
-              },
-            ),
-          ],
-        );
-      },
+                    return const SizedBox();
+                  },
+                ),
+              ],
+            );
+          },
+        ),
+        BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+          print(state.profileEntity?.role);
+          if (state.profileEntity?.role == 'Owner') {
+            return FabButtonWidget(
+              onTap: () async {},
+            );
+          }
+
+          return const SizedBox();
+        }),
+      ],
     );
   }
 

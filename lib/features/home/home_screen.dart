@@ -5,6 +5,7 @@ import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/core/service/system_chrome_theme.dart';
 import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart';
 import 'package:wheel_crm/features/acceptance/presentation/acceptance_widget.dart';
+import 'package:wheel_crm/features/profile/domain/bloc/profile_bloc.dart';
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart';
 import 'package:wheel_crm/features/weclome/welcome_screen.dart';
 import 'package:wheel_crm/features/wheel/domain/bloc/wheel_bloc.dart';
@@ -121,8 +122,11 @@ class _HomeScreenState extends State<HomeScreen> {
           child: const AcceptanceWidget(),
         );
       case 2:
-        return BlocProvider(
-          create: (_) => getIt<StorageBloc>()..add(const StorageEvent.getStorages()),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<ProfileBloc>()..add(const ProfileEvent.getProfile())),
+            BlocProvider(create: (_) => getIt<StorageBloc>()..add(const StorageEvent.getStorages())),
+          ],
           child: const StorageWidget(),
         );
       default:

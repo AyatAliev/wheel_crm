@@ -7,6 +7,7 @@ class HttpPaths {
 
   /// Products
   static const acceptance = '$baseUrl/products/acceptance/';
+  static const profile = '$baseUrl/accounts/profile/';
   static getAcceptanceById(int id) => '$baseUrl/products/acceptance/$id';
   static const getStorages = '$baseUrl/products/storages';
   static getWheelById(int wheelId) => '$baseUrl/products/wheels/$wheelId';

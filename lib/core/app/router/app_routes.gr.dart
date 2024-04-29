@@ -12,7 +12,8 @@ import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:wheel_crm/features/auth/presentation/auth_screen.dart' as _i1;
 import 'package:wheel_crm/features/bottom_menu/bottom_menu_screen.dart' as _i2;
 import 'package:wheel_crm/features/home/home_screen.dart' as _i3;
-import 'package:wheel_crm/features/profile/profile_screen.dart' as _i4;
+import 'package:wheel_crm/features/profile/presentation/profile_screen.dart'
+    as _i4;
 import 'package:wheel_crm/features/weclome/welcome_screen.dart' as _i5;
 
 abstract class $AppRouter extends _i6.RootStackRouter {
