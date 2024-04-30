@@ -20,6 +20,7 @@ class SalesDetailModelToEntity extends Converter<SalesDetailModel, SalesDetailEn
       user: input.user,
       storage: getIt<Converter<StorageModel, StorageEntity>>().convert(input.storage),
       wheels: input.wheels.map((e) => getIt<Converter<WheelModel, WheelEntity>>().convert(e)).toList(),
+      season: input.season,
     );
   }
 }

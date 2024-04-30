@@ -9,6 +9,7 @@ class SalesDetailModel {
   final int id;
   final StorageModel storage;
   final String createdAt;
+  final String season;
   final List<WheelModel> wheels;
   final String user;
 
@@ -18,6 +19,7 @@ class SalesDetailModel {
     required this.createdAt,
     required this.wheels,
     required this.user,
+    required this.season,
   });
 
   factory SalesDetailModel.fromJson(Map<String, dynamic> json) {
@@ -27,6 +29,7 @@ class SalesDetailModel {
       user: json['user'],
       storage: StorageModel.fromJson(json['storage']),
       wheels: (json['wheels'] as List).map((e) => WheelModel.fromJson(e)).toList(),
+      season: json['season'],
     );
   }
 }

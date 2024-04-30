@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:io_ui/io_ui.dart';
+import 'package:wheel_crm/core/const/season_enum.dart';
 import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart';
+import 'package:wheel_crm/gen/assets.gen.dart';
 
 class ItemListWidget extends StatelessWidget {
   final WheelEntity entity;
@@ -66,7 +68,11 @@ class ItemListWidget extends StatelessWidget {
                   border: Border.all(color: isSelected == true ? AppColors.kPrimary : AppColors.kBorder),
                 ),
               ),
-            )
+            ),
+            const SizedBox(width: AppProps.kMediumMargin),
+            if (entity.season == Season.summer.title) const Icon(Icons.sunny),
+            if (entity.season == Season.winter.title) Assets.icons.snowflake.svg(width: 24, height: 24),
+            if (entity.season == Season.allSeason.title) const Icon(Icons.all_inbox),
           ],
         ),
       ).withOpaqueBehavior(),

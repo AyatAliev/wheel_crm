@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -20,7 +21,11 @@ import 'package:wheel_crm/gen/assets.gen.dart';
 import 'package:wheel_crm/gen/strings.g.dart';
 
 class CreateAcceptanceWidget extends StatefulWidget {
-  const CreateAcceptanceWidget({super.key});
+  final bool preview;
+  const CreateAcceptanceWidget({
+    super.key,
+    this.preview = false,
+  });
 
   @override
   State<CreateAcceptanceWidget> createState() => _CreateAcceptanceWidgetState();
@@ -59,60 +64,69 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildDateSelection(),
-                    const SizedBox(height: AppProps.kPageMargin),
-                    const Divider(height: 1, color: AppColors.kDivider),
-                    const SizedBox(height: AppProps.kPageMargin),
-                    _buildRowSelectedDate(),
-                    const SizedBox(height: AppProps.kPageMargin),
-                    _buildWarehouseSelection(state.storages),
-                    const SizedBox(height: AppProps.kPageMargin),
-                    const Divider(height: 1, color: AppColors.kDivider),
-                    const SizedBox(height: AppProps.kPageMargin),
-                    _buildProductSelection(state.wheels),
-                    _buildAddNewProduct(),
-                    const SizedBox(height: AppProps.kPageMargin),
-                    const Divider(height: 1, color: AppColors.kDivider),
-                    const SizedBox(height: AppProps.kPageMargin),
-                    _buildTotal(),
-                    const SizedBox(height: AppProps.kBigMargin),
-                    _buildSaveButton(),
+                    AbsorbPointer(
+                      absorbing: widget.preview,
+                      child: Column(
+                        children: [
+                          const SizedBox(height: AppProps.kPageMargin),
+                          const Divider(height: 1, color: AppColors.kDivider),
+                          const SizedBox(height: AppProps.kPageMargin),
+                          _buildRowSelectedDate(),
+                          const SizedBox(height: AppProps.kPageMargin),
+                          _buildWarehouseSelection(state.storages),
+                          const SizedBox(height: AppProps.kPageMargin),
+                          const Divider(height: 1, color: AppColors.kDivider),
+                          const SizedBox(height: AppProps.kPageMargin),
+                          _buildProductSelection(state.wheels),
+                          _buildAddNewProduct(),
+                          const SizedBox(height: AppProps.kPageMargin),
+                          const Divider(height: 1, color: AppColors.kDivider),
+                          const SizedBox(height: AppProps.kPageMargin),
+                          _buildTotal(),
+                          const SizedBox(height: AppProps.kBigMargin),
+                          _buildSaveButton(),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
             ),
-            KeyboardVisibilityBuilder(
-              builder: (context, isKeyboardVisible) {
-                return isKeyboardVisible ? Positioned(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      color: AppColors.kGrey,
-                      width: double.infinity,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          SizedBox(
-                            width: 60,
-                            child: AppButton(
-                              borderRadius: 0,
-                              onTap: () {
-                                for (WheelEntity element in _notifierWheels.value) {
-                                  if (element.focusNode.hasFocus) {
-                                    final newElement = element..nameController.text = '${element.nameController.text}C';
-                                    final List<WheelEntity> list = _notifierWheels.value.toList()..remove(element)..add(newElement);
-                                    _notifierWheels.value = list;
+            AbsorbPointer(
+              child: KeyboardVisibilityBuilder(
+                builder: (context, isKeyboardVisible) {
+                  return isKeyboardVisible ? Positioned(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        color: AppColors.kGrey,
+                        width: double.infinity,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                              width: 60,
+                              child: AppButton(
+                                borderRadius: 0,
+                                onTap: () {
+                                  for (WheelEntity element in _notifierWheels.value) {
+                                    if (element.focusNode.hasFocus) {
+                                      final newElement = element..nameController.text = '${element.nameController.text}C';
+                                      final List<WheelEntity> list = _notifierWheels.value.toList()..remove(element)..add(newElement);
+                                      _notifierWheels.value = list;
+                                    }
                                   }
-                                }
-                              },
-                              text: 'C',
-                            ),
-                          )
-                        ],
+                                },
+                                text: 'C',
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ) : const SizedBox();
-              }
+                  ) : const SizedBox();
+                }
+              ),
             )
           ],
         );

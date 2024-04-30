@@ -11,6 +11,7 @@ class SalesDetailEntity {
   final StorageEntity storage;
   final DateTime createdAt;
   final List<WheelEntity> wheels;
+  final String season;
   String? user;
 
   SalesDetailEntity({
@@ -19,11 +20,13 @@ class SalesDetailEntity {
     required this.storage,
     required this.createdAt,
     required this.wheels,
+    required this.season,
   });
 
   Map<String, dynamic> toJson() => {
         "storage": storage.id,
         "created_at": createdAt.formatyyyyHyphenMMdd(),
-        "wheels": wheels.map((e) => e.toJson()).toList(),
+        "season": season,
+        "wheels": wheels.map((e) => e.toJson(enableSeason: false)).toList(),
       };
 }

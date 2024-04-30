@@ -17,6 +17,8 @@ abstract class _$SalesDetailModelCWProxy {
 
   SalesDetailModel user(String user);
 
+  SalesDetailModel season(String season);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalesDetailModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -29,6 +31,7 @@ abstract class _$SalesDetailModelCWProxy {
     String? createdAt,
     List<WheelModel>? wheels,
     String? user,
+    String? season,
   });
 }
 
@@ -54,6 +57,9 @@ class _$SalesDetailModelCWProxyImpl implements _$SalesDetailModelCWProxy {
   SalesDetailModel user(String user) => this(user: user);
 
   @override
+  SalesDetailModel season(String season) => this(season: season);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalesDetailModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -67,6 +73,7 @@ class _$SalesDetailModelCWProxyImpl implements _$SalesDetailModelCWProxy {
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? wheels = const $CopyWithPlaceholder(),
     Object? user = const $CopyWithPlaceholder(),
+    Object? season = const $CopyWithPlaceholder(),
   }) {
     return SalesDetailModel(
       id: id == const $CopyWithPlaceholder() || id == null
@@ -89,6 +96,10 @@ class _$SalesDetailModelCWProxyImpl implements _$SalesDetailModelCWProxy {
           ? _value.user
           // ignore: cast_nullable_to_non_nullable
           : user as String,
+      season: season == const $CopyWithPlaceholder() || season == null
+          ? _value.season
+          // ignore: cast_nullable_to_non_nullable
+          : season as String,
     );
   }
 }

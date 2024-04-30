@@ -17,6 +17,8 @@ abstract class _$SalesDetailEntityCWProxy {
 
   SalesDetailEntity wheels(List<WheelEntity> wheels);
 
+  SalesDetailEntity season(String season);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalesDetailEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -29,6 +31,7 @@ abstract class _$SalesDetailEntityCWProxy {
     StorageEntity? storage,
     DateTime? createdAt,
     List<WheelEntity>? wheels,
+    String? season,
   });
 }
 
@@ -54,6 +57,9 @@ class _$SalesDetailEntityCWProxyImpl implements _$SalesDetailEntityCWProxy {
   SalesDetailEntity wheels(List<WheelEntity> wheels) => this(wheels: wheels);
 
   @override
+  SalesDetailEntity season(String season) => this(season: season);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalesDetailEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -67,6 +73,7 @@ class _$SalesDetailEntityCWProxyImpl implements _$SalesDetailEntityCWProxy {
     Object? storage = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? wheels = const $CopyWithPlaceholder(),
+    Object? season = const $CopyWithPlaceholder(),
   }) {
     return SalesDetailEntity(
       id: id == const $CopyWithPlaceholder()
@@ -89,6 +96,10 @@ class _$SalesDetailEntityCWProxyImpl implements _$SalesDetailEntityCWProxy {
           ? _value.wheels
           // ignore: cast_nullable_to_non_nullable
           : wheels as List<WheelEntity>,
+      season: season == const $CopyWithPlaceholder() || season == null
+          ? _value.season
+          // ignore: cast_nullable_to_non_nullable
+          : season as String,
     );
   }
 }

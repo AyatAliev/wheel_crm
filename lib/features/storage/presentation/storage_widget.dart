@@ -45,7 +45,6 @@ class _StorageWidgetState extends State<StorageWidget> {
           },
         ),
         BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
-          print(state.profileEntity?.role);
           if (state.profileEntity?.role == 'Owner') {
             return FabButtonWidget(
               onTap: () async {},

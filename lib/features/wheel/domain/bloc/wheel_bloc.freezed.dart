@@ -22,6 +22,7 @@ mixin _$WheelEvent {
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionSales,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,6 +32,7 @@ mixin _$WheelEvent {
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +42,7 @@ mixin _$WheelEvent {
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) =>
@@ -50,6 +53,7 @@ mixin _$WheelEvent {
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
     required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionSales value) actionSales,
     required TResult Function(_ActionReturn value) actionReturn,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +63,7 @@ mixin _$WheelEvent {
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
     TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionSales value)? actionSales,
     TResult? Function(_ActionReturn value)? actionReturn,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +73,7 @@ mixin _$WheelEvent {
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
     TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionSales value)? actionSales,
     TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) =>
@@ -160,6 +166,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionSales,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) {
     return getWheelsById(wheelId);
@@ -172,6 +179,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) {
     return getWheelsById?.call(wheelId);
@@ -184,6 +192,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) {
@@ -200,6 +209,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
     required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionSales value) actionSales,
     required TResult Function(_ActionReturn value) actionReturn,
   }) {
     return getWheelsById(this);
@@ -212,6 +222,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
     TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionSales value)? actionSales,
     TResult? Function(_ActionReturn value)? actionReturn,
   }) {
     return getWheelsById?.call(this);
@@ -224,6 +235,7 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
     TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionSales value)? actionSales,
     TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) {
@@ -313,6 +325,7 @@ class _$AddWheelImpl implements _AddWheel {
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionSales,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) {
     return addWheel(salesDetailEntity);
@@ -325,6 +338,7 @@ class _$AddWheelImpl implements _AddWheel {
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) {
     return addWheel?.call(salesDetailEntity);
@@ -337,6 +351,7 @@ class _$AddWheelImpl implements _AddWheel {
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) {
@@ -353,6 +368,7 @@ class _$AddWheelImpl implements _AddWheel {
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
     required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionSales value) actionSales,
     required TResult Function(_ActionReturn value) actionReturn,
   }) {
     return addWheel(this);
@@ -365,6 +381,7 @@ class _$AddWheelImpl implements _AddWheel {
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
     TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionSales value)? actionSales,
     TResult? Function(_ActionReturn value)? actionReturn,
   }) {
     return addWheel?.call(this);
@@ -377,6 +394,7 @@ class _$AddWheelImpl implements _AddWheel {
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
     TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionSales value)? actionSales,
     TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) {
@@ -439,6 +457,7 @@ class _$GetActionsImpl implements _GetActions {
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionSales,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) {
     return getActions();
@@ -451,6 +470,7 @@ class _$GetActionsImpl implements _GetActions {
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) {
     return getActions?.call();
@@ -463,6 +483,7 @@ class _$GetActionsImpl implements _GetActions {
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) {
@@ -479,6 +500,7 @@ class _$GetActionsImpl implements _GetActions {
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
     required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionSales value) actionSales,
     required TResult Function(_ActionReturn value) actionReturn,
   }) {
     return getActions(this);
@@ -491,6 +513,7 @@ class _$GetActionsImpl implements _GetActions {
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
     TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionSales value)? actionSales,
     TResult? Function(_ActionReturn value)? actionReturn,
   }) {
     return getActions?.call(this);
@@ -503,6 +526,7 @@ class _$GetActionsImpl implements _GetActions {
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
     TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionSales value)? actionSales,
     TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) {
@@ -586,6 +610,7 @@ class _$ActionDefectImpl implements _ActionDefect {
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionSales,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) {
     return actionDefect(salesDetailEntity);
@@ -598,6 +623,7 @@ class _$ActionDefectImpl implements _ActionDefect {
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) {
     return actionDefect?.call(salesDetailEntity);
@@ -610,6 +636,7 @@ class _$ActionDefectImpl implements _ActionDefect {
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) {
@@ -626,6 +653,7 @@ class _$ActionDefectImpl implements _ActionDefect {
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
     required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionSales value) actionSales,
     required TResult Function(_ActionReturn value) actionReturn,
   }) {
     return actionDefect(this);
@@ -638,6 +666,7 @@ class _$ActionDefectImpl implements _ActionDefect {
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
     TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionSales value)? actionSales,
     TResult? Function(_ActionReturn value)? actionReturn,
   }) {
     return actionDefect?.call(this);
@@ -650,6 +679,7 @@ class _$ActionDefectImpl implements _ActionDefect {
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
     TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionSales value)? actionSales,
     TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) {
@@ -668,6 +698,165 @@ abstract class _ActionDefect implements WheelEvent {
   SalesDetailEntity get salesDetailEntity;
   @JsonKey(ignore: true)
   _$$ActionDefectImplCopyWith<_$ActionDefectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ActionSalesImplCopyWith<$Res> {
+  factory _$$ActionSalesImplCopyWith(
+          _$ActionSalesImpl value, $Res Function(_$ActionSalesImpl) then) =
+      __$$ActionSalesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SalesDetailEntity salesDetailEntity});
+}
+
+/// @nodoc
+class __$$ActionSalesImplCopyWithImpl<$Res>
+    extends _$WheelEventCopyWithImpl<$Res, _$ActionSalesImpl>
+    implements _$$ActionSalesImplCopyWith<$Res> {
+  __$$ActionSalesImplCopyWithImpl(
+      _$ActionSalesImpl _value, $Res Function(_$ActionSalesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? salesDetailEntity = null,
+  }) {
+    return _then(_$ActionSalesImpl(
+      salesDetailEntity: null == salesDetailEntity
+          ? _value.salesDetailEntity
+          : salesDetailEntity // ignore: cast_nullable_to_non_nullable
+              as SalesDetailEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ActionSalesImpl implements _ActionSales {
+  const _$ActionSalesImpl({required this.salesDetailEntity});
+
+  @override
+  final SalesDetailEntity salesDetailEntity;
+
+  @override
+  String toString() {
+    return 'WheelEvent.actionSales(salesDetailEntity: $salesDetailEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ActionSalesImpl &&
+            (identical(other.salesDetailEntity, salesDetailEntity) ||
+                other.salesDetailEntity == salesDetailEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, salesDetailEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ActionSalesImplCopyWith<_$ActionSalesImpl> get copyWith =>
+      __$$ActionSalesImplCopyWithImpl<_$ActionSalesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int wheelId) getWheelsById,
+    required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
+    required TResult Function() getActions,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionSales,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
+  }) {
+    return actionSales(salesDetailEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int wheelId)? getWheelsById,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
+    TResult? Function()? getActions,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionSales,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
+  }) {
+    return actionSales?.call(salesDetailEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int wheelId)? getWheelsById,
+    TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
+    TResult Function()? getActions,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionSales,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
+    required TResult orElse(),
+  }) {
+    if (actionSales != null) {
+      return actionSales(salesDetailEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetWheelsById value) getWheelsById,
+    required TResult Function(_AddWheel value) addWheel,
+    required TResult Function(_GetActions value) getActions,
+    required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionSales value) actionSales,
+    required TResult Function(_ActionReturn value) actionReturn,
+  }) {
+    return actionSales(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetWheelsById value)? getWheelsById,
+    TResult? Function(_AddWheel value)? addWheel,
+    TResult? Function(_GetActions value)? getActions,
+    TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionSales value)? actionSales,
+    TResult? Function(_ActionReturn value)? actionReturn,
+  }) {
+    return actionSales?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetWheelsById value)? getWheelsById,
+    TResult Function(_AddWheel value)? addWheel,
+    TResult Function(_GetActions value)? getActions,
+    TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionSales value)? actionSales,
+    TResult Function(_ActionReturn value)? actionReturn,
+    required TResult orElse(),
+  }) {
+    if (actionSales != null) {
+      return actionSales(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ActionSales implements WheelEvent {
+  const factory _ActionSales(
+      {required final SalesDetailEntity salesDetailEntity}) = _$ActionSalesImpl;
+
+  SalesDetailEntity get salesDetailEntity;
+  @JsonKey(ignore: true)
+  _$$ActionSalesImplCopyWith<_$ActionSalesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -740,6 +929,7 @@ class _$ActionReturnImpl implements _ActionReturn {
     required TResult Function(SalesDetailEntity salesDetailEntity) addWheel,
     required TResult Function() getActions,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionDefect,
+    required TResult Function(SalesDetailEntity salesDetailEntity) actionSales,
     required TResult Function(SalesDetailEntity salesDetailEntity) actionReturn,
   }) {
     return actionReturn(salesDetailEntity);
@@ -752,6 +942,7 @@ class _$ActionReturnImpl implements _ActionReturn {
     TResult? Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult? Function()? getActions,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult? Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult? Function(SalesDetailEntity salesDetailEntity)? actionReturn,
   }) {
     return actionReturn?.call(salesDetailEntity);
@@ -764,6 +955,7 @@ class _$ActionReturnImpl implements _ActionReturn {
     TResult Function(SalesDetailEntity salesDetailEntity)? addWheel,
     TResult Function()? getActions,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionDefect,
+    TResult Function(SalesDetailEntity salesDetailEntity)? actionSales,
     TResult Function(SalesDetailEntity salesDetailEntity)? actionReturn,
     required TResult orElse(),
   }) {
@@ -780,6 +972,7 @@ class _$ActionReturnImpl implements _ActionReturn {
     required TResult Function(_AddWheel value) addWheel,
     required TResult Function(_GetActions value) getActions,
     required TResult Function(_ActionDefect value) actionDefect,
+    required TResult Function(_ActionSales value) actionSales,
     required TResult Function(_ActionReturn value) actionReturn,
   }) {
     return actionReturn(this);
@@ -792,6 +985,7 @@ class _$ActionReturnImpl implements _ActionReturn {
     TResult? Function(_AddWheel value)? addWheel,
     TResult? Function(_GetActions value)? getActions,
     TResult? Function(_ActionDefect value)? actionDefect,
+    TResult? Function(_ActionSales value)? actionSales,
     TResult? Function(_ActionReturn value)? actionReturn,
   }) {
     return actionReturn?.call(this);
@@ -804,6 +998,7 @@ class _$ActionReturnImpl implements _ActionReturn {
     TResult Function(_AddWheel value)? addWheel,
     TResult Function(_GetActions value)? getActions,
     TResult Function(_ActionDefect value)? actionDefect,
+    TResult Function(_ActionSales value)? actionSales,
     TResult Function(_ActionReturn value)? actionReturn,
     required TResult orElse(),
   }) {

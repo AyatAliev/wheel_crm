@@ -92,6 +92,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/room_solid.svg
   SvgGenImage get roomSolid => const SvgGenImage('assets/icons/room_solid.svg');
 
+  /// File path: assets/icons/snowflake.svg
+  SvgGenImage get snowflake => const SvgGenImage('assets/icons/snowflake.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         clockSolid,
@@ -103,7 +106,8 @@ class $AssetsIconsGen {
         icProfile,
         icSearch,
         roomCommentIcon,
-        roomSolid
+        roomSolid,
+        snowflake
       ];
 }
 

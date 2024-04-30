@@ -114,6 +114,8 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
           if (_storageSelected != null && _storageSelected?.id != null) {
             context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!));
           }
+        } else {
+          context.router.pop(true);
         }
       },
       failure: (msg) {
@@ -202,7 +204,10 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
                       onTap: (String text) {
                         _season = text;
                         context.read<StorageBloc>().add(
-                              StorageEvent.getStoragesById(storageId: _storageSelected!.id!, season: _season),
+                              StorageEvent.getStoragesById(
+                                storageId: _storageSelected!.id!,
+                                season: _season,
+                              ),
                             );
                       },
                     );
@@ -291,47 +296,52 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
 
   void _onSaveButton() {
       if (_storageSelected != null) {
-      switch (_selectedActionTypeNotifier.value) {
-        case ActionType.sales:
-          {
-            context.read<WheelBloc>().add(
-                  WheelEvent.addWheel(
-                    salesDetailEntity: SalesDetailEntity(
-                      storage: _storageSelected!,
+      if (_notifierWheels.value.isNotEmpty) {
+        switch (_selectedActionTypeNotifier.value) {
+          case ActionType.sales:
+            {
+              context.read<WheelBloc>().add(
+                    WheelEvent.actionSales(
+                      salesDetailEntity: SalesDetailEntity(
+                        storage: _storageSelected!,
                       createdAt: DateTime.now(),
-                      wheels: _notifierWheels.value,
-                    ),
+                        wheels: _notifierWheels.value,
+                        season: _season,
+                      ),
                   ),
                 );
-          }
-          break;
-        case ActionType.returned:
-          {
-            context.read<WheelBloc>().add(
-                  WheelEvent.actionReturn(
-                    salesDetailEntity: SalesDetailEntity(
+            }
+            break;
+          case ActionType.returned:
+            {
+              context.read<WheelBloc>().add(
+                    WheelEvent.actionReturn(
+                      salesDetailEntity: SalesDetailEntity(
                       storage: _storageSelected!,
                       createdAt: DateTime.now(),
-                      wheels: _notifierWheels.value,
-                    ),
+                        wheels: _notifierWheels.value,
+                        season: _season,
+                      ),
                   ),
                 );
-          }
-          break;
-        case ActionType.defect:
-          {
-            context.read<WheelBloc>().add(
-                  WheelEvent.actionDefect(
-                    salesDetailEntity: SalesDetailEntity(
+            }
+            break;
+          case ActionType.defect:
+            {
+              context.read<WheelBloc>().add(
+                    WheelEvent.actionDefect(
+                      salesDetailEntity: SalesDetailEntity(
                       storage: _storageSelected!,
                       createdAt: DateTime.now(),
-                      wheels: _notifierWheels.value,
-                    ),
+                        wheels: _notifierWheels.value,
+                        season: _season,
+                      ),
                   ),
                 );
-          }
-          break;
-        case null:
+            }
+            break;
+          case null:
+        }
       }
     } else {
       AppSnackBar.show(
@@ -389,7 +399,7 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     _storageSelected = storages.firstWhereOrNull((e) => e.title == selectedItem);
 
     if (_storageSelected != null && _storageSelected?.id != null) {
-      context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!));
+      context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!, season: _season));
     }
   }
 
@@ -402,7 +412,6 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
     _salesDetailEntity.dispose();
     _countWheel.dispose();
     _notifierWheels.dispose();
-    _salesDetailEntity.dispose();
     super.dispose();
   }
 }

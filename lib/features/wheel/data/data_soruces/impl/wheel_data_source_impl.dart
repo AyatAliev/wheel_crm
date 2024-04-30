@@ -46,4 +46,11 @@ class WheelDataSourceImpl extends WheelDataSource {
 
     return result.data['msg'];
   }
+
+  @override
+  Future<String> addActionSales(SalesDetailEntity salesDetailEntity) async {
+    final result = await _client.post(HttpPaths.sales, data: salesDetailEntity.toJson());
+
+    return result.data['msg'];
+  }
 }

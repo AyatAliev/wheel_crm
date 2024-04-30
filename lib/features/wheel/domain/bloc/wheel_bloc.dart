@@ -26,6 +26,7 @@ class WheelBloc extends Bloc<WheelEvent, WheelState> {
     on<_AddWheel>(_onAddWheel);
     on<_ActionDefect>(_onActionDefect);
     on<_ActionReturn>(_onActionReturn);
+    on<_ActionSales>(_onActionSales);
   }
 
   FutureOr<void> _onGetWheelsById(_GetWheelsById event, Emitter<WheelState> emit) async {
@@ -81,7 +82,19 @@ class WheelBloc extends Bloc<WheelEvent, WheelState> {
   FutureOr<void> _onActionReturn(_ActionReturn event, Emitter<WheelState> emit) async {
     emit(state.copyWith(stateStatus: const StateStatus.loading()));
 
-    final result = await _repository.addWheel(event.salesDetailEntity);
+    final result = await _repository.addActionReturn(event.salesDetailEntity);
+
+    result.fold((l) {
+      emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));
+    }, (r) {
+      emit(state.copyWith(stateStatus: const StateStatus.success()));
+    });
+  }
+
+  FutureOr<void> _onActionSales(_ActionSales event, Emitter<WheelState> emit) async {
+    emit(state.copyWith(stateStatus: const StateStatus.loading()));
+
+    final result = await _repository.actionSales(event.salesDetailEntity);
 
     result.fold((l) {
       emit(state.copyWith(stateStatus: StateStatus.failure(message: l.message ?? l.toString())));

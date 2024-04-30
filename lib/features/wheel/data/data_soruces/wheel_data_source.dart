@@ -8,4 +8,5 @@ abstract class WheelDataSource {
   Future<List<SalesModel>> getActions();
   Future<String> addActionDefect(SalesDetailEntity salesDetailEntity);
   Future<String> addActionReturn(SalesDetailEntity salesDetailEntity);
+  Future<String> addActionSales(SalesDetailEntity salesDetailEntity);
 }

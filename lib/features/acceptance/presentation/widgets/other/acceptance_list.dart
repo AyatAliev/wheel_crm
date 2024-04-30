@@ -30,7 +30,7 @@ class AcceptanceList extends StatelessWidget {
                         ..add(AcceptanceEvent.getAcceptanceById(id: acceptances[index].id!)),
                     ),
                   ],
-                  child: const AbsorbPointer(child: CreateAcceptanceWidget()),
+                  child: const CreateAcceptanceWidget(preview: true),
                 ),
               );
             }

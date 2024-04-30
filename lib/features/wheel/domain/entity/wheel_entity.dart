@@ -36,12 +36,11 @@ class WheelEntity {
 
   int? get amount => int.tryParse(countController.text);
 
-  Map<String, dynamic> toJson() =>
-      {
-        "amount": amount,
+  Map<String, dynamic> toJson({bool enableSeason = true}) => {
         "title": title,
+        "amount": amount,
         "price": 2100,
-        if (season != null) "season": season,
+        if (season != null && enableSeason) "season": season,
       };
 
   @override
