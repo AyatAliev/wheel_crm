@@ -4,8 +4,18 @@ class ProfileEntity {
   final String? role;
   final int? team;
   final FunctionsEntity? functions;
+  final String? firstName;
+  final String? lastName;
 
-  const ProfileEntity({this.id, this.email, this.role, this.team, this.functions});
+  const ProfileEntity({
+    this.id,
+    this.email,
+    this.role,
+    this.team,
+    this.functions,
+    this.firstName,
+    this.lastName,
+  });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -13,6 +23,8 @@ class ProfileEntity {
     data['email'] = email;
     data['role'] = role;
     data['team'] = team;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
     if (functions != null) {
       data['functions'] = functions!.toJson();
     }

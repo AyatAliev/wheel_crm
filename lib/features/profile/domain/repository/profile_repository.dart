@@ -4,4 +4,5 @@ import 'package:wheel_crm/features/profile/domain/entity/profile_entity.dart';
 
 abstract class ProfileRepository {
   Future<Either<Failure, ProfileEntity>> getProfile();
+  Future<Either<Failure, List<ProfileEntity>>> getProfileTeam();
 }

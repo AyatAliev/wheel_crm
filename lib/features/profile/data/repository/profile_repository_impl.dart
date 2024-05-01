@@ -30,4 +30,16 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return onRepositoryException(e);
     }
   }
+
+  @override
+  Future<Either<Failure, List<ProfileEntity>>> getProfileTeam() async {
+    try {
+      final result = await _dataSource.getTeams();
+
+      final teams = result.map((e) => _converter.convert(e)).toList();
+      return Right(teams);
+    } catch (e) {
+      return onRepositoryException(e);
+    }
+  }
 }

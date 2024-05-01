@@ -16,4 +16,11 @@ class ProfileDataSourceImpl extends ProfileDataSource {
 
     return ProfileModel.fromJson(result.data);
   }
+
+  @override
+  Future<List<ProfileModel>> getTeams() async {
+    final result = await _client.get(HttpPaths.teams);
+
+    return (result.data as List).map((e) => ProfileModel.fromJson(e)).toList();
+  }
 }

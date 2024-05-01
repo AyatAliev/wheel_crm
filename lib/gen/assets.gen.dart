@@ -66,6 +66,14 @@ class $AssetsIconsGen {
   SvgGenImage get icCalendar =>
       const SvgGenImage('assets/icons/ic_calendar.svg');
 
+  /// File path: assets/icons/ic_check_box.svg
+  SvgGenImage get icCheckBox =>
+      const SvgGenImage('assets/icons/ic_check_box.svg');
+
+  /// File path: assets/icons/ic_check_box_enable.svg
+  SvgGenImage get icCheckBoxEnable =>
+      const SvgGenImage('assets/icons/ic_check_box_enable.svg');
+
   /// File path: assets/icons/ic_fab_plus.svg
   SvgGenImage get icFabPlus =>
       const SvgGenImage('assets/icons/ic_fab_plus.svg');
@@ -99,6 +107,8 @@ class $AssetsIconsGen {
   List<SvgGenImage> get values => [
         clockSolid,
         icCalendar,
+        icCheckBox,
+        icCheckBoxEnable,
         icFabPlus,
         icFilter,
         icHome,

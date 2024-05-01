@@ -25,15 +25,15 @@ import 'package:wheel_crm/features/acceptance/data/data_sources/acceptance_data_
 import 'package:wheel_crm/features/acceptance/data/data_sources/impl/acceptance_data_source_impl.dart'
     as _i42;
 import 'package:wheel_crm/features/acceptance/data/model/acceptance_model.dart'
-    as _i15;
-import 'package:wheel_crm/features/acceptance/data/model/convert/acceptance_model_to_entity.dart'
     as _i17;
+import 'package:wheel_crm/features/acceptance/data/model/convert/acceptance_model_to_entity.dart'
+    as _i19;
 import 'package:wheel_crm/features/acceptance/data/repository/acceptance_repository_impl.dart'
     as _i44;
 import 'package:wheel_crm/features/acceptance/domain/bloc/acceptance_bloc.dart'
     as _i54;
 import 'package:wheel_crm/features/acceptance/domain/entity/acceptance_entity.dart'
-    as _i16;
+    as _i18;
 import 'package:wheel_crm/features/acceptance/domain/repository/acceptance_repository.dart'
     as _i43;
 import 'package:wheel_crm/features/auth/data/data_sources/auth_data_source.dart'
@@ -50,17 +50,17 @@ import 'package:wheel_crm/features/profile/data/data_sources/impl/profile_data_s
 import 'package:wheel_crm/features/profile/data/data_sources/profile_data_source.dart'
     as _i27;
 import 'package:wheel_crm/features/profile/data/model/convert/function_model_to_entity.dart'
-    as _i14;
+    as _i23;
 import 'package:wheel_crm/features/profile/data/model/convert/profile_model_to_entity.dart'
-    as _i13;
+    as _i22;
 import 'package:wheel_crm/features/profile/data/model/profile_model.dart'
-    as _i11;
+    as _i20;
 import 'package:wheel_crm/features/profile/data/repository/profile_repository_impl.dart'
     as _i30;
 import 'package:wheel_crm/features/profile/domain/bloc/profile_bloc.dart'
     as _i51;
 import 'package:wheel_crm/features/profile/domain/entity/profile_entity.dart'
-    as _i12;
+    as _i21;
 import 'package:wheel_crm/features/profile/domain/repository/profile_repository.dart'
     as _i29;
 import 'package:wheel_crm/features/storage/data/data_sources/impl/storage_data_source_impl.dart'
@@ -68,15 +68,15 @@ import 'package:wheel_crm/features/storage/data/data_sources/impl/storage_data_s
 import 'package:wheel_crm/features/storage/data/data_sources/storage_data_source.dart'
     as _i33;
 import 'package:wheel_crm/features/storage/data/model/convert/storage_model_to_entity.dart'
-    as _i20;
+    as _i16;
 import 'package:wheel_crm/features/storage/data/model/storage_model.dart'
-    as _i18;
+    as _i14;
 import 'package:wheel_crm/features/storage/data/repository/storage_repository_impl.dart'
     as _i36;
 import 'package:wheel_crm/features/storage/domain/bloc/storage_bloc.dart'
     as _i52;
 import 'package:wheel_crm/features/storage/domain/entity/storage_entity.dart'
-    as _i19;
+    as _i15;
 import 'package:wheel_crm/features/storage/domain/repository/storage_repository.dart'
     as _i35;
 import 'package:wheel_crm/features/wheel/data/data_soruces/impl/wheel_data_source_impl.dart'
@@ -86,22 +86,22 @@ import 'package:wheel_crm/features/wheel/data/data_soruces/wheel_data_source.dar
 import 'package:wheel_crm/features/wheel/data/model/convert/sales_detail_model_to_entity.dart'
     as _i7;
 import 'package:wheel_crm/features/wheel/data/model/convert/sales_model_to_entity.dart'
-    as _i10;
+    as _i13;
 import 'package:wheel_crm/features/wheel/data/model/convert/wheel_model_to_entity.dart'
-    as _i23;
+    as _i10;
 import 'package:wheel_crm/features/wheel/data/model/sales_detail_model.dart'
     as _i5;
-import 'package:wheel_crm/features/wheel/data/model/sales_model.dart' as _i8;
-import 'package:wheel_crm/features/wheel/data/model/wheel_model.dart' as _i21;
+import 'package:wheel_crm/features/wheel/data/model/sales_model.dart' as _i11;
+import 'package:wheel_crm/features/wheel/data/model/wheel_model.dart' as _i8;
 import 'package:wheel_crm/features/wheel/data/repository/wheel_repository_impl.dart'
     as _i40;
 import 'package:wheel_crm/features/wheel/domain/bloc/wheel_bloc.dart' as _i53;
 import 'package:wheel_crm/features/wheel/domain/entity/sales_detail_entity.dart'
     as _i6;
 import 'package:wheel_crm/features/wheel/domain/entity/sales_entity.dart'
-    as _i9;
+    as _i12;
 import 'package:wheel_crm/features/wheel/domain/entity/wheel_entity.dart'
-    as _i22;
+    as _i9;
 import 'package:wheel_crm/features/wheel/domain/repository/wheel_repository.dart'
     as _i39;
 import 'package:wheel_crm/injection/injection_module.dart' as _i56;
@@ -121,18 +121,18 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i3.AuthService>(_i3.AuthService());
     gh.factory<_i4.Converter<_i5.SalesDetailModel, _i6.SalesDetailEntity>>(
         () => _i7.SalesDetailModelToEntity());
-    gh.factory<_i4.Converter<_i8.SalesModel, _i9.SalesEntity>>(
-        () => _i10.SalesModelToEntity());
-    gh.factory<_i4.Converter<_i11.ProfileModel, _i12.ProfileEntity>>(
-        () => _i13.ProfileModelToEntity());
-    gh.factory<_i4.Converter<_i11.FunctionsModel, _i12.FunctionsEntity>>(
-        () => _i14.CalendarRoomModelToEntity());
-    gh.factory<_i4.Converter<_i15.AcceptanceModel, _i16.AcceptanceEntity>>(
-        () => _i17.CalendarRoomModelToEntity());
-    gh.factory<_i4.Converter<_i18.StorageModel, _i19.StorageEntity>>(
-        () => _i20.StorageModelToEntity());
-    gh.factory<_i4.Converter<_i21.WheelModel, _i22.WheelEntity>>(
-        () => _i23.WheelModelToEntity());
+    gh.factory<_i4.Converter<_i8.WheelModel, _i9.WheelEntity>>(
+        () => _i10.WheelModelToEntity());
+    gh.factory<_i4.Converter<_i11.SalesModel, _i12.SalesEntity>>(
+        () => _i13.SalesModelToEntity());
+    gh.factory<_i4.Converter<_i14.StorageModel, _i15.StorageEntity>>(
+        () => _i16.StorageModelToEntity());
+    gh.factory<_i4.Converter<_i17.AcceptanceModel, _i18.AcceptanceEntity>>(
+        () => _i19.CalendarRoomModelToEntity());
+    gh.factory<_i4.Converter<_i20.ProfileModel, _i21.ProfileEntity>>(
+        () => _i22.ProfileModelToEntity());
+    gh.factory<_i4.Converter<_i20.FunctionsModel, _i21.FunctionsEntity>>(
+        () => _i23.CalendarRoomModelToEntity());
     gh.factory<_i24.Dio>(() => registerModule.dio);
     gh.singleton<_i25.FlutterSecureStorage>(registerModule.storage);
     gh.singleton<_i26.HttpClient>(_i26.HttpClient(gh<_i24.Dio>()));
@@ -140,7 +140,7 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i28.ProfileDataSourceImpl(client: gh<_i26.HttpClient>()));
     gh.factory<_i29.ProfileRepository>(() => _i30.ProfileRepositoryImpl(
           dataSource: gh<_i27.ProfileDataSource>(),
-          converter: gh<_i4.Converter<_i11.ProfileModel, _i12.ProfileEntity>>(),
+          converter: gh<_i4.Converter<_i20.ProfileModel, _i21.ProfileEntity>>(),
         ));
     gh.singleton<_i31.SecureStorageService>(
         _i31.SecureStorageService(gh<_i25.FlutterSecureStorage>()));
@@ -152,21 +152,21 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i34.StorageDataSourceImpl(gh<_i26.HttpClient>()));
     gh.factory<_i35.StorageRepository>(() => _i36.StorageRepositoryImpl(
           gh<_i33.StorageDataSource>(),
-          gh<_i4.Converter<_i18.StorageModel, _i19.StorageEntity>>(),
-          gh<_i4.Converter<_i21.WheelModel, _i22.WheelEntity>>(),
+          gh<_i4.Converter<_i14.StorageModel, _i15.StorageEntity>>(),
+          gh<_i4.Converter<_i8.WheelModel, _i9.WheelEntity>>(),
         ));
     gh.factory<_i37.WheelDataSource>(
         () => _i38.WheelDataSourceImpl(gh<_i26.HttpClient>()));
     gh.factory<_i39.WheelRepository>(() => _i40.WheelRepositoryImpl(
           gh<_i37.WheelDataSource>(),
           gh<_i4.Converter<_i5.SalesDetailModel, _i6.SalesDetailEntity>>(),
-          gh<_i4.Converter<_i8.SalesModel, _i9.SalesEntity>>(),
+          gh<_i4.Converter<_i11.SalesModel, _i12.SalesEntity>>(),
         ));
     gh.factory<_i41.AcceptanceDataSource>(
         () => _i42.AcceptanceDataSourceImpl(gh<_i26.HttpClient>()));
     gh.factory<_i43.AcceptanceRepository>(() => _i44.AcceptanceRepositoryImpl(
           gh<_i41.AcceptanceDataSource>(),
-          gh<_i4.Converter<_i15.AcceptanceModel, _i16.AcceptanceEntity>>(),
+          gh<_i4.Converter<_i17.AcceptanceModel, _i18.AcceptanceEntity>>(),
         ));
     gh.singleton<_i45.AppRouter>(_i45.AppRouter(gh<_i3.AuthService>()));
     gh.factory<_i46.AuthDataSource>(

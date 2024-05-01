@@ -57,8 +57,8 @@ class _AppCheckBoxState extends State<AppCheckBox> {
       child: Row(
         children: [
           _buildBox(),
-          const SizedBox(width: 12),
-          _buildTitle(),
+          if (widget.title != null) const SizedBox(width: 12),
+          if (widget.title != null) _buildTitle(),
         ],
       ),
     );
@@ -87,13 +87,11 @@ class _AppCheckBoxState extends State<AppCheckBox> {
   }
 
   Widget _buildTitle() {
-    return Expanded(
-      child: Text(
-        widget.title ?? '',
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: widget.textStyle,
-      ),
+    return Text(
+      widget.title ?? '',
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: widget.textStyle,
     );
   }
 }

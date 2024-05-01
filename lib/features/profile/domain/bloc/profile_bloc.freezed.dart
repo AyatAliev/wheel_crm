@@ -19,32 +19,38 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
+    required TResult Function() getProfileTeam,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
+    TResult? Function()? getProfileTeam,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
+    TResult Function()? getProfileTeam,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetProfile value) getProfile,
+    required TResult Function(_GetProfileTeam value) getProfileTeam,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetProfile value)? getProfile,
+    TResult? Function(_GetProfileTeam value)? getProfileTeam,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetProfile value)? getProfile,
+    TResult Function(_GetProfileTeam value)? getProfileTeam,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$GetProfileImpl implements _GetProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getProfile,
+    required TResult Function() getProfileTeam,
   }) {
     return getProfile();
   }
@@ -115,6 +122,7 @@ class _$GetProfileImpl implements _GetProfile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getProfile,
+    TResult? Function()? getProfileTeam,
   }) {
     return getProfile?.call();
   }
@@ -123,6 +131,7 @@ class _$GetProfileImpl implements _GetProfile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getProfile,
+    TResult Function()? getProfileTeam,
     required TResult orElse(),
   }) {
     if (getProfile != null) {
@@ -135,6 +144,7 @@ class _$GetProfileImpl implements _GetProfile {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetProfile value) getProfile,
+    required TResult Function(_GetProfileTeam value) getProfileTeam,
   }) {
     return getProfile(this);
   }
@@ -143,6 +153,7 @@ class _$GetProfileImpl implements _GetProfile {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetProfile value)? getProfile,
+    TResult? Function(_GetProfileTeam value)? getProfileTeam,
   }) {
     return getProfile?.call(this);
   }
@@ -151,6 +162,7 @@ class _$GetProfileImpl implements _GetProfile {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetProfile value)? getProfile,
+    TResult Function(_GetProfileTeam value)? getProfileTeam,
     required TResult orElse(),
   }) {
     if (getProfile != null) {
@@ -165,9 +177,112 @@ abstract class _GetProfile implements ProfileEvent {
 }
 
 /// @nodoc
+abstract class _$$GetProfileTeamImplCopyWith<$Res> {
+  factory _$$GetProfileTeamImplCopyWith(_$GetProfileTeamImpl value,
+          $Res Function(_$GetProfileTeamImpl) then) =
+      __$$GetProfileTeamImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetProfileTeamImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$GetProfileTeamImpl>
+    implements _$$GetProfileTeamImplCopyWith<$Res> {
+  __$$GetProfileTeamImplCopyWithImpl(
+      _$GetProfileTeamImpl _value, $Res Function(_$GetProfileTeamImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetProfileTeamImpl implements _GetProfileTeam {
+  const _$GetProfileTeamImpl();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.getProfileTeam()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetProfileTeamImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getProfile,
+    required TResult Function() getProfileTeam,
+  }) {
+    return getProfileTeam();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getProfile,
+    TResult? Function()? getProfileTeam,
+  }) {
+    return getProfileTeam?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getProfile,
+    TResult Function()? getProfileTeam,
+    required TResult orElse(),
+  }) {
+    if (getProfileTeam != null) {
+      return getProfileTeam();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetProfile value) getProfile,
+    required TResult Function(_GetProfileTeam value) getProfileTeam,
+  }) {
+    return getProfileTeam(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetProfile value)? getProfile,
+    TResult? Function(_GetProfileTeam value)? getProfileTeam,
+  }) {
+    return getProfileTeam?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetProfile value)? getProfile,
+    TResult Function(_GetProfileTeam value)? getProfileTeam,
+    required TResult orElse(),
+  }) {
+    if (getProfileTeam != null) {
+      return getProfileTeam(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetProfileTeam implements ProfileEvent {
+  const factory _GetProfileTeam() = _$GetProfileTeamImpl;
+}
+
+/// @nodoc
 mixin _$ProfileState {
   StateStatus get stateStatus => throw _privateConstructorUsedError;
   ProfileEntity? get profileEntity => throw _privateConstructorUsedError;
+  List<ProfileEntity> get teams => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -180,7 +295,10 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({StateStatus stateStatus, ProfileEntity? profileEntity});
+  $Res call(
+      {StateStatus stateStatus,
+      ProfileEntity? profileEntity,
+      List<ProfileEntity> teams});
 
   $StateStatusCopyWith<$Res> get stateStatus;
 }
@@ -200,6 +318,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   $Res call({
     Object? stateStatus = null,
     Object? profileEntity = freezed,
+    Object? teams = null,
   }) {
     return _then(_value.copyWith(
       stateStatus: null == stateStatus
@@ -210,6 +329,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.profileEntity
           : profileEntity // ignore: cast_nullable_to_non_nullable
               as ProfileEntity?,
+      teams: null == teams
+          ? _value.teams
+          : teams // ignore: cast_nullable_to_non_nullable
+              as List<ProfileEntity>,
     ) as $Val);
   }
 
@@ -230,7 +353,10 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       __$$ProfileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({StateStatus stateStatus, ProfileEntity? profileEntity});
+  $Res call(
+      {StateStatus stateStatus,
+      ProfileEntity? profileEntity,
+      List<ProfileEntity> teams});
 
   @override
   $StateStatusCopyWith<$Res> get stateStatus;
@@ -249,6 +375,7 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
   $Res call({
     Object? stateStatus = null,
     Object? profileEntity = freezed,
+    Object? teams = null,
   }) {
     return _then(_$ProfileStateImpl(
       stateStatus: null == stateStatus
@@ -259,6 +386,10 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
           ? _value.profileEntity
           : profileEntity // ignore: cast_nullable_to_non_nullable
               as ProfileEntity?,
+      teams: null == teams
+          ? _value._teams
+          : teams // ignore: cast_nullable_to_non_nullable
+              as List<ProfileEntity>,
     ));
   }
 }
@@ -267,17 +398,28 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
 
 class _$ProfileStateImpl implements _ProfileState {
   const _$ProfileStateImpl(
-      {required this.stateStatus, this.profileEntity = null});
+      {required this.stateStatus,
+      this.profileEntity = null,
+      final List<ProfileEntity> teams = const []})
+      : _teams = teams;
 
   @override
   final StateStatus stateStatus;
   @override
   @JsonKey()
   final ProfileEntity? profileEntity;
+  final List<ProfileEntity> _teams;
+  @override
+  @JsonKey()
+  List<ProfileEntity> get teams {
+    if (_teams is EqualUnmodifiableListView) return _teams;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_teams);
+  }
 
   @override
   String toString() {
-    return 'ProfileState(stateStatus: $stateStatus, profileEntity: $profileEntity)';
+    return 'ProfileState(stateStatus: $stateStatus, profileEntity: $profileEntity, teams: $teams)';
   }
 
   @override
@@ -288,11 +430,13 @@ class _$ProfileStateImpl implements _ProfileState {
             (identical(other.stateStatus, stateStatus) ||
                 other.stateStatus == stateStatus) &&
             (identical(other.profileEntity, profileEntity) ||
-                other.profileEntity == profileEntity));
+                other.profileEntity == profileEntity) &&
+            const DeepCollectionEquality().equals(other._teams, _teams));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stateStatus, profileEntity);
+  int get hashCode => Object.hash(runtimeType, stateStatus, profileEntity,
+      const DeepCollectionEquality().hash(_teams));
 
   @JsonKey(ignore: true)
   @override
@@ -304,12 +448,15 @@ class _$ProfileStateImpl implements _ProfileState {
 abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
       {required final StateStatus stateStatus,
-      final ProfileEntity? profileEntity}) = _$ProfileStateImpl;
+      final ProfileEntity? profileEntity,
+      final List<ProfileEntity> teams}) = _$ProfileStateImpl;
 
   @override
   StateStatus get stateStatus;
   @override
   ProfileEntity? get profileEntity;
+  @override
+  List<ProfileEntity> get teams;
   @override
   @JsonKey(ignore: true)
   _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>
