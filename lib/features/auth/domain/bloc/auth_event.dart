@@ -6,4 +6,9 @@ class AuthEvent with _$AuthEvent {
     required String email,
     required String password,
   }) = _Authorization;
+
+  const factory AuthEvent.changePassword({
+    required String newPassword,
+    required String confirmPassword,
+  }) = _ChangePassword;
 }

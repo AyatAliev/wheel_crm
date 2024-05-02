@@ -50,9 +50,9 @@ import 'package:wheel_crm/features/profile/data/data_sources/impl/profile_data_s
 import 'package:wheel_crm/features/profile/data/data_sources/profile_data_source.dart'
     as _i27;
 import 'package:wheel_crm/features/profile/data/model/convert/function_model_to_entity.dart'
-    as _i23;
-import 'package:wheel_crm/features/profile/data/model/convert/profile_model_to_entity.dart'
     as _i22;
+import 'package:wheel_crm/features/profile/data/model/convert/profile_model_to_entity.dart'
+    as _i23;
 import 'package:wheel_crm/features/profile/data/model/profile_model.dart'
     as _i20;
 import 'package:wheel_crm/features/profile/data/repository/profile_repository_impl.dart'
@@ -129,10 +129,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i16.StorageModelToEntity());
     gh.factory<_i4.Converter<_i17.AcceptanceModel, _i18.AcceptanceEntity>>(
         () => _i19.CalendarRoomModelToEntity());
-    gh.factory<_i4.Converter<_i20.ProfileModel, _i21.ProfileEntity>>(
-        () => _i22.ProfileModelToEntity());
     gh.factory<_i4.Converter<_i20.FunctionsModel, _i21.FunctionsEntity>>(
-        () => _i23.CalendarRoomModelToEntity());
+        () => _i22.CalendarRoomModelToEntity());
+    gh.factory<_i4.Converter<_i20.ProfileModel, _i21.ProfileEntity>>(
+        () => _i23.ProfileModelToEntity());
     gh.factory<_i24.Dio>(() => registerModule.dio);
     gh.singleton<_i25.FlutterSecureStorage>(registerModule.storage);
     gh.singleton<_i26.HttpClient>(_i26.HttpClient(gh<_i24.Dio>()));

@@ -82,6 +82,9 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             _divider(),
                             state.profileEntity?.role == 'Owner' ? _ownerColumn(state) : _employeeColumn(state),
+                            const SizedBox(height: AppProps.kPageMargin),
+                            _addNewEmployee(),
+                            const SizedBox(height: AppProps.kPageMargin),
                             if (state.teams.isNotEmpty && state.profileEntity?.role == 'Owner') _divider(),
                             const Text(
                               'Пароль',
@@ -96,7 +99,7 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 );
               } else if (state.stateStatus is LoadingStatus) {
-                return const Center(child: CircularProgressIndicator(color: AppColors.kPrimary));
+                return const Center(child: CircularProgressIndicator(color: AppColors.kWhite));
               }
 
               return const Center(
@@ -204,6 +207,29 @@ class ProfileScreen extends StatelessWidget {
           ),
           const Icon(
             Icons.settings,
+            color: AppColors.kPrimary,
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _addNewEmployee() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: AppProps.kSmallMarginX2, horizontal: AppProps.kSmallMargin),
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.kGreyStroke),
+        borderRadius: BorderRadius.circular(AppProps.kSmallMargin),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Добавить нового сотрудника',
+            style: AppTextStyle.bodyLargeStyle.copyWith(fontWeight: FontWeight.w400, color: AppColors.kPrimary),
+          ),
+          const Icon(
+            Icons.add,
             color: AppColors.kPrimary,
           )
         ],

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 41
+/// Strings: 42
 ///
-/// Built on 2024-04-25 at 07:53 UTC
+/// Built on 2024-05-01 at 12:51 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -188,6 +188,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get salesDate => 'Дата продажи';
 	String get selectDateSales => 'Надо выбрать дату создания продажи!';
 	String get fillAcceptanceProduct => 'Нужно заполнить приемку товарами!';
+	String get passwordError => 'Пароль должен состоять из 6 букв или цифр';
 }
 
 /// Flat map(s) containing all translations.
@@ -237,6 +238,7 @@ extension on Translations {
 			case 'salesDate': return 'Дата продажи';
 			case 'selectDateSales': return 'Надо выбрать дату создания продажи!';
 			case 'fillAcceptanceProduct': return 'Нужно заполнить приемку товарами!';
+			case 'passwordError': return 'Пароль должен состоять из 6 букв или цифр';
 			default: return null;
 		}
 	}

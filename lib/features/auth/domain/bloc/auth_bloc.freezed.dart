@@ -16,43 +16,46 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthEvent {
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) authorization,
+    required TResult Function(String newPassword, String confirmPassword)
+        changePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? authorization,
+    TResult? Function(String newPassword, String confirmPassword)?
+        changePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? authorization,
+    TResult Function(String newPassword, String confirmPassword)?
+        changePassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Authorization value) authorization,
+    required TResult Function(_ChangePassword value) changePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Authorization value)? authorization,
+    TResult? Function(_ChangePassword value)? changePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Authorization value)? authorization,
+    TResult Function(_ChangePassword value)? changePassword,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AuthEventCopyWith<AuthEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +63,6 @@ mixin _$AuthEvent {
 abstract class $AuthEventCopyWith<$Res> {
   factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
       _$AuthEventCopyWithImpl<$Res, AuthEvent>;
-  @useResult
-  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -73,33 +74,13 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? password = null,
-  }) {
-    return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$AuthorizationImplCopyWith<$Res>
-    implements $AuthEventCopyWith<$Res> {
+abstract class _$$AuthorizationImplCopyWith<$Res> {
   factory _$$AuthorizationImplCopyWith(
           _$AuthorizationImpl value, $Res Function(_$AuthorizationImpl) then) =
       __$$AuthorizationImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String email, String password});
 }
@@ -169,6 +150,8 @@ class _$AuthorizationImpl implements _Authorization {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) authorization,
+    required TResult Function(String newPassword, String confirmPassword)
+        changePassword,
   }) {
     return authorization(email, password);
   }
@@ -177,6 +160,8 @@ class _$AuthorizationImpl implements _Authorization {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? authorization,
+    TResult? Function(String newPassword, String confirmPassword)?
+        changePassword,
   }) {
     return authorization?.call(email, password);
   }
@@ -185,6 +170,8 @@ class _$AuthorizationImpl implements _Authorization {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? authorization,
+    TResult Function(String newPassword, String confirmPassword)?
+        changePassword,
     required TResult orElse(),
   }) {
     if (authorization != null) {
@@ -197,6 +184,7 @@ class _$AuthorizationImpl implements _Authorization {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Authorization value) authorization,
+    required TResult Function(_ChangePassword value) changePassword,
   }) {
     return authorization(this);
   }
@@ -205,6 +193,7 @@ class _$AuthorizationImpl implements _Authorization {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Authorization value)? authorization,
+    TResult? Function(_ChangePassword value)? changePassword,
   }) {
     return authorization?.call(this);
   }
@@ -213,6 +202,7 @@ class _$AuthorizationImpl implements _Authorization {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Authorization value)? authorization,
+    TResult Function(_ChangePassword value)? changePassword,
     required TResult orElse(),
   }) {
     if (authorization != null) {
@@ -227,13 +217,161 @@ abstract class _Authorization implements AuthEvent {
       {required final String email,
       required final String password}) = _$AuthorizationImpl;
 
-  @override
   String get email;
-  @override
   String get password;
-  @override
   @JsonKey(ignore: true)
   _$$AuthorizationImplCopyWith<_$AuthorizationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangePasswordImplCopyWith<$Res> {
+  factory _$$ChangePasswordImplCopyWith(_$ChangePasswordImpl value,
+          $Res Function(_$ChangePasswordImpl) then) =
+      __$$ChangePasswordImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String newPassword, String confirmPassword});
+}
+
+/// @nodoc
+class __$$ChangePasswordImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$ChangePasswordImpl>
+    implements _$$ChangePasswordImplCopyWith<$Res> {
+  __$$ChangePasswordImplCopyWithImpl(
+      _$ChangePasswordImpl _value, $Res Function(_$ChangePasswordImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newPassword = null,
+    Object? confirmPassword = null,
+  }) {
+    return _then(_$ChangePasswordImpl(
+      newPassword: null == newPassword
+          ? _value.newPassword
+          : newPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangePasswordImpl implements _ChangePassword {
+  const _$ChangePasswordImpl(
+      {required this.newPassword, required this.confirmPassword});
+
+  @override
+  final String newPassword;
+  @override
+  final String confirmPassword;
+
+  @override
+  String toString() {
+    return 'AuthEvent.changePassword(newPassword: $newPassword, confirmPassword: $confirmPassword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangePasswordImpl &&
+            (identical(other.newPassword, newPassword) ||
+                other.newPassword == newPassword) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newPassword, confirmPassword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangePasswordImplCopyWith<_$ChangePasswordImpl> get copyWith =>
+      __$$ChangePasswordImplCopyWithImpl<_$ChangePasswordImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) authorization,
+    required TResult Function(String newPassword, String confirmPassword)
+        changePassword,
+  }) {
+    return changePassword(newPassword, confirmPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? authorization,
+    TResult? Function(String newPassword, String confirmPassword)?
+        changePassword,
+  }) {
+    return changePassword?.call(newPassword, confirmPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? authorization,
+    TResult Function(String newPassword, String confirmPassword)?
+        changePassword,
+    required TResult orElse(),
+  }) {
+    if (changePassword != null) {
+      return changePassword(newPassword, confirmPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Authorization value) authorization,
+    required TResult Function(_ChangePassword value) changePassword,
+  }) {
+    return changePassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Authorization value)? authorization,
+    TResult? Function(_ChangePassword value)? changePassword,
+  }) {
+    return changePassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Authorization value)? authorization,
+    TResult Function(_ChangePassword value)? changePassword,
+    required TResult orElse(),
+  }) {
+    if (changePassword != null) {
+      return changePassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangePassword implements AuthEvent {
+  const factory _ChangePassword(
+      {required final String newPassword,
+      required final String confirmPassword}) = _$ChangePasswordImpl;
+
+  String get newPassword;
+  String get confirmPassword;
+  @JsonKey(ignore: true)
+  _$$ChangePasswordImplCopyWith<_$ChangePasswordImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

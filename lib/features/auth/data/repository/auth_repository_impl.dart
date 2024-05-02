@@ -28,4 +28,15 @@ class AuthRepositoryImpl extends AuthRepository {
       return onRepositoryException(e);
     }
   }
+
+  @override
+  Future<Either<Failure, String>> changePassword({required String newPassword, required String confirmPassword}) async {
+    try {
+      final result = await _dataSource.changePassword(newPassword: newPassword, confirmPassword: confirmPassword);
+
+      return Right(result);
+    } catch (e) {
+      return onRepositoryException(e);
+    }
+  }
 }

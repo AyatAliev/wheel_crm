@@ -25,4 +25,17 @@ class AuthDataSourceImpl extends AuthDataSource {
 
     return AuthData.fromJson(result.data);
   }
+
+  @override
+  Future<String> changePassword({required String newPassword, required String confirmPassword}) async {
+    final result = await _client.post(
+      HttpPaths.changePassword,
+      data: {
+        "new_password": newPassword,
+        "new_password_confirm": confirmPassword,
+      },
+    );
+
+    return result.data['msg'];
+  }
 }

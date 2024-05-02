@@ -5,4 +5,9 @@ abstract class AuthDataSource {
     required String email,
     required String password,
   });
+
+  Future<String> changePassword({
+    required String newPassword,
+    required String confirmPassword,
+  });
 }

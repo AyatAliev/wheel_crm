@@ -14,8 +14,8 @@ Left<Failure, T> onRepositoryException<T>(dynamic exception) {
       if (exception.response?.statusCode == 401) {
         failure = Authorization(message: 'Token invalidate');
       } else {
-        if (exception.response != null && exception.response?.data['msg'].toString() != null) {
-          failure = OtherFailure(message: exception.response?.data['msg']);
+        if (exception.response?.data['msg'].toString() != null) {
+          failure = OtherFailure(message: exception.response?.data['msg'].toString());
         } else {
           failure = OtherFailure(message: exception.message);
         }

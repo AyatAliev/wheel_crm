@@ -4,6 +4,7 @@ class HttpPaths {
   /// Auth
   static const authorization = '$baseUrl/accounts/login/';
   static const refreshToken = '$baseUrl/accounts/refresh/';
+  static const changePassword = '$baseUrl/accounts/change_password/';
 
   /// Products
   static const acceptance = '$baseUrl/products/acceptance/';
