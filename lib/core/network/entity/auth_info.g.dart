@@ -24,9 +24,9 @@ Map<String, dynamic> _$$AuthDataImplToJson(_$AuthDataImpl instance) =>
 
 _$AuthInfoImpl _$$AuthInfoImplFromJson(Map<String, dynamic> json) =>
     _$AuthInfoImpl(
-      phone: json['phone'] as int?,
+      phone: (json['phone'] as num?)?.toInt(),
       name: json['name'] as String?,
-      statusId: json['statusId'] as int?,
+      statusId: (json['statusId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$AuthInfoImplToJson(_$AuthInfoImpl instance) =>

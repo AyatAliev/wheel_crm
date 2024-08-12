@@ -115,7 +115,7 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
             context.read<StorageBloc>().add(StorageEvent.getStoragesById(storageId: _storageSelected!.id!));
           }
         } else {
-          context.router.pop(true);
+          context.router.maybePop(true);
         }
       },
       failure: (msg) {
@@ -126,7 +126,7 @@ class _SalesDetailWidgetState extends State<SalesDetailWidget> {
 
   Widget _buildClose() {
     return GestureDetector(
-      onTap: () => context.router.pop(),
+      onTap: () => context.router.back(),
       child: const Padding(
         padding: EdgeInsets.symmetric(vertical: AppProps.kSmallMargin),
         child: Align(

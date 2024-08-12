@@ -17,50 +17,6 @@ import 'package:wheel_crm/features/profile/presentation/profile_screen.dart'
     as _i5;
 import 'package:wheel_crm/features/weclome/welcome_screen.dart' as _i6;
 
-abstract class $AppRouter extends _i7.RootStackRouter {
-  $AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, _i7.PageFactory> pagesMap = {
-    AuthRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i1.AuthScreen(),
-      );
-    },
-    BottomMenuRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i2.BottomMenuScreen(),
-      );
-    },
-    EmployeeRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i3.EmployeeScreen(),
-      );
-    },
-    HomeRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i4.HomeScreen(),
-      );
-    },
-    ProfileRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i5.ProfileScreen(),
-      );
-    },
-    WelcomeRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i6.WelcomeScreen(),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [_i1.AuthScreen]
 class AuthRoute extends _i7.PageRouteInfo<void> {
@@ -72,7 +28,12 @@ class AuthRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'AuthRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i1.AuthScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -86,7 +47,12 @@ class BottomMenuRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'BottomMenuRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.BottomMenuScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -100,7 +66,12 @@ class EmployeeRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'EmployeeRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i3.EmployeeScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -114,7 +85,12 @@ class HomeRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i4.HomeScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -128,7 +104,12 @@ class ProfileRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'ProfileRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i5.ProfileScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -142,5 +123,10 @@ class WelcomeRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'WelcomeRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i6.WelcomeScreen();
+    },
+  );
 }

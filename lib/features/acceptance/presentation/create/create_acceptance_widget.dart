@@ -171,7 +171,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
           style: AppTextStyle.bodyLargeStyle.copyWith(color: AppColors.kDarkGrey),
         ),
         GestureDetector(
-          onTap: () => context.router.pop(),
+          onTap: () => context.router.back(),
           child: const Icon(Icons.close),
         ),
       ],
@@ -310,7 +310,7 @@ class _CreateAcceptanceWidgetState extends State<CreateAcceptanceWidget> {
       listener: (context, state) {
         if (state.stateStatus is SuccessStatus &&
             (state.stateStatus as SuccessStatus).value == AcceptanceStateSuccess.successCreate) {
-          context.router.pop(true);
+          context.router.maybePop(true);
         } else if (state.stateStatus is SuccessStatus && state.acceptanceEntity != null) {
           _selectedItemNotifier.value = state.acceptanceEntity!.storage.title;
           _storageSelected = state.acceptanceEntity?.storage;

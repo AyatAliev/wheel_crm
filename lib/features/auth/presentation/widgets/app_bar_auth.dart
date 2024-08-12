@@ -11,7 +11,7 @@ class AppBarAuth extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       leadingWidth: 48,
       leading: InkWell(
-        onTap: () => context.router.pop(),
+        onTap: () => context.router.back(),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: AppProps.kPageMargin),
           child: Assets.icons.icLeft.svg(),

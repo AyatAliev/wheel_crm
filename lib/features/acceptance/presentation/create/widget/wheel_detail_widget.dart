@@ -107,7 +107,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
           style: AppTextStyle.bodyLargeStyle,
         ),
         GestureDetector(
-          onTap: () => context.router.pop(),
+          onTap: () => context.router.back(),
           child: const Icon(Icons.close),
         ),
       ],
@@ -207,7 +207,7 @@ class _WheelDetailWidgetState extends State<WheelDetailWidget> {
   }
 
   void _onSaveButton() {
-    context.router.pop(_selectedWheels);
+    context.router.maybePop(_selectedWheels);
   }
 
   void onChangeSearch(String val) {

@@ -7,7 +7,7 @@ import 'app_routes.gr.dart';
 
 @singleton
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
-class AppRouter extends $AppRouter {
+class AppRouter extends RootStackRouter {
   final AuthService authService;
 
   AppRouter(this.authService);

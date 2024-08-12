@@ -113,7 +113,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     state.stateStatus.mapOrNull(success: (val) {
       if (val.value is String) {
         AppSnackBar.show(context: context, titleText: val.value);
-        context.router.pop();
+        context.router.back();
       }
     }, failure: (msg) {
       AppSnackBar.show(context: context, titleText: msg.message, error: true);
