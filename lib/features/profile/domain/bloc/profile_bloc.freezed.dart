@@ -72,6 +72,9 @@ class _$ProfileEventCopyWithImpl<$Res, $Val extends ProfileEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$GetProfileImplCopyWithImpl<$Res>
   __$$GetProfileImplCopyWithImpl(
       _$GetProfileImpl _value, $Res Function(_$GetProfileImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -190,6 +196,9 @@ class __$$GetProfileTeamImplCopyWithImpl<$Res>
   __$$GetProfileTeamImplCopyWithImpl(
       _$GetProfileTeamImpl _value, $Res Function(_$GetProfileTeamImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -284,7 +293,9 @@ mixin _$ProfileState {
   ProfileEntity? get profileEntity => throw _privateConstructorUsedError;
   List<ProfileEntity> get teams => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -313,6 +324,8 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -336,6 +349,8 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     ) as $Val);
   }
 
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $StateStatusCopyWith<$Res> get stateStatus {
@@ -370,6 +385,8 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
       _$ProfileStateImpl _value, $Res Function(_$ProfileStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -438,7 +455,9 @@ class _$ProfileStateImpl implements _ProfileState {
   int get hashCode => Object.hash(runtimeType, stateStatus, profileEntity,
       const DeepCollectionEquality().hash(_teams));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>
@@ -457,8 +476,11 @@ abstract class _ProfileState implements ProfileState {
   ProfileEntity? get profileEntity;
   @override
   List<ProfileEntity> get teams;
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

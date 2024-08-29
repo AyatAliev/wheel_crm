@@ -84,6 +84,9 @@ class _$StateStatusCopyWithImpl<$Res, $Val extends StateStatus>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of StateStatus
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -100,6 +103,9 @@ class __$$InitialStatusImplCopyWithImpl<$Res>
   __$$InitialStatusImplCopyWithImpl(
       _$InitialStatusImpl _value, $Res Function(_$InitialStatusImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of StateStatus
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -217,6 +223,8 @@ class __$$SuccessStatusImplCopyWithImpl<$Res>
       _$SuccessStatusImpl _value, $Res Function(_$SuccessStatusImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StateStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -256,7 +264,9 @@ class _$SuccessStatusImpl implements SuccessStatus {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StateStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessStatusImplCopyWith<_$SuccessStatusImpl> get copyWith =>
@@ -341,7 +351,10 @@ abstract class SuccessStatus implements StateStatus {
   const factory SuccessStatus([final dynamic value]) = _$SuccessStatusImpl;
 
   dynamic get value;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of StateStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessStatusImplCopyWith<_$SuccessStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -363,6 +376,8 @@ class __$$FailureStatusImplCopyWithImpl<$Res>
       _$FailureStatusImpl _value, $Res Function(_$FailureStatusImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StateStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -401,7 +416,9 @@ class _$FailureStatusImpl implements FailureStatus {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StateStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailureStatusImplCopyWith<_$FailureStatusImpl> get copyWith =>
@@ -487,7 +504,10 @@ abstract class FailureStatus implements StateStatus {
       _$FailureStatusImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of StateStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureStatusImplCopyWith<_$FailureStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -506,6 +526,9 @@ class __$$LoadingStatusImplCopyWithImpl<$Res>
   __$$LoadingStatusImplCopyWithImpl(
       _$LoadingStatusImpl _value, $Res Function(_$LoadingStatusImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of StateStatus
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

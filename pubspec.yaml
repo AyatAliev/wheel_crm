@@ -59,6 +59,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  # Lottie
+  lottie: ^3.1.2
+
   # Utils
   collection: ^1.17.1
   fpdart: ^1.1.0
@@ -68,7 +71,7 @@ dependencies:
   mask_text_input_formatter: ^2.8.0
   flutter_slidable: ^3.0.1
   flutter_keyboard_visibility: ^6.0.0
-
+  flutter_native_splash: ^2.2.4
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +91,12 @@ dev_dependencies:
 flutter_gen:
   integrations:
     flutter_svg: true
+
+flutter_native_splash:
+  android: true
+  ios: true
+  color: '#FFFFFF'
+  image: 'assets/images/tire.png'
 
 flutter:
   fonts:
@@ -112,10 +121,15 @@ flutter:
         - asset: assets/fonts/Raleway-Black.ttf
           weight: 900
 
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-VariableFont.ttf
+
   assets:
     - assets/
     - assets/icons/
     - assets/fonts/
+    - assets/images/
 
   uses-material-design: true
 

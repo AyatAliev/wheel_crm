@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wheel_crm/core/app/router/auth_route_guard.dart';
+import 'package:wheel_crm/core/app/router/on_board_guard.dart';
 import 'package:wheel_crm/core/service/auth_service.dart';
 
 import 'app_routes.gr.dart';
@@ -17,11 +18,17 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
+        AutoRoute(
+          page: OnBoardRoute.page,
+          initial: true,
+          guards: [
+            OnBoardGuard(),
+          ],
+        ),
         AutoRoute(page: WelcomeRoute.page),
         AutoRoute(page: AuthRoute.page),
         AutoRoute(
           page: BottomMenuRoute.page,
-          initial: true,
           guards: [
             AuthGuard(authService: authService),
           ],
