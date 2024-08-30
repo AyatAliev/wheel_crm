@@ -23,4 +23,9 @@ class AppProps {
   static const double kPageMarginX2 = 32.0;
   static const double kPageMarginX3 = 48.0;
   static const double kPageMarginX5 = 80.0;
+
+  static const double kFiftySix = 56.0;
+  static const double kForty = 40.0;
+  static const double kSixty = 60.0;
+  static const double kTwentyEight = 28.0;
 }

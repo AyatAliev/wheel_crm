@@ -120,8 +120,8 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i361.Dio>(() => registerModule.dio);
     gh.factory<_i894.OnBoardBloc>(() => _i894.OnBoardBloc());
+    gh.factory<_i361.Dio>(() => registerModule.dio);
     gh.singleton<_i144.AuthService>(() => _i144.AuthService());
     await gh.singletonAsync<_i460.SharedPreferences>(
       () => registerModule.prefs,
