@@ -26,8 +26,12 @@ mixin _$AuthData {
   String? get tokenRefresh => throw _privateConstructorUsedError;
   AuthInfo? get authInfo => throw _privateConstructorUsedError;
 
+  /// Serializes this AuthData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthDataCopyWith<AuthData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +59,8 @@ class _$AuthDataCopyWithImpl<$Res, $Val extends AuthData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -78,6 +84,8 @@ class _$AuthDataCopyWithImpl<$Res, $Val extends AuthData>
     ) as $Val);
   }
 
+  /// Create a copy of AuthData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AuthInfoCopyWith<$Res>? get authInfo {
@@ -116,6 +124,8 @@ class __$$AuthDataImplCopyWithImpl<$Res>
       _$AuthDataImpl _value, $Res Function(_$AuthDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -178,12 +188,14 @@ class _$AuthDataImpl implements _AuthData {
                 other.authInfo == authInfo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, tokenAccess, tokenRefresh, authInfo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthDataImplCopyWith<_$AuthDataImpl> get copyWith =>
@@ -214,8 +226,11 @@ abstract class _AuthData implements AuthData {
   String? get tokenRefresh;
   @override
   AuthInfo? get authInfo;
+
+  /// Create a copy of AuthData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthDataImplCopyWith<_$AuthDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -230,8 +245,12 @@ mixin _$AuthInfo {
   String? get name => throw _privateConstructorUsedError;
   int? get statusId => throw _privateConstructorUsedError;
 
+  /// Serializes this AuthInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthInfoCopyWith<AuthInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -254,6 +273,8 @@ class _$AuthInfoCopyWithImpl<$Res, $Val extends AuthInfo>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -297,6 +318,8 @@ class __$$AuthInfoImplCopyWithImpl<$Res>
       _$AuthInfoImpl _value, $Res Function(_$AuthInfoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -353,11 +376,13 @@ class _$AuthInfoImpl implements _AuthInfo {
                 other.statusId == statusId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, phone, name, statusId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthInfoImplCopyWith<_$AuthInfoImpl> get copyWith =>
@@ -386,8 +411,11 @@ abstract class _AuthInfo implements AuthInfo {
   String? get name;
   @override
   int? get statusId;
+
+  /// Create a copy of AuthInfo
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthInfoImplCopyWith<_$AuthInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

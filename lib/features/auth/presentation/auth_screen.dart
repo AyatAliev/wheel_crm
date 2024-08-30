@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_ui/io_ui.dart';
 import 'package:wheel_crm/core/app/router/app_routes.gr.dart';
@@ -67,6 +66,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         const SizedBox(height: AppProps.kPageMargin),
                         AppInput(
                           title: t.mail,
+                          height: 63,
                           controller: _loginController,
                           inputAction: TextInputAction.next,
                           autoFocus: true,
@@ -82,6 +82,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             return AppInput(
                               title: t.password,
                               controller: _passwordController,
+                              height: 63,
                               obscureText: val,
                               focusNode: _passwordFocus,
                               validators: [

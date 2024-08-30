@@ -34,6 +34,7 @@ class AppColors {
   static const Color kPurple = Color(0xFFC3C1CF);
 
   static const Color kBlue = Color(0xFFBEE1FB);
+  static const Color kBlueDark = Color(0xFF0029FF);
   static const Color kReservationStayFill = Color(0xFFEBE9F7);
 
 

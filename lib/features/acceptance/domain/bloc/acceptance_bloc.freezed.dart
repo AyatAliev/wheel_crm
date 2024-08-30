@@ -85,6 +85,9 @@ class _$AcceptanceEventCopyWithImpl<$Res, $Val extends AcceptanceEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -104,6 +107,8 @@ class __$$GetAcceptanceImplCopyWithImpl<$Res>
       _$GetAcceptanceImpl _value, $Res Function(_$GetAcceptanceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,7 +165,9 @@ class _$GetAcceptanceImpl implements _GetAcceptance {
   @override
   int get hashCode => Object.hash(runtimeType, startDate, endDate, storageId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetAcceptanceImplCopyWith<_$GetAcceptanceImpl> get copyWith =>
@@ -251,7 +258,10 @@ abstract class _GetAcceptance implements AcceptanceEvent {
   DateTime? get startDate;
   DateTime? get endDate;
   int? get storageId;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetAcceptanceImplCopyWith<_$GetAcceptanceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -273,6 +283,8 @@ class __$$GetAcceptanceByIdImplCopyWithImpl<$Res>
       $Res Function(_$GetAcceptanceByIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -311,7 +323,9 @@ class _$GetAcceptanceByIdImpl implements _GetAcceptanceById {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetAcceptanceByIdImplCopyWith<_$GetAcceptanceByIdImpl> get copyWith =>
@@ -399,7 +413,10 @@ abstract class _GetAcceptanceById implements AcceptanceEvent {
       _$GetAcceptanceByIdImpl;
 
   int get id;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetAcceptanceByIdImplCopyWith<_$GetAcceptanceByIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -421,6 +438,8 @@ class __$$AddAcceptanceImplCopyWithImpl<$Res>
       _$AddAcceptanceImpl _value, $Res Function(_$AddAcceptanceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -460,7 +479,9 @@ class _$AddAcceptanceImpl implements _AddAcceptance {
   @override
   int get hashCode => Object.hash(runtimeType, createAcceptanceEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddAcceptanceImplCopyWith<_$AddAcceptanceImpl> get copyWith =>
@@ -548,7 +569,10 @@ abstract class _AddAcceptance implements AcceptanceEvent {
       _$AddAcceptanceImpl;
 
   CreateAcceptanceEntity get createAcceptanceEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AcceptanceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddAcceptanceImplCopyWith<_$AddAcceptanceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -560,7 +584,9 @@ mixin _$AcceptanceState {
       throw _privateConstructorUsedError;
   AcceptanceEntity? get acceptanceEntity => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AcceptanceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AcceptanceStateCopyWith<AcceptanceState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -589,6 +615,8 @@ class _$AcceptanceStateCopyWithImpl<$Res, $Val extends AcceptanceState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AcceptanceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -612,6 +640,8 @@ class _$AcceptanceStateCopyWithImpl<$Res, $Val extends AcceptanceState>
     ) as $Val);
   }
 
+  /// Create a copy of AcceptanceState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $StateStatusCopyWith<$Res> get stateStatus {
@@ -646,6 +676,8 @@ class __$$AcceptanceStateImplCopyWithImpl<$Res>
       _$AcceptanceStateImpl _value, $Res Function(_$AcceptanceStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AcceptanceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -719,7 +751,9 @@ class _$AcceptanceStateImpl implements _AcceptanceState {
       const DeepCollectionEquality().hash(_acceptanceEntities),
       acceptanceEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AcceptanceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AcceptanceStateImplCopyWith<_$AcceptanceStateImpl> get copyWith =>
@@ -739,8 +773,11 @@ abstract class _AcceptanceState implements AcceptanceState {
   List<AcceptanceEntity> get acceptanceEntities;
   @override
   AcceptanceEntity? get acceptanceEntity;
+
+  /// Create a copy of AcceptanceState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AcceptanceStateImplCopyWith<_$AcceptanceStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

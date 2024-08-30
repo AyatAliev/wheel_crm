@@ -45,6 +45,8 @@ import 'package:wheel_crm/features/auth/data/repository/auth_repository_impl.dar
 import 'package:wheel_crm/features/auth/domain/bloc/auth_bloc.dart' as _i825;
 import 'package:wheel_crm/features/auth/domain/repository/auth_repository.dart'
     as _i762;
+import 'package:wheel_crm/features/on_board/domain/bloc/on_board_bloc.dart'
+    as _i894;
 import 'package:wheel_crm/features/profile/data/data_sources/impl/profile_data_sources_impl.dart'
     as _i927;
 import 'package:wheel_crm/features/profile/data/data_sources/profile_data_source.dart'
@@ -118,6 +120,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
+    gh.factory<_i894.OnBoardBloc>(() => _i894.OnBoardBloc());
     gh.factory<_i361.Dio>(() => registerModule.dio);
     gh.singleton<_i144.AuthService>(() => _i144.AuthService());
     await gh.singletonAsync<_i460.SharedPreferences>(

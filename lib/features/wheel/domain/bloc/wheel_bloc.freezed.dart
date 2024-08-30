@@ -96,6 +96,9 @@ class _$WheelEventCopyWithImpl<$Res, $Val extends WheelEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -115,6 +118,8 @@ class __$$GetWheelsByIdImplCopyWithImpl<$Res>
       _$GetWheelsByIdImpl _value, $Res Function(_$GetWheelsByIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -153,7 +158,9 @@ class _$GetWheelsByIdImpl implements _GetWheelsById {
   @override
   int get hashCode => Object.hash(runtimeType, wheelId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetWheelsByIdImplCopyWith<_$GetWheelsByIdImpl> get copyWith =>
@@ -251,7 +258,10 @@ abstract class _GetWheelsById implements WheelEvent {
       _$GetWheelsByIdImpl;
 
   int get wheelId;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetWheelsByIdImplCopyWith<_$GetWheelsByIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -273,6 +283,8 @@ class __$$AddWheelImplCopyWithImpl<$Res>
       _$AddWheelImpl _value, $Res Function(_$AddWheelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -312,7 +324,9 @@ class _$AddWheelImpl implements _AddWheel {
   @override
   int get hashCode => Object.hash(runtimeType, salesDetailEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddWheelImplCopyWith<_$AddWheelImpl> get copyWith =>
@@ -410,7 +424,10 @@ abstract class _AddWheel implements WheelEvent {
       {required final SalesDetailEntity salesDetailEntity}) = _$AddWheelImpl;
 
   SalesDetailEntity get salesDetailEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddWheelImplCopyWith<_$AddWheelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -429,6 +446,9 @@ class __$$GetActionsImplCopyWithImpl<$Res>
   __$$GetActionsImplCopyWithImpl(
       _$GetActionsImpl _value, $Res Function(_$GetActionsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -558,6 +578,8 @@ class __$$ActionDefectImplCopyWithImpl<$Res>
       _$ActionDefectImpl _value, $Res Function(_$ActionDefectImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -597,7 +619,9 @@ class _$ActionDefectImpl implements _ActionDefect {
   @override
   int get hashCode => Object.hash(runtimeType, salesDetailEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ActionDefectImplCopyWith<_$ActionDefectImpl> get copyWith =>
@@ -696,7 +720,10 @@ abstract class _ActionDefect implements WheelEvent {
       _$ActionDefectImpl;
 
   SalesDetailEntity get salesDetailEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ActionDefectImplCopyWith<_$ActionDefectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -718,6 +745,8 @@ class __$$ActionSalesImplCopyWithImpl<$Res>
       _$ActionSalesImpl _value, $Res Function(_$ActionSalesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -757,7 +786,9 @@ class _$ActionSalesImpl implements _ActionSales {
   @override
   int get hashCode => Object.hash(runtimeType, salesDetailEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ActionSalesImplCopyWith<_$ActionSalesImpl> get copyWith =>
@@ -855,7 +886,10 @@ abstract class _ActionSales implements WheelEvent {
       {required final SalesDetailEntity salesDetailEntity}) = _$ActionSalesImpl;
 
   SalesDetailEntity get salesDetailEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ActionSalesImplCopyWith<_$ActionSalesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -877,6 +911,8 @@ class __$$ActionReturnImplCopyWithImpl<$Res>
       _$ActionReturnImpl _value, $Res Function(_$ActionReturnImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -916,7 +952,9 @@ class _$ActionReturnImpl implements _ActionReturn {
   @override
   int get hashCode => Object.hash(runtimeType, salesDetailEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ActionReturnImplCopyWith<_$ActionReturnImpl> get copyWith =>
@@ -1015,7 +1053,10 @@ abstract class _ActionReturn implements WheelEvent {
       _$ActionReturnImpl;
 
   SalesDetailEntity get salesDetailEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WheelEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ActionReturnImplCopyWith<_$ActionReturnImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1026,7 +1067,9 @@ mixin _$WheelState {
   SalesDetailEntity? get wheelDetail => throw _privateConstructorUsedError;
   List<SalesEntity> get sales => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WheelState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WheelStateCopyWith<WheelState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1055,6 +1098,8 @@ class _$WheelStateCopyWithImpl<$Res, $Val extends WheelState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WheelState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1078,6 +1123,8 @@ class _$WheelStateCopyWithImpl<$Res, $Val extends WheelState>
     ) as $Val);
   }
 
+  /// Create a copy of WheelState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $StateStatusCopyWith<$Res> get stateStatus {
@@ -1112,6 +1159,8 @@ class __$$WheelStateImplCopyWithImpl<$Res>
       _$WheelStateImpl _value, $Res Function(_$WheelStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WheelState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1178,7 +1227,9 @@ class _$WheelStateImpl implements _WheelState {
   int get hashCode => Object.hash(runtimeType, stateStatus, wheelDetail,
       const DeepCollectionEquality().hash(_sales));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WheelState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WheelStateImplCopyWith<_$WheelStateImpl> get copyWith =>
@@ -1197,8 +1248,11 @@ abstract class _WheelState implements WheelState {
   SalesDetailEntity? get wheelDetail;
   @override
   List<SalesEntity> get sales;
+
+  /// Create a copy of WheelState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WheelStateImplCopyWith<_$WheelStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

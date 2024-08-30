@@ -75,6 +75,9 @@ class _$StorageEventCopyWithImpl<$Res, $Val extends StorageEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of StorageEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,6 +94,9 @@ class __$$GetStoragesImplCopyWithImpl<$Res>
   __$$GetStoragesImplCopyWithImpl(
       _$GetStoragesImpl _value, $Res Function(_$GetStoragesImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of StorageEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -199,6 +205,8 @@ class __$$GetStoragesByIdImplCopyWithImpl<$Res>
       _$GetStoragesByIdImpl _value, $Res Function(_$GetStoragesByIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StorageEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -255,7 +263,9 @@ class _$GetStoragesByIdImpl implements _GetStoragesById {
   @override
   int get hashCode => Object.hash(runtimeType, storageId, season, search);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StorageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetStoragesByIdImplCopyWith<_$GetStoragesByIdImpl> get copyWith =>
@@ -337,7 +347,10 @@ abstract class _GetStoragesById implements StorageEvent {
   int get storageId;
   String? get season;
   String? get search;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of StorageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetStoragesByIdImplCopyWith<_$GetStoragesByIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -348,7 +361,9 @@ mixin _$StorageState {
   List<StorageEntity> get storages => throw _privateConstructorUsedError;
   List<WheelEntity> get wheels => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StorageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StorageStateCopyWith<StorageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -377,6 +392,8 @@ class _$StorageStateCopyWithImpl<$Res, $Val extends StorageState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StorageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -400,6 +417,8 @@ class _$StorageStateCopyWithImpl<$Res, $Val extends StorageState>
     ) as $Val);
   }
 
+  /// Create a copy of StorageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $StateStatusCopyWith<$Res> get stateStatus {
@@ -434,6 +453,8 @@ class __$$StorageStateImplCopyWithImpl<$Res>
       _$StorageStateImpl _value, $Res Function(_$StorageStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StorageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -509,7 +530,9 @@ class _$StorageStateImpl implements _StorageState {
       const DeepCollectionEquality().hash(_storages),
       const DeepCollectionEquality().hash(_wheels));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StorageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StorageStateImplCopyWith<_$StorageStateImpl> get copyWith =>
@@ -528,8 +551,11 @@ abstract class _StorageState implements StorageState {
   List<StorageEntity> get storages;
   @override
   List<WheelEntity> get wheels;
+
+  /// Create a copy of StorageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StorageStateImplCopyWith<_$StorageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
