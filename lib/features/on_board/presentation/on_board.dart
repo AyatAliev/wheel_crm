@@ -1,11 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:io_ui/gen/fonts.gen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wheel_crm/core/app/router/app_routes.gr.dart';
 import 'package:wheel_crm/features/on_board/data/model/on_board_model.dart';
 import 'package:wheel_crm/features/on_board/domain/bloc/on_board_bloc.dart';
+import 'package:wheel_crm/gen/fonts.gen.dart';
 import 'package:wheel_crm/injection/injection.dart';
 
 @RoutePage()
@@ -34,10 +33,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    //     statusBarColor: Colors.black,
-    //     systemNavigationBarColor: Colors.black,
-    //     statusBarIconBrightness: Brightness.light));
+
     return BlocProvider(
   create: (context) => getIt<OnBoardBloc>(),
   child: Scaffold(
@@ -83,7 +79,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                           Text(
                             contents[i].title,
                             style: const TextStyle(
-                              fontFamily: 'Inter',
+                              fontFamily: FontFamily.inter,
                               fontWeight: FontWeight.bold,
                               fontSize: 28,
                             ),
@@ -93,7 +89,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                             child: Text(
                               contents[i].description,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(fontFamily: 'Inter', fontSize: 18, color: Colors.grey),
+                              style: const TextStyle(fontFamily: FontFamily.inter, fontSize: 18, color: Colors.grey),
                             ),
                           ),
                         ],
@@ -124,9 +120,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                               shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0)))),
                           onPressed: () {
-                            print(getIt<SharedPreferences>().get('isOnBoardingShown'));
                             context.read<OnBoardBloc>().add(const OnBoardEvent.isShown(isShown: true));
-                            print(getIt<SharedPreferences>().get('isOnBoardingShown'));
                             context.router.replace(const AuthRoute());
                             // context.router.popAndPush(const AuthRoute());
                           },
